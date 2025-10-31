@@ -1,2 +1,4 @@
 /yolo_models
 test.py
+*.mp4
+*.avi

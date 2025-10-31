@@ -34,6 +34,79 @@ from utils.project_lanedetection import *
 WINDOW_NAME = 'ProjectDemo'
 
 
+class OpenCVYolo:
+	"""Simple OpenCV DNN wrapper for YOLO Darknet models.
+	Provides a .detect(img, conf_th) method that returns boxes, scores, classes
+	with the same shape/semantics as the TensorRT TrtYOLO.detect used by this repo.
+	"""
+	def __init__(self, cfg_path, weights_path, input_shape=(416,416)):
+		self.net = cv2.dnn.readNetFromDarknet(cfg_path, weights_path)
+		# prefer CPU
+		self.net.setPreferableBackend(cv2.dnn.DNN_BACKEND_OPENCV)
+		self.net.setPreferableTarget(cv2.dnn.DNN_TARGET_CPU)
+		self.input_shape = input_shape
+
+	def detect(self, img, conf_th=0.3, letter_box=False):
+		h, w = img.shape[:2]
+		inp_w, inp_h = self.input_shape[1], self.input_shape[0]
+		blob = cv2.dnn.blobFromImage(img, 1/255.0, (inp_w, inp_h), swapRB=True, crop=False)
+		self.net.setInput(blob)
+		layer_names = self.net.getLayerNames()
+		out_names = [layer_names[i[0]-1] if isinstance(i, (list, tuple, np.ndarray)) else layer_names[i-1]
+					 for i in self.net.getUnconnectedOutLayers()]
+		outs = self.net.forward(out_names)
+
+		class_ids = []
+		confidences = []
+		boxes = []
+
+		for out in outs:
+			for detection in out:
+				scores = detection[5:]
+				class_id = int(np.argmax(scores))
+				confidence = float(scores[class_id] * detection[4])
+				if confidence > conf_th:
+					center_x = int(detection[0] * w)
+					center_y = int(detection[1] * h)
+					bw = int(detection[2] * w)
+					bh = int(detection[3] * h)
+					x1 = int(center_x - bw / 2)
+					y1 = int(center_y - bh / 2)
+					x2 = x1 + bw
+					y2 = y1 + bh
+					boxes.append([x1, y1, x2, y2])
+					confidences.append(confidence)
+					class_ids.append(class_id)
+
+		# NMS
+		if len(boxes) > 0:
+			idxs = cv2.dnn.NMSBoxes(boxes, confidences, conf_th, 0.5)
+			filtered_boxes = []
+			filtered_scores = []
+			filtered_classes = []
+			if isinstance(idxs, (list, tuple)):
+				idxs = idxs
+			else:
+				try:
+					idxs = idxs.flatten()
+				except Exception:
+					idxs = [int(i) for i in idxs]
+			for i in idxs:
+				i = int(i)
+				filtered_boxes.append(boxes[i])
+				filtered_scores.append(confidences[i])
+				filtered_classes.append(class_ids[i])
+			boxes = np.array(filtered_boxes, dtype=np.int32)
+			scores = np.array(filtered_scores, dtype=np.float32)
+			classes = np.array(filtered_classes, dtype=np.int32)
+		else:
+			boxes = np.zeros((0,4), dtype=np.int32)
+			scores = np.zeros((0,), dtype=np.float32)
+			classes = np.zeros((0,), dtype=np.int32)
+
+		return boxes, scores, classes
+
+
 def parse_args():
 	"""Parse input arguments."""
 	desc = ('Capture and display live camera video, while doing '
@@ -54,6 +127,9 @@ def parse_args():
 			help='inference with letterboxed image [False]')
 	#############add deepsort yaml
 	parser.add_argument('--config_deepsort', type=str, default="./configs/deep_sort.yaml")
+	parser.add_argument('--use_opencv', action='store_true', help='Use OpenCV DNN fallback instead of TensorRT')
+	parser.add_argument('--yolo_cfg', type=str, default='./yolo/yolov4-tiny.cfg', help='Path to YOLO cfg for OpenCV fallback')
+	parser.add_argument('--yolo_weights', type=str, default='./yolo/yolov4-tiny.weights', help='Path to YOLO weights for OpenCV fallback')
 	#parser.add_argument('--engine_path', type=str, default='./weights/yolov3_tiny_416.engine', help='set your engine file path to load')
 	#######################    
 	args = parser.parse_args()
@@ -129,7 +205,7 @@ def motion_cord(starting_points,line_parameters):
 	 # print(outputs_deepsort,"final outpus")
 #    return outputs_deepsort    
 ######################################
-def loop_and_detect(cam, trt_yolo, tracker, conf_th,vis):
+def loop_and_detect(cam, detector, tracker, conf_th,vis):
 	"""Continuously capture images from camera and do object detection.
 
 	# Arguments
@@ -313,9 +389,9 @@ def loop_and_detect(cam, trt_yolo, tracker, conf_th,vis):
 		'''
 		yolov4 + Tensorrt
 		
-		'''        
-		
-		boxes, confs, clss = trt_yolo.detect(img, conf_th)
+		'''
+
+		boxes, confs, clss = detector.detect(img, conf_th)
 		#yolo_init = boxes
 		#img0 = ez_show(img)
 		#img0 = cv2.addWeighted(img0,0.7,img,1,1)
@@ -748,8 +824,9 @@ def main():
 	########
 	if args.category_num <= 0:
 		raise SystemExit('ERROR: bad category_num (%d)!' % args.category_num)
-	if not os.path.isfile('yolo/%s.trt' % args.model):
-		raise SystemExit('ERROR: file (yolo/%s.trt) not found!' % args.model)
+	if not args.use_opencv:
+		if not os.path.isfile('yolo/%s.trt' % args.model):
+			raise SystemExit('ERROR: file (yolo/%s.trt) not found!' % args.model)
 
 	cam = Camera(args)
 	if not cam.isOpened():
@@ -769,13 +846,18 @@ def main():
 	if h % 32 != 0 or w % 32 != 0:
 		raise SystemExit('ERROR: bad yolo_dim (%s)!' % yolo_dim)
 
-	trt_yolo = TrtYOLO(args.model, (h, w), args.category_num, args.letter_box)
+	if args.use_opencv:
+		# Use OpenCV DNN fallback on CPU
+		detector = OpenCVYolo(args.yolo_cfg, args.yolo_weights, input_shape=(h, w))
+	else:
+		trt_yolo = TrtYOLO(args.model, (h, w), args.category_num, args.letter_box)
+		detector = trt_yolo
 
 	#open_window(WINDOW_NAME, 'Camera TensorRT YOLO Demo',cam.img_width, cam.img_height)
 			
 	vis = BBoxVisualization(cls_dict)
 	
-	loop_and_detect(cam, trt_yolo, tracker, conf_th=0.3, vis=vis)
+	loop_and_detect(cam, detector, tracker, conf_th=0.3, vis=vis)
 
 	cam.release()
 	cv2.destroyAllWindows()

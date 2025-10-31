@@ -49,12 +49,40 @@ class Tracker_tiny():
             return outputs
 
 
+import os
+import sys
+import platform
+
+_platform = platform.system().lower()
+if _platform.startswith('windows'):
+    plugin_name = 'libyolo_layer.dll'
+else:
+    plugin_name = 'libyolo_layer.so'
+plugin_path = os.path.join('plugins', plugin_name)
 try:
-    ctypes.cdll.LoadLibrary('./plugins/libyolo_layer.so')
+    ctypes.cdll.LoadLibrary(plugin_path)
 except OSError as e:
-    raise SystemExit('ERROR: failed to load ./plugins/libyolo_layer.so.  '
-                     'Did you forget to do a "make" in the "./plugins/" '
-                     'subdirectory?') from e
+    # Provide a clearer error message depending on platform
+    if _platform.startswith('windows'):
+        msg = (f"ERROR: failed to load {plugin_path}.\n"
+               "On Windows you need to build a TensorRT YOLO plugin DLL (e.g. libyolo_layer.dll) "
+               "compatible with your TensorRT version.\n"
+               "Typical steps: install TensorRT, CUDA, Visual Studio Build Tools, then build the plugin with CMake/MSBuild.\n"
+               "Place the resulting DLL at ./plugins/libyolo_layer.dll and re-run.")
+    else:
+        msg = (f"ERROR: failed to load {plugin_path}.  "
+               "Did you forget to do a \"make\" in the \"./plugins/\" subdirectory?\n"
+               "Build the libyolo_layer.so for your TensorRT version and place it at ./plugins/libyolo_layer.so.")
+    # Don't abort import — only warn. The TensorRT-based detector will fail later if used,
+    # but this allows CPU fallback (--use_opencv) to run without the plugin.
+    try:
+        import warnings
+        warnings.warn(msg)
+    except Exception:
+        print(msg)
+    PLUGIN_LOADED = False
+else:
+    PLUGIN_LOADED = True
 
 
 def _preprocess_yolo(img, input_shape, letter_box=False):
@@ -155,7 +183,7 @@ def _postprocess_yolo(trt_outputs, img_w, img_h, conf_th, nms_threshold,
     detections = np.concatenate(detections, axis=0)
 
     if len(detections) == 0:
-        boxes = np.zeros((0, 4), dtype=np.int)
+        boxes = np.zeros((0, 4), dtype=np.int32)
         scores = np.zeros((0,), dtype=np.float32)
         classes = np.zeros((0,), dtype=np.float32)
     else:
@@ -191,7 +219,7 @@ def _postprocess_yolo(trt_outputs, img_w, img_h, conf_th, nms_threshold,
         ww = nms_detections[:, 2].reshape(-1, 1)
         hh = nms_detections[:, 3].reshape(-1, 1)
         boxes = np.concatenate([xx, yy, xx+ww, yy+hh], axis=1) + 0.5
-        boxes = boxes.astype(np.int)
+        boxes = boxes.astype(np.int32)
         scores = nms_detections[:, 4] * nms_detections[:, 6]
         classes = nms_detections[:, 5]
     return boxes, scores, classes
@@ -293,7 +321,7 @@ def get_yolo_grid_sizes(model_name, h, w):
         else:
             return [(h // 8) * (w // 8), (h // 16) * (w // 16), (h // 32) * (w // 32)]
     else:
-        raise ValueError('ERROR: unknown model (%s)!' % args.model)
+        raise ValueError('ERROR: unknown model (%s)!' % model_name)
 
 
 class TrtYOLO(object):
