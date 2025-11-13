@@ -259,12 +259,12 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 	#width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH) + 0.5) 
 	#height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT) + 0.5)
 	#size = (width, height)
-	fourcc = cv2.VideoWriter_fourcc(*'XVID')
+	fourcc = cv2.VideoWriter_fourcc(*'mp4v')
 	#out = cv2.VideoWriter('output_testingvid03.avi', fourcc, 10.0, (640,  480))
 	#out2 = cv2.VideoWriter('combo.avi', fourcc, 20.0, (1280,960))
-	out = cv2.VideoWriter('line_vis.avi', fourcc, 20.0, (1280,960))
-	out1 = cv2.VideoWriter('final_res.avi', fourcc, 20.0, (1280,  960))
-	out2 = cv2.VideoWriter('combo.avi', fourcc, 20.0, (1280,960))
+	out = cv2.VideoWriter('line_vis.mp4', fourcc, 20.0, (1280,960))
+	out1 = cv2.VideoWriter('final_res.mp4', fourcc, 20.0, (1280,  960))
+	out2 = cv2.VideoWriter('combo.mp4', fourcc, 20.0, (1280,960))
 	#out1 = cv2.VideoWriter('deepsort_out4.avi', fourcc, 20.0, (1280,  960))
 	##
 	while True:
