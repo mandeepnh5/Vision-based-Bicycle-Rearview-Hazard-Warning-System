@@ -2173,7 +2173,7 @@
         "kind": 2,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "def loop_and_detect(cam, detector, tracker, conf_th,vis):\n\t\"\"\"Continuously capture images from camera and do object detection.\n\t# Arguments\n\t\tcam: the camera instance (video source).\n\t\ttrt_yolo: the TRT YOLO object detector instance.\n\t\tconf_th: confidence/score threshold for object detection.\n\t\tvis: for visualization.\n\t\"\"\"\n\t# global img_final\n\tfull_scrn = False",
+        "peekOfCode": "def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):\n\t\"\"\"Continuously capture images from camera and do object detection.\n\t# Arguments\n\t\tcam: the camera instance (video source).\n\t\ttrt_yolo: the TRT YOLO object detector instance.\n\t\tconf_th: confidence/score threshold for object detection.\n\t\tvis: for visualization.\n\t\"\"\"\n\t# global img_final\n\tfull_scrn = False",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -2506,7 +2506,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\tdesc = ('Capture and display live camera video, while doing '\n\t\t\t\t\t'real-time object detection with TensorRT optimized '\n\t\t\t\t\t'YOLO model on Jetson')\n\tparser = argparse.ArgumentParser(description=desc)\n\tparser = add_camera_args(parser)\n\tparser.add_argument(\n\t\t\t'-c', '--category_num', type=int, default=80,\n\t\t\thelp='number of object categories [80]')\n\tparser.add_argument(\n\t\t\t'-m', '--model', type=str, required=True,",
+        "peekOfCode": "\tdesc = ('Capture and display live camera video, while doing '\n\t\t\t\t\t'real-time object detection with TensorRT optimized '\n\t\t\t\t\t'YOLO model on Jetson')\n\tparser = argparse.ArgumentParser(description=desc)\n\tparser = add_camera_args(parser)\n\tparser.add_argument(\n\t\t\t'-c', '--category_num', type=int, default=80,\n\t\t\thelp='number of object categories [80]')\n\tparser.add_argument(\n\t\t\t'-m', '--model', type=str, required=False,",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -2515,7 +2515,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\tparser = argparse.ArgumentParser(description=desc)\n\tparser = add_camera_args(parser)\n\tparser.add_argument(\n\t\t\t'-c', '--category_num', type=int, default=80,\n\t\t\thelp='number of object categories [80]')\n\tparser.add_argument(\n\t\t\t'-m', '--model', type=str, required=True,\n\t\t\thelp=('[yolov3|yolov3-tiny|yolov3-spp|yolov4|yolov4-tiny]-'\n\t\t\t\t\t\t'[{dimension}], where dimension could be a single '\n\t\t\t\t\t\t'number (e.g. 288, 416, 608) or WxH (e.g. 416x256)'))",
+        "peekOfCode": "\tparser = argparse.ArgumentParser(description=desc)\n\tparser = add_camera_args(parser)\n\tparser.add_argument(\n\t\t\t'-c', '--category_num', type=int, default=80,\n\t\t\thelp='number of object categories [80]')\n\tparser.add_argument(\n\t\t\t'-m', '--model', type=str, required=False,\n\t\t\thelp=('[yolov3|yolov3-tiny|yolov3-spp|yolov4|yolov4-tiny]-'\n\t\t\t\t\t\t'[{dimension}], where dimension could be a single '\n\t\t\t\t\t\t'number (e.g. 288, 416, 608) or WxH (e.g. 416x256)'))",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -2524,7 +2524,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\tparser = add_camera_args(parser)\n\tparser.add_argument(\n\t\t\t'-c', '--category_num', type=int, default=80,\n\t\t\thelp='number of object categories [80]')\n\tparser.add_argument(\n\t\t\t'-m', '--model', type=str, required=True,\n\t\t\thelp=('[yolov3|yolov3-tiny|yolov3-spp|yolov4|yolov4-tiny]-'\n\t\t\t\t\t\t'[{dimension}], where dimension could be a single '\n\t\t\t\t\t\t'number (e.g. 288, 416, 608) or WxH (e.g. 416x256)'))\n\tparser.add_argument(",
+        "peekOfCode": "\tparser = add_camera_args(parser)\n\tparser.add_argument(\n\t\t\t'-c', '--category_num', type=int, default=80,\n\t\t\thelp='number of object categories [80]')\n\tparser.add_argument(\n\t\t\t'-m', '--model', type=str, required=False,\n\t\t\thelp=('[yolov3|yolov3-tiny|yolov3-spp|yolov4|yolov4-tiny]-'\n\t\t\t\t\t\t'[{dimension}], where dimension could be a single '\n\t\t\t\t\t\t'number (e.g. 288, 416, 608) or WxH (e.g. 416x256)'))\n\tparser.add_argument(",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -2794,7 +2794,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\tpts = [deque(maxlen=30) for _ in range(100)]\n\tpt = [deque(maxlen=50) for _ in range(100)]\n\t#h_ls = [deque(maxlen=30) for _ in range(100)]\n\tw_list = [deque(maxlen=30) for _ in range(100)]\n\tcar_spd = [deque(maxlen=30) for _ in range(50)]\n\tmoto_spd = [deque(maxlen=30) for _ in range(50)]\n\tunsafe_v = False\n\tdanger_v = False\n\tused = False\n\tlanedetection = True #False",
+        "peekOfCode": "\tpts = [deque(maxlen=30) for _ in range(100)]\n\tpt = [deque(maxlen=50) for _ in range(100)]\n\t#h_ls = [deque(maxlen=30) for _ in range(100)]\n\tw_list = [deque(maxlen=30) for _ in range(100)]\n\tcar_spd = [deque(maxlen=30) for _ in range(50)]\n\tmoto_spd = [deque(maxlen=30) for _ in range(50)]\n\tunsafe_v = False\n\tdanger_v = False\n\tused = False\n\t# previous status to avoid spamming logs every frame",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -2803,7 +2803,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\tpt = [deque(maxlen=50) for _ in range(100)]\n\t#h_ls = [deque(maxlen=30) for _ in range(100)]\n\tw_list = [deque(maxlen=30) for _ in range(100)]\n\tcar_spd = [deque(maxlen=30) for _ in range(50)]\n\tmoto_spd = [deque(maxlen=30) for _ in range(50)]\n\tunsafe_v = False\n\tdanger_v = False\n\tused = False\n\tlanedetection = True #False\n\tputtext_car = False",
+        "peekOfCode": "\tpt = [deque(maxlen=50) for _ in range(100)]\n\t#h_ls = [deque(maxlen=30) for _ in range(100)]\n\tw_list = [deque(maxlen=30) for _ in range(100)]\n\tcar_spd = [deque(maxlen=30) for _ in range(50)]\n\tmoto_spd = [deque(maxlen=30) for _ in range(50)]\n\tunsafe_v = False\n\tdanger_v = False\n\tused = False\n\t# previous status to avoid spamming logs every frame\n\tprev_status = None",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -2812,7 +2812,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\t#h_ls = [deque(maxlen=30) for _ in range(100)]\n\tw_list = [deque(maxlen=30) for _ in range(100)]\n\tcar_spd = [deque(maxlen=30) for _ in range(50)]\n\tmoto_spd = [deque(maxlen=30) for _ in range(50)]\n\tunsafe_v = False\n\tdanger_v = False\n\tused = False\n\tlanedetection = True #False\n\tputtext_car = False\n\tputtext_moto = False",
+        "peekOfCode": "\t#h_ls = [deque(maxlen=30) for _ in range(100)]\n\tw_list = [deque(maxlen=30) for _ in range(100)]\n\tcar_spd = [deque(maxlen=30) for _ in range(50)]\n\tmoto_spd = [deque(maxlen=30) for _ in range(50)]\n\tunsafe_v = False\n\tdanger_v = False\n\tused = False\n\t# previous status to avoid spamming logs every frame\n\tprev_status = None\n\tlanedetection = True #False",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -2821,7 +2821,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\tw_list = [deque(maxlen=30) for _ in range(100)]\n\tcar_spd = [deque(maxlen=30) for _ in range(50)]\n\tmoto_spd = [deque(maxlen=30) for _ in range(50)]\n\tunsafe_v = False\n\tdanger_v = False\n\tused = False\n\tlanedetection = True #False\n\tputtext_car = False\n\tputtext_moto = False\n\tbad = False",
+        "peekOfCode": "\tw_list = [deque(maxlen=30) for _ in range(100)]\n\tcar_spd = [deque(maxlen=30) for _ in range(50)]\n\tmoto_spd = [deque(maxlen=30) for _ in range(50)]\n\tunsafe_v = False\n\tdanger_v = False\n\tused = False\n\t# previous status to avoid spamming logs every frame\n\tprev_status = None\n\tlanedetection = True #False\n\tputtext_car = False",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -2830,7 +2830,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\tcar_spd = [deque(maxlen=30) for _ in range(50)]\n\tmoto_spd = [deque(maxlen=30) for _ in range(50)]\n\tunsafe_v = False\n\tdanger_v = False\n\tused = False\n\tlanedetection = True #False\n\tputtext_car = False\n\tputtext_moto = False\n\tbad = False\n\tmotion_predict = False",
+        "peekOfCode": "\tcar_spd = [deque(maxlen=30) for _ in range(50)]\n\tmoto_spd = [deque(maxlen=30) for _ in range(50)]\n\tunsafe_v = False\n\tdanger_v = False\n\tused = False\n\t# previous status to avoid spamming logs every frame\n\tprev_status = None\n\tlanedetection = True #False\n\tputtext_car = False\n\tputtext_moto = False",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -2839,7 +2839,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\tmoto_spd = [deque(maxlen=30) for _ in range(50)]\n\tunsafe_v = False\n\tdanger_v = False\n\tused = False\n\tlanedetection = True #False\n\tputtext_car = False\n\tputtext_moto = False\n\tbad = False\n\tmotion_predict = False\n\tdrw = False",
+        "peekOfCode": "\tmoto_spd = [deque(maxlen=30) for _ in range(50)]\n\tunsafe_v = False\n\tdanger_v = False\n\tused = False\n\t# previous status to avoid spamming logs every frame\n\tprev_status = None\n\tlanedetection = True #False\n\tputtext_car = False\n\tputtext_moto = False\n\tbad = False",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -2848,7 +2848,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\tunsafe_v = False\n\tdanger_v = False\n\tused = False\n\tlanedetection = True #False\n\tputtext_car = False\n\tputtext_moto = False\n\tbad = False\n\tmotion_predict = False\n\tdrw = False\n\tunsafe_v = False",
+        "peekOfCode": "\tunsafe_v = False\n\tdanger_v = False\n\tused = False\n\t# previous status to avoid spamming logs every frame\n\tprev_status = None\n\tlanedetection = True #False\n\tputtext_car = False\n\tputtext_moto = False\n\tbad = False\n\tmotion_predict = False",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -2857,7 +2857,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\tdanger_v = False\n\tused = False\n\tlanedetection = True #False\n\tputtext_car = False\n\tputtext_moto = False\n\tbad = False\n\tmotion_predict = False\n\tdrw = False\n\tunsafe_v = False\n\tdanger_v = False",
+        "peekOfCode": "\tdanger_v = False\n\tused = False\n\t# previous status to avoid spamming logs every frame\n\tprev_status = None\n\tlanedetection = True #False\n\tputtext_car = False\n\tputtext_moto = False\n\tbad = False\n\tmotion_predict = False\n\tdrw = False",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -2866,7 +2866,16 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\tused = False\n\tlanedetection = True #False\n\tputtext_car = False\n\tputtext_moto = False\n\tbad = False\n\tmotion_predict = False\n\tdrw = False\n\tunsafe_v = False\n\tdanger_v = False\n\tavg_spd_moto = \"still appending\"",
+        "peekOfCode": "\tused = False\n\t# previous status to avoid spamming logs every frame\n\tprev_status = None\n\tlanedetection = True #False\n\tputtext_car = False\n\tputtext_moto = False\n\tbad = False\n\tmotion_predict = False\n\tdrw = False\n\tunsafe_v = False",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\tprev_status",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\tprev_status = None\n\tlanedetection = True #False\n\tputtext_car = False\n\tputtext_moto = False\n\tbad = False\n\tmotion_predict = False\n\tdrw = False\n\tunsafe_v = False\n\tdanger_v = False\n\tavg_spd_moto = \"still appending\"",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -4432,7 +4441,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\t\t\t\t\tcar_imptim_avg = round(dis_car/(avg_spd_car*1000/3600),2)               \n\t\t\t\t\tcar_imptim = round(dis_car/(car_speed*1000/3600),2)\n\t\t\t\t\tcv2.putText(img_better_look, f\"average car speed {avg_spd_car} km/h Collision time {car_imptim_avg} s\",  (50, 90), cv2.FONT_HERSHEY_COMPLEX, 0.65, (0,0,255), 2)  #bgr\n\t\t\t\t\tcv2.putText(img_better_look, f\"car speed {int(car_speed)} km/h  Collision time {car_imptim}s  \",  (50, 50), cv2.FONT_HERSHEY_COMPLEX, 0.65, (255,0,255), 2)  #bgr\n\t\t\t\t\tif car_imptim_avg < 1.25 and motion_predict == True:\n\t\t\t\t\t\tunsafe_v = True\n\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\t\tcv2.putText(img_better_look, f\"Unsafe\", (700, 50), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255,0,255), 2)  #bgr\n\t\t\t\t\t\tcv2.fillPoly(im0,pol, (255,0,255))\n\t\t\t\t\tif car_imptim_avg < 0.75 and motion_predict == True:",
+        "peekOfCode": "\t\t\t\t\tcar_imptim_avg = round(dis_car/(avg_spd_car*1000/3600),2)               \n\t\t\t\t\tcar_imptim = round(dis_car/(car_speed*1000/3600),2)\n\t\t\t\t\tcv2.putText(img_better_look, f\"average car speed {avg_spd_car} km/h Collision time {car_imptim_avg} s\",  (50, 90), cv2.FONT_HERSHEY_COMPLEX, 0.65, (0,0,255), 2)  #bgr\n\t\t\t\t\tcv2.putText(img_better_look, f\"car speed {int(car_speed)} km/h  Collision time {car_imptim}s  \",  (50, 50), cv2.FONT_HERSHEY_COMPLEX, 0.65, (255,0,255), 2)  #bgr\n\t\t\t\t\tif car_imptim_avg < 1.25 and motion_predict == True:\n\t\t\t\t\t\tunsafe_v = True\n\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\t\tcv2.putText(img_better_look, f\"Unsafe\", (700, 50), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255,0,255), 2)  #bgr\n\t\t\t\t\tif car_imptim_avg < 0.75 and motion_predict == True:\n\t\t\t\t\t\tdanger_v = True",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -4441,7 +4450,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\t\t\t\t\tcar_imptim = round(dis_car/(car_speed*1000/3600),2)\n\t\t\t\t\tcv2.putText(img_better_look, f\"average car speed {avg_spd_car} km/h Collision time {car_imptim_avg} s\",  (50, 90), cv2.FONT_HERSHEY_COMPLEX, 0.65, (0,0,255), 2)  #bgr\n\t\t\t\t\tcv2.putText(img_better_look, f\"car speed {int(car_speed)} km/h  Collision time {car_imptim}s  \",  (50, 50), cv2.FONT_HERSHEY_COMPLEX, 0.65, (255,0,255), 2)  #bgr\n\t\t\t\t\tif car_imptim_avg < 1.25 and motion_predict == True:\n\t\t\t\t\t\tunsafe_v = True\n\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\t\tcv2.putText(img_better_look, f\"Unsafe\", (700, 50), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255,0,255), 2)  #bgr\n\t\t\t\t\t\tcv2.fillPoly(im0,pol, (255,0,255))\n\t\t\t\t\tif car_imptim_avg < 0.75 and motion_predict == True:\n\t\t\t\t\t\tdanger_v = True",
+        "peekOfCode": "\t\t\t\t\tcar_imptim = round(dis_car/(car_speed*1000/3600),2)\n\t\t\t\t\tcv2.putText(img_better_look, f\"average car speed {avg_spd_car} km/h Collision time {car_imptim_avg} s\",  (50, 90), cv2.FONT_HERSHEY_COMPLEX, 0.65, (0,0,255), 2)  #bgr\n\t\t\t\t\tcv2.putText(img_better_look, f\"car speed {int(car_speed)} km/h  Collision time {car_imptim}s  \",  (50, 50), cv2.FONT_HERSHEY_COMPLEX, 0.65, (255,0,255), 2)  #bgr\n\t\t\t\t\tif car_imptim_avg < 1.25 and motion_predict == True:\n\t\t\t\t\t\tunsafe_v = True\n\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\t\tcv2.putText(img_better_look, f\"Unsafe\", (700, 50), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255,0,255), 2)  #bgr\n\t\t\t\t\tif car_imptim_avg < 0.75 and motion_predict == True:\n\t\t\t\t\t\tdanger_v = True\n\t\t\t\t\t\tunsafe_v = False",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -4450,7 +4459,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\t\t\t\t\t\tunsafe_v = True\n\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\t\tcv2.putText(img_better_look, f\"Unsafe\", (700, 50), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255,0,255), 2)  #bgr\n\t\t\t\t\t\tcv2.fillPoly(im0,pol, (255,0,255))\n\t\t\t\t\tif car_imptim_avg < 0.75 and motion_predict == True:\n\t\t\t\t\t\tdanger_v = True\n\t\t\t\t\t\tunsafe_v = False\n\t\t\t\t\telse:\n\t\t\t\t\t\tdanger_v = False\n\t\t\t\tif puttext_moto == True and  avg_spd_moto != \"still appending\" and moto_speed !=0 and avg_spd_moto !=0:",
+        "peekOfCode": "\t\t\t\t\t\tunsafe_v = True\n\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\t\tcv2.putText(img_better_look, f\"Unsafe\", (700, 50), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255,0,255), 2)  #bgr\n\t\t\t\t\tif car_imptim_avg < 0.75 and motion_predict == True:\n\t\t\t\t\t\tdanger_v = True\n\t\t\t\t\t\tunsafe_v = False\n\t\t\t\t\telse:\n\t\t\t\t\t\tdanger_v = False\n\t\t\t\tif puttext_moto == True and  avg_spd_moto != \"still appending\" and moto_speed !=0 and avg_spd_moto !=0:\n\t\t\t\t\tmoto_imptim = round(dis_moto/(moto_speed*1000/3600),2)",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -4459,7 +4468,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\t\tcv2.putText(img_better_look, f\"Unsafe\", (700, 50), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255,0,255), 2)  #bgr\n\t\t\t\t\t\tcv2.fillPoly(im0,pol, (255,0,255))\n\t\t\t\t\tif car_imptim_avg < 0.75 and motion_predict == True:\n\t\t\t\t\t\tdanger_v = True\n\t\t\t\t\t\tunsafe_v = False\n\t\t\t\t\telse:\n\t\t\t\t\t\tdanger_v = False\n\t\t\t\tif puttext_moto == True and  avg_spd_moto != \"still appending\" and moto_speed !=0 and avg_spd_moto !=0:\n\t\t\t\t\tmoto_imptim = round(dis_moto/(moto_speed*1000/3600),2)",
+        "peekOfCode": "\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\t\tcv2.putText(img_better_look, f\"Unsafe\", (700, 50), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255,0,255), 2)  #bgr\n\t\t\t\t\tif car_imptim_avg < 0.75 and motion_predict == True:\n\t\t\t\t\t\tdanger_v = True\n\t\t\t\t\t\tunsafe_v = False\n\t\t\t\t\telse:\n\t\t\t\t\t\tdanger_v = False\n\t\t\t\tif puttext_moto == True and  avg_spd_moto != \"still appending\" and moto_speed !=0 and avg_spd_moto !=0:\n\t\t\t\t\tmoto_imptim = round(dis_moto/(moto_speed*1000/3600),2)\n\t\t\t\t\tmoto_imptim_avg = round(dis_moto/(avg_spd_moto*1000/3600),2)",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -4540,7 +4549,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\t\t\t\t\t\tunsafe_v = False\n\t\t\t\t\telse:\n\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\tcv2.putText(img_better_look, f\"danger True\", (700, 80), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)  #bgr\n\t\t\t\t\t#speed estimation ends here       \n\t\t\t\tif cls == \"car\":\n\t\t\t\t\tdis = Distance_finder(210,w)//100\n\t\t\t\t\tdis = int(dis)\n\t\t\t\t\tcv2.putText(img_better_look, f\"Distance {dis} m\", (xc-6, yc-6), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0,255,255), 2)  #bgr\n\t\t\t\t\t#560",
+        "peekOfCode": "\t\t\t\t\t\tunsafe_v = False\n\t\t\t\t\telse:\n\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\tcv2.putText(img_better_look, f\"danger True\", (700, 80), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)  #bgr\n\t\t\t\t\t#speed estimation ends here       \n\t\t\t\tif cls == \"car\":\n\t\t\t\t\tdis = Distance_finder(210,w)//100\n\t\t\t\t\tdis = int(dis)\n\t\t\t\t\tcv2.putText(img_better_look, f\"Distance {dis} m\", (xc-6, yc-6), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0,255,255), 2)  #bgr\n\t\t\t\t\t# immediate threshold check per-object to ensure flags are set",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -4549,7 +4558,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\tcv2.putText(img_better_look, f\"danger True\", (700, 80), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)  #bgr\n\t\t\t\t\t#speed estimation ends here       \n\t\t\t\tif cls == \"car\":\n\t\t\t\t\tdis = Distance_finder(210,w)//100\n\t\t\t\t\tdis = int(dis)\n\t\t\t\t\tcv2.putText(img_better_look, f\"Distance {dis} m\", (xc-6, yc-6), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0,255,255), 2)  #bgr\n\t\t\t\t\t#560\n\t\t\t\t\tif yc > 530 and yc <540:\n\t\t\t\t\t\ttime_start = tim",
+        "peekOfCode": "\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\tcv2.putText(img_better_look, f\"danger True\", (700, 80), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)  #bgr\n\t\t\t\t\t#speed estimation ends here       \n\t\t\t\tif cls == \"car\":\n\t\t\t\t\tdis = Distance_finder(210,w)//100\n\t\t\t\t\tdis = int(dis)\n\t\t\t\t\tcv2.putText(img_better_look, f\"Distance {dis} m\", (xc-6, yc-6), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0,255,255), 2)  #bgr\n\t\t\t\t\t# immediate threshold check per-object to ensure flags are set\n\t\t\t\t\ttry:\n\t\t\t\t\t\tif args is not None:",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -4558,7 +4567,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\t\t\t\t\tdis = Distance_finder(210,w)//100\n\t\t\t\t\tdis = int(dis)\n\t\t\t\t\tcv2.putText(img_better_look, f\"Distance {dis} m\", (xc-6, yc-6), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0,255,255), 2)  #bgr\n\t\t\t\t\t#560\n\t\t\t\t\tif yc > 530 and yc <540:\n\t\t\t\t\t\ttime_start = tim\n\t\t\t\t\t\tdis_start = dis\n\t\t\t\t\t#\n\t\t\t\t\tif yc > 560 and yc < 570:\n\t\t\t\t\t\tused = True",
+        "peekOfCode": "\t\t\t\t\tdis = Distance_finder(210,w)//100\n\t\t\t\t\tdis = int(dis)\n\t\t\t\t\tcv2.putText(img_better_look, f\"Distance {dis} m\", (xc-6, yc-6), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0,255,255), 2)  #bgr\n\t\t\t\t\t# immediate threshold check per-object to ensure flags are set\n\t\t\t\t\ttry:\n\t\t\t\t\t\tif args is not None:\n\t\t\t\t\t\t\tif dis <= args.danger_dist:\n\t\t\t\t\t\t\t\tdanger_v = True\n\t\t\t\t\t\t\t\tunsafe_v = False\n\t\t\t\t\t\t\t\tprint(f\"[DBG] frame={framenumber} id={ids} class=car dis={dis} <= danger({args.danger_dist}) -> DANGER\")",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -4567,7 +4576,43 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\t\t\t\t\tdis = int(dis)\n\t\t\t\t\tcv2.putText(img_better_look, f\"Distance {dis} m\", (xc-6, yc-6), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0,255,255), 2)  #bgr\n\t\t\t\t\t#560\n\t\t\t\t\tif yc > 530 and yc <540:\n\t\t\t\t\t\ttime_start = tim\n\t\t\t\t\t\tdis_start = dis\n\t\t\t\t\t#\n\t\t\t\t\tif yc > 560 and yc < 570:\n\t\t\t\t\t\tused = True\n\t\t\t\t\t\ttime_end = tim",
+        "peekOfCode": "\t\t\t\t\tdis = int(dis)\n\t\t\t\t\tcv2.putText(img_better_look, f\"Distance {dis} m\", (xc-6, yc-6), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0,255,255), 2)  #bgr\n\t\t\t\t\t# immediate threshold check per-object to ensure flags are set\n\t\t\t\t\ttry:\n\t\t\t\t\t\tif args is not None:\n\t\t\t\t\t\t\tif dis <= args.danger_dist:\n\t\t\t\t\t\t\t\tdanger_v = True\n\t\t\t\t\t\t\t\tunsafe_v = False\n\t\t\t\t\t\t\t\tprint(f\"[DBG] frame={framenumber} id={ids} class=car dis={dis} <= danger({args.danger_dist}) -> DANGER\")\n\t\t\t\t\t\t\telif dis <= args.unsafe_dist:",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\t\t\t\t\t\tdanger_v",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\t\t\t\t\t\tdanger_v = True\n\t\t\t\t\t\t\t\tunsafe_v = False\n\t\t\t\t\t\t\t\tprint(f\"[DBG] frame={framenumber} id={ids} class=car dis={dis} <= danger({args.danger_dist}) -> DANGER\")\n\t\t\t\t\t\t\telif dis <= args.unsafe_dist:\n\t\t\t\t\t\t\t\tunsafe_v = True\n\t\t\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\t\t\t\tprint(f\"[DBG] frame={framenumber} id={ids} class=car dis={dis} <= unsafe({args.unsafe_dist}) -> MEDIUM\")\n\t\t\t\t\texcept Exception:\n\t\t\t\t\t\tpass\n\t\t\t\t\t#560",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\t\t\t\t\t\tunsafe_v",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\t\t\t\t\t\tunsafe_v = False\n\t\t\t\t\t\t\t\tprint(f\"[DBG] frame={framenumber} id={ids} class=car dis={dis} <= danger({args.danger_dist}) -> DANGER\")\n\t\t\t\t\t\t\telif dis <= args.unsafe_dist:\n\t\t\t\t\t\t\t\tunsafe_v = True\n\t\t\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\t\t\t\tprint(f\"[DBG] frame={framenumber} id={ids} class=car dis={dis} <= unsafe({args.unsafe_dist}) -> MEDIUM\")\n\t\t\t\t\texcept Exception:\n\t\t\t\t\t\tpass\n\t\t\t\t\t#560\n\t\t\t\t\tif yc > 530 and yc <540:",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\t\t\t\t\t\tunsafe_v",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\t\t\t\t\t\tunsafe_v = True\n\t\t\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\t\t\t\tprint(f\"[DBG] frame={framenumber} id={ids} class=car dis={dis} <= unsafe({args.unsafe_dist}) -> MEDIUM\")\n\t\t\t\t\texcept Exception:\n\t\t\t\t\t\tpass\n\t\t\t\t\t#560\n\t\t\t\t\tif yc > 530 and yc <540:\n\t\t\t\t\t\ttime_start = tim\n\t\t\t\t\t\tdis_start = dis\n\t\t\t\t\t#",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\t\t\t\t\t\tdanger_v",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\t\t\t\tprint(f\"[DBG] frame={framenumber} id={ids} class=car dis={dis} <= unsafe({args.unsafe_dist}) -> MEDIUM\")\n\t\t\t\t\texcept Exception:\n\t\t\t\t\t\tpass\n\t\t\t\t\t#560\n\t\t\t\t\tif yc > 530 and yc <540:\n\t\t\t\t\t\ttime_start = tim\n\t\t\t\t\t\tdis_start = dis\n\t\t\t\t\t#\n\t\t\t\t\tif yc > 560 and yc < 570:",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -4630,7 +4675,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\t\t\t\t\t\t\t\tspeed = ((dis_start-dis_end)/(time_end-time_start))*3600/1000\n\t\t\t\t\t\t\t\t#cv2.putText(img_better_look, f\"distance start {dis_start}  distance end {dis_end}\",  (100, 400), cv2.FONT_HERSHEY_COMPLEX, 1, (255,0,0), 2)  #bgr\n\t\t\t\t\t\t\t\tif speed < 0:\n\t\t\t\t\t\t\t\t\tspeed = \"calculating speed\"\n\t\t\t\t\t\t\t\telse:\n\t\t\t\t\t\t\t\t\tbad = True\n\t\t\t\t\t\t\t\t\tspeed = int(speed)\n\t\t\t\t\tif bad ==True :\n\t\t\t\t\t\tprint(\"\")\n\t\t\t\t\t\t#cv2.putText(img_better_look, f\"car speed {speed} km/hr \",  (50,400), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)",
+        "peekOfCode": "\t\t\t\t\t\t\t\tspeed = ((dis_start-dis_end)/(time_end-time_start))*3600/1000\n\t\t\t\t\t\t\t\t#cv2.putText(img_better_look, f\"distance start {dis_start}  distance end {dis_end}\",  (100, 400), cv2.FONT_HERSHEY_COMPLEX, 1, (255,0,0), 2)  #bgr\n\t\t\t\t\t\t\t\tif speed < 0:\n\t\t\t\t\t\t\t\t\tspeed = \"calculating speed\"\n\t\t\t\t\t\t\t\telse:\n\t\t\t\t\t\t\t\t\tbad = True\n\t\t\t\t\t\t\t\t\tspeed = int(speed)\n\t\t\t\t\tif bad ==True :\n\t\t\t\t\t\tprint(\"\")\n\t\t\t\t\t\tcv2.putText(img_better_look, f\"car speed {speed} km/hr \",  (50,400), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -4639,7 +4684,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\t\t\t\t\t\t\t\t\tspeed = \"calculating speed\"\n\t\t\t\t\t\t\t\telse:\n\t\t\t\t\t\t\t\t\tbad = True\n\t\t\t\t\t\t\t\t\tspeed = int(speed)\n\t\t\t\t\tif bad ==True :\n\t\t\t\t\t\tprint(\"\")\n\t\t\t\t\t\t#cv2.putText(img_better_look, f\"car speed {speed} km/hr \",  (50,400), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)\n\t\t\t\t\t\t\t\t#cv2.putText(img_better_look, f\"distance start {dis_start}  distance end {dis_end}\",  (100, 400), cv2.FONT_HERSHEY_COMPLEX, 1, (255,0,0), 2)  #bgr\n\t\t\t\t\t\t\t\t#cv2.putText(img_better_look, f\"time start {time_start}  time end {time_end}\",  (100, 500), cv2.FONT_HERSHEY_COMPLEX, 1, (0,0,255), 2)  #bgr\n\t\t\t\t\t\t\t\t#cv2.putText(img_better_look, f\"car speed {speed} km/hr \",  (50,400 ), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)",
+        "peekOfCode": "\t\t\t\t\t\t\t\t\tspeed = \"calculating speed\"\n\t\t\t\t\t\t\t\telse:\n\t\t\t\t\t\t\t\t\tbad = True\n\t\t\t\t\t\t\t\t\tspeed = int(speed)\n\t\t\t\t\tif bad ==True :\n\t\t\t\t\t\tprint(\"\")\n\t\t\t\t\t\tcv2.putText(img_better_look, f\"car speed {speed} km/hr \",  (50,400), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)\n\t\t\t\t\tif bad == True :\n\t\t\t\t\t\t# placeholder for additional car logic\n\t\t\t\t\t\tpass",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -4648,7 +4693,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\t\t\t\t\t\t\t\t\tbad = True\n\t\t\t\t\t\t\t\t\tspeed = int(speed)\n\t\t\t\t\tif bad ==True :\n\t\t\t\t\t\tprint(\"\")\n\t\t\t\t\t\t#cv2.putText(img_better_look, f\"car speed {speed} km/hr \",  (50,400), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)\n\t\t\t\t\t\t\t\t#cv2.putText(img_better_look, f\"distance start {dis_start}  distance end {dis_end}\",  (100, 400), cv2.FONT_HERSHEY_COMPLEX, 1, (255,0,0), 2)  #bgr\n\t\t\t\t\t\t\t\t#cv2.putText(img_better_look, f\"time start {time_start}  time end {time_end}\",  (100, 500), cv2.FONT_HERSHEY_COMPLEX, 1, (0,0,255), 2)  #bgr\n\t\t\t\t\t\t\t\t#cv2.putText(img_better_look, f\"car speed {speed} km/hr \",  (50,400 ), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)\n\t\t\t\t\t#f.insert(0,(xc,yc))\n\t\t\t\t\t#print(\"car center lsit :  \",f)",
+        "peekOfCode": "\t\t\t\t\t\t\t\t\tbad = True\n\t\t\t\t\t\t\t\t\tspeed = int(speed)\n\t\t\t\t\tif bad ==True :\n\t\t\t\t\t\tprint(\"\")\n\t\t\t\t\t\tcv2.putText(img_better_look, f\"car speed {speed} km/hr \",  (50,400), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)\n\t\t\t\t\tif bad == True :\n\t\t\t\t\t\t# placeholder for additional car logic\n\t\t\t\t\t\tpass\n\t\t\t\t\t#f.insert(0,(xc,yc))\n\t\t\t\t\t#print(\"car center lsit :  \",f)",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -4657,7 +4702,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\t\t\t\t\t\t\t\t\tspeed = int(speed)\n\t\t\t\t\tif bad ==True :\n\t\t\t\t\t\tprint(\"\")\n\t\t\t\t\t\t#cv2.putText(img_better_look, f\"car speed {speed} km/hr \",  (50,400), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)\n\t\t\t\t\t\t\t\t#cv2.putText(img_better_look, f\"distance start {dis_start}  distance end {dis_end}\",  (100, 400), cv2.FONT_HERSHEY_COMPLEX, 1, (255,0,0), 2)  #bgr\n\t\t\t\t\t\t\t\t#cv2.putText(img_better_look, f\"time start {time_start}  time end {time_end}\",  (100, 500), cv2.FONT_HERSHEY_COMPLEX, 1, (0,0,255), 2)  #bgr\n\t\t\t\t\t\t\t\t#cv2.putText(img_better_look, f\"car speed {speed} km/hr \",  (50,400 ), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)\n\t\t\t\t\t#f.insert(0,(xc,yc))\n\t\t\t\t\t#print(\"car center lsit :  \",f)\n\t\t\t\tif cls == \"motorbike\":",
+        "peekOfCode": "\t\t\t\t\t\t\t\t\tspeed = int(speed)\n\t\t\t\t\tif bad ==True :\n\t\t\t\t\t\tprint(\"\")\n\t\t\t\t\t\tcv2.putText(img_better_look, f\"car speed {speed} km/hr \",  (50,400), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)\n\t\t\t\t\tif bad == True :\n\t\t\t\t\t\t# placeholder for additional car logic\n\t\t\t\t\t\tpass\n\t\t\t\t\t#f.insert(0,(xc,yc))\n\t\t\t\t\t#print(\"car center lsit :  \",f)\n\t\t\t\tif cls == \"motorbike\":",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -4666,7 +4711,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\t\t\t\t\tdis = Distance_finder(85,w)//100\n\t\t\t\t\tdis = int(dis)\n\t\t\t\t\tprint(\"distance\",dis)\n\t\t\t\t\tcv2.putText(img_better_look, f\"Distance {dis} m\", (xc-6, yc-6), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0,255,255), 2)  #bgr \n\t\t\t\t\tif yc > 530 and yc <540:\n\t\t\t\t\t\ttime_start = tim\n\t\t\t\t\t\tdis_start = dis                           \n\t\t\t\t\tif yc > 560 and yc < 570:\n\t\t\t\t\t\tused = True\n\t\t\t\t\t\ttime_end = tim",
+        "peekOfCode": "\t\t\t\t\tdis = Distance_finder(85,w)//100\n\t\t\t\t\tdis = int(dis)\n\t\t\t\t\tprint(\"distance\",dis)\n\t\t\t\t\tcv2.putText(img_better_look, f\"Distance {dis} m\", (xc-6, yc-6), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0,255,255), 2)  #bgr \n\t\t\t\t\t# immediate threshold check for motorbike\n\t\t\t\t\ttry:\n\t\t\t\t\t\tif args is not None:\n\t\t\t\t\t\t\tif dis <= args.danger_dist:\n\t\t\t\t\t\t\t\tdanger_v = True\n\t\t\t\t\t\t\t\tunsafe_v = False",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -4675,25 +4720,115 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\t\t\t\t\tdis = int(dis)\n\t\t\t\t\tprint(\"distance\",dis)\n\t\t\t\t\tcv2.putText(img_better_look, f\"Distance {dis} m\", (xc-6, yc-6), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0,255,255), 2)  #bgr \n\t\t\t\t\tif yc > 530 and yc <540:\n\t\t\t\t\t\ttime_start = tim\n\t\t\t\t\t\tdis_start = dis                           \n\t\t\t\t\tif yc > 560 and yc < 570:\n\t\t\t\t\t\tused = True\n\t\t\t\t\t\ttime_end = tim\n\t\t\t\t\t\tdis_end = dis",
+        "peekOfCode": "\t\t\t\t\tdis = int(dis)\n\t\t\t\t\tprint(\"distance\",dis)\n\t\t\t\t\tcv2.putText(img_better_look, f\"Distance {dis} m\", (xc-6, yc-6), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0,255,255), 2)  #bgr \n\t\t\t\t\t# immediate threshold check for motorbike\n\t\t\t\t\ttry:\n\t\t\t\t\t\tif args is not None:\n\t\t\t\t\t\t\tif dis <= args.danger_dist:\n\t\t\t\t\t\t\t\tdanger_v = True\n\t\t\t\t\t\t\t\tunsafe_v = False\n\t\t\t\t\t\t\t\tprint(f\"[DBG] frame={framenumber} id={ids} class=motorbike dis={dis} <= danger({args.danger_dist}) -> DANGER\")",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
     {
-        "label": "\t\t\t\t\t\ttime_start",
+        "label": "\t\t\t\t\t\t\t\tdanger_v",
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\t\t\t\t\t\ttime_start = tim\n\t\t\t\t\t\tdis_start = dis                           \n\t\t\t\t\tif yc > 560 and yc < 570:\n\t\t\t\t\t\tused = True\n\t\t\t\t\t\ttime_end = tim\n\t\t\t\t\t\tdis_end = dis\n\t\t\t\t\t\tif used == True:\n\t\t\t\t\t\t\tif time_end-time_start == 0:\n\t\t\t\t\t\t\t\tprint(\"time = 0\")\n\t\t\t\t\t\t\telse: ",
+        "peekOfCode": "\t\t\t\t\t\t\t\tdanger_v = True\n\t\t\t\t\t\t\t\tunsafe_v = False\n\t\t\t\t\t\t\t\tprint(f\"[DBG] frame={framenumber} id={ids} class=motorbike dis={dis} <= danger({args.danger_dist}) -> DANGER\")\n\t\t\t\t\t\t\telif dis <= args.unsafe_dist:\n\t\t\t\t\t\t\t\tunsafe_v = True\n\t\t\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\t\t\t\tprint(f\"[DBG] frame={framenumber} id={ids} class=motorbike dis={dis} <= unsafe({args.unsafe_dist}) -> MEDIUM\")\n\t\t\t\t\texcept Exception:\n\t\t\t\t\t\tpass\n\t\t\t\t# -- distance-based alerts (configurable thresholds)",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
     {
-        "label": "\t\t\t\t\t\tdis_start",
+        "label": "\t\t\t\t\t\t\t\tunsafe_v",
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\t\t\t\t\t\tdis_start = dis                           \n\t\t\t\t\tif yc > 560 and yc < 570:\n\t\t\t\t\t\tused = True\n\t\t\t\t\t\ttime_end = tim\n\t\t\t\t\t\tdis_end = dis\n\t\t\t\t\t\tif used == True:\n\t\t\t\t\t\t\tif time_end-time_start == 0:\n\t\t\t\t\t\t\t\tprint(\"time = 0\")\n\t\t\t\t\t\t\telse: \n\t\t\t\t\t\t\t\tbad = True",
+        "peekOfCode": "\t\t\t\t\t\t\t\tunsafe_v = False\n\t\t\t\t\t\t\t\tprint(f\"[DBG] frame={framenumber} id={ids} class=motorbike dis={dis} <= danger({args.danger_dist}) -> DANGER\")\n\t\t\t\t\t\t\telif dis <= args.unsafe_dist:\n\t\t\t\t\t\t\t\tunsafe_v = True\n\t\t\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\t\t\t\tprint(f\"[DBG] frame={framenumber} id={ids} class=motorbike dis={dis} <= unsafe({args.unsafe_dist}) -> MEDIUM\")\n\t\t\t\t\texcept Exception:\n\t\t\t\t\t\tpass\n\t\t\t\t# -- distance-based alerts (configurable thresholds)\n\t\t\t\ttry:",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\t\t\t\t\t\tunsafe_v",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\t\t\t\t\t\tunsafe_v = True\n\t\t\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\t\t\t\tprint(f\"[DBG] frame={framenumber} id={ids} class=motorbike dis={dis} <= unsafe({args.unsafe_dist}) -> MEDIUM\")\n\t\t\t\t\texcept Exception:\n\t\t\t\t\t\tpass\n\t\t\t\t# -- distance-based alerts (configurable thresholds)\n\t\t\t\ttry:\n\t\t\t\t\tif args is not None:\n\t\t\t\t\t\t# if we have a detected class and distance, override/augment warning state\n\t\t\t\t\t\tif cls == \"car\":",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\t\t\t\t\t\tdanger_v",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\t\t\t\tprint(f\"[DBG] frame={framenumber} id={ids} class=motorbike dis={dis} <= unsafe({args.unsafe_dist}) -> MEDIUM\")\n\t\t\t\t\texcept Exception:\n\t\t\t\t\t\tpass\n\t\t\t\t# -- distance-based alerts (configurable thresholds)\n\t\t\t\ttry:\n\t\t\t\t\tif args is not None:\n\t\t\t\t\t\t# if we have a detected class and distance, override/augment warning state\n\t\t\t\t\t\tif cls == \"car\":\n\t\t\t\t\t\t\tif 'dis' in locals():",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\t\t\t\t\t\t\tdanger_v",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\t\t\t\t\t\t\tdanger_v = True\n\t\t\t\t\t\t\t\t\tunsafe_v = False\n\t\t\t\t\t\t\t\telif dis <= args.unsafe_dist:\n\t\t\t\t\t\t\t\t\tunsafe_v = True\n\t\t\t\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\t\tif cls == \"motorbike\":\n\t\t\t\t\t\t\tif 'dis' in locals():\n\t\t\t\t\t\t\t\tif dis <= args.danger_dist:\n\t\t\t\t\t\t\t\t\tdanger_v = True\n\t\t\t\t\t\t\t\t\tunsafe_v = False",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\t\t\t\t\t\t\tunsafe_v",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\t\t\t\t\t\t\tunsafe_v = False\n\t\t\t\t\t\t\t\telif dis <= args.unsafe_dist:\n\t\t\t\t\t\t\t\t\tunsafe_v = True\n\t\t\t\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\t\tif cls == \"motorbike\":\n\t\t\t\t\t\t\tif 'dis' in locals():\n\t\t\t\t\t\t\t\tif dis <= args.danger_dist:\n\t\t\t\t\t\t\t\t\tdanger_v = True\n\t\t\t\t\t\t\t\t\tunsafe_v = False\n\t\t\t\t\t\t\t\telif dis <= args.unsafe_dist:",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\t\t\t\t\t\t\tunsafe_v",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\t\t\t\t\t\t\tunsafe_v = True\n\t\t\t\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\t\tif cls == \"motorbike\":\n\t\t\t\t\t\t\tif 'dis' in locals():\n\t\t\t\t\t\t\t\tif dis <= args.danger_dist:\n\t\t\t\t\t\t\t\t\tdanger_v = True\n\t\t\t\t\t\t\t\t\tunsafe_v = False\n\t\t\t\t\t\t\t\telif dis <= args.unsafe_dist:\n\t\t\t\t\t\t\t\t\tunsafe_v = True\n\t\t\t\t\t\t\t\t\tdanger_v = False",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\t\t\t\t\t\t\tdanger_v",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\t\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\t\tif cls == \"motorbike\":\n\t\t\t\t\t\t\tif 'dis' in locals():\n\t\t\t\t\t\t\t\tif dis <= args.danger_dist:\n\t\t\t\t\t\t\t\t\tdanger_v = True\n\t\t\t\t\t\t\t\t\tunsafe_v = False\n\t\t\t\t\t\t\t\telif dis <= args.unsafe_dist:\n\t\t\t\t\t\t\t\t\tunsafe_v = True\n\t\t\t\t\t\t\t\t\tdanger_v = False\n\t\t\t\texcept Exception:",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\t\t\t\t\t\t\tdanger_v",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\t\t\t\t\t\t\tdanger_v = True\n\t\t\t\t\t\t\t\t\tunsafe_v = False\n\t\t\t\t\t\t\t\telif dis <= args.unsafe_dist:\n\t\t\t\t\t\t\t\t\tunsafe_v = True\n\t\t\t\t\t\t\t\t\tdanger_v = False\n\t\t\t\texcept Exception:\n\t\t\t\t\t# ignore any thresholding errors\n\t\t\t\t\tpass\n\t\t\t\t\tif yc > 560 and yc < 570:\n\t\t\t\t\t\tused = True",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\t\t\t\t\t\t\tunsafe_v",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\t\t\t\t\t\t\tunsafe_v = False\n\t\t\t\t\t\t\t\telif dis <= args.unsafe_dist:\n\t\t\t\t\t\t\t\t\tunsafe_v = True\n\t\t\t\t\t\t\t\t\tdanger_v = False\n\t\t\t\texcept Exception:\n\t\t\t\t\t# ignore any thresholding errors\n\t\t\t\t\tpass\n\t\t\t\t\tif yc > 560 and yc < 570:\n\t\t\t\t\t\tused = True\n\t\t\t\t\t\ttime_end = tim",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\t\t\t\t\t\t\tunsafe_v",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\t\t\t\t\t\t\tunsafe_v = True\n\t\t\t\t\t\t\t\t\tdanger_v = False\n\t\t\t\texcept Exception:\n\t\t\t\t\t# ignore any thresholding errors\n\t\t\t\t\tpass\n\t\t\t\t\tif yc > 560 and yc < 570:\n\t\t\t\t\t\tused = True\n\t\t\t\t\t\ttime_end = tim\n\t\t\t\t\t\tdis_end = dis\n\t\t\t\t\t\tif used == True:",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\t\t\t\t\t\t\tdanger_v",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\t\t\t\t\t\t\tdanger_v = False\n\t\t\t\texcept Exception:\n\t\t\t\t\t# ignore any thresholding errors\n\t\t\t\t\tpass\n\t\t\t\t\tif yc > 560 and yc < 570:\n\t\t\t\t\t\tused = True\n\t\t\t\t\t\ttime_end = tim\n\t\t\t\t\t\tdis_end = dis\n\t\t\t\t\t\tif used == True:\n\t\t\t\t\t\t\tif time_end-time_start == 0:",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -4891,7 +5026,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\t\t\tbbox_xyxy = outputs[:, :4]\n\t\t\tidentities = outputs[:, -1]\n\t\t\timg_final = draw_boxes(img_better_look, bbox_xyxy, identities)\n\t\t\t#img_better_look = show_fps(img_better_look, fps)\n\t\t###################################\n\t\timg_better_look = show_fps(img_better_look, fps)\n\t\timgx = img0\n\t\treal_result = cv2.addWeighted(img_better_look,0.7,img,1,1) #view lanedetection filtering\n\t\timg_better_look = cv2.addWeighted(im0,1,img_better_look,1,1) # \n\t\tout.write(line_visualize)",
+        "peekOfCode": "\t\t\tbbox_xyxy = outputs[:, :4]\n\t\t\tidentities = outputs[:, -1]\n\t\t\timg_final = draw_boxes(img_better_look, bbox_xyxy, identities)\n\t\t\t#img_better_look = show_fps(img_better_look, fps)\n\t\t###################################\n\t\timg_better_look = show_fps(img_better_look, fps)\n\t\timgx = img0\n\t\treal_result = cv2.addWeighted(img_better_look,0.7,img,1,1) #view lanedetection filtering\n\t\timg_better_look = cv2.addWeighted(im0,1,img_better_look,1,1) # \n\t\t# Persistent top-right status banner: SAFE / MEDIUM / DANGER",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -4900,7 +5035,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\t\t\tidentities = outputs[:, -1]\n\t\t\timg_final = draw_boxes(img_better_look, bbox_xyxy, identities)\n\t\t\t#img_better_look = show_fps(img_better_look, fps)\n\t\t###################################\n\t\timg_better_look = show_fps(img_better_look, fps)\n\t\timgx = img0\n\t\treal_result = cv2.addWeighted(img_better_look,0.7,img,1,1) #view lanedetection filtering\n\t\timg_better_look = cv2.addWeighted(im0,1,img_better_look,1,1) # \n\t\tout.write(line_visualize)\n\t\tout1.write(img_better_look)",
+        "peekOfCode": "\t\t\tidentities = outputs[:, -1]\n\t\t\timg_final = draw_boxes(img_better_look, bbox_xyxy, identities)\n\t\t\t#img_better_look = show_fps(img_better_look, fps)\n\t\t###################################\n\t\timg_better_look = show_fps(img_better_look, fps)\n\t\timgx = img0\n\t\treal_result = cv2.addWeighted(img_better_look,0.7,img,1,1) #view lanedetection filtering\n\t\timg_better_look = cv2.addWeighted(im0,1,img_better_look,1,1) # \n\t\t# Persistent top-right status banner: SAFE / MEDIUM / DANGER\n\t\t# This is drawn every frame so the state is always visible in the window and saved video.",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -4909,7 +5044,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\t\t\timg_final = draw_boxes(img_better_look, bbox_xyxy, identities)\n\t\t\t#img_better_look = show_fps(img_better_look, fps)\n\t\t###################################\n\t\timg_better_look = show_fps(img_better_look, fps)\n\t\timgx = img0\n\t\treal_result = cv2.addWeighted(img_better_look,0.7,img,1,1) #view lanedetection filtering\n\t\timg_better_look = cv2.addWeighted(im0,1,img_better_look,1,1) # \n\t\tout.write(line_visualize)\n\t\tout1.write(img_better_look)\n\t\tout2.write(combo_image)",
+        "peekOfCode": "\t\t\timg_final = draw_boxes(img_better_look, bbox_xyxy, identities)\n\t\t\t#img_better_look = show_fps(img_better_look, fps)\n\t\t###################################\n\t\timg_better_look = show_fps(img_better_look, fps)\n\t\timgx = img0\n\t\treal_result = cv2.addWeighted(img_better_look,0.7,img,1,1) #view lanedetection filtering\n\t\timg_better_look = cv2.addWeighted(im0,1,img_better_look,1,1) # \n\t\t# Persistent top-right status banner: SAFE / MEDIUM / DANGER\n\t\t# This is drawn every frame so the state is always visible in the window and saved video.\n\t\ttry:",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -4918,7 +5053,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\t\t\t#img_better_look = show_fps(img_better_look, fps)\n\t\t###################################\n\t\timg_better_look = show_fps(img_better_look, fps)\n\t\timgx = img0\n\t\treal_result = cv2.addWeighted(img_better_look,0.7,img,1,1) #view lanedetection filtering\n\t\timg_better_look = cv2.addWeighted(im0,1,img_better_look,1,1) # \n\t\tout.write(line_visualize)\n\t\tout1.write(img_better_look)\n\t\tout2.write(combo_image)\n\t\t#show result",
+        "peekOfCode": "\t\t\t#img_better_look = show_fps(img_better_look, fps)\n\t\t###################################\n\t\timg_better_look = show_fps(img_better_look, fps)\n\t\timgx = img0\n\t\treal_result = cv2.addWeighted(img_better_look,0.7,img,1,1) #view lanedetection filtering\n\t\timg_better_look = cv2.addWeighted(im0,1,img_better_look,1,1) # \n\t\t# Persistent top-right status banner: SAFE / MEDIUM / DANGER\n\t\t# This is drawn every frame so the state is always visible in the window and saved video.\n\t\ttry:\n\t\t\toverlay = img_better_look.copy()",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -4927,7 +5062,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\t\timg_better_look = show_fps(img_better_look, fps)\n\t\timgx = img0\n\t\treal_result = cv2.addWeighted(img_better_look,0.7,img,1,1) #view lanedetection filtering\n\t\timg_better_look = cv2.addWeighted(im0,1,img_better_look,1,1) # \n\t\tout.write(line_visualize)\n\t\tout1.write(img_better_look)\n\t\tout2.write(combo_image)\n\t\t#show result\n\t\t#cv2.imshow(WINDOW_NAME, img)\n\t\t####",
+        "peekOfCode": "\t\timg_better_look = show_fps(img_better_look, fps)\n\t\timgx = img0\n\t\treal_result = cv2.addWeighted(img_better_look,0.7,img,1,1) #view lanedetection filtering\n\t\timg_better_look = cv2.addWeighted(im0,1,img_better_look,1,1) # \n\t\t# Persistent top-right status banner: SAFE / MEDIUM / DANGER\n\t\t# This is drawn every frame so the state is always visible in the window and saved video.\n\t\ttry:\n\t\t\toverlay = img_better_look.copy()\n\t\t\talpha = 0.55\n\t\t\t# banner size and position (top-right)",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -4936,7 +5071,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\t\timgx = img0\n\t\treal_result = cv2.addWeighted(img_better_look,0.7,img,1,1) #view lanedetection filtering\n\t\timg_better_look = cv2.addWeighted(im0,1,img_better_look,1,1) # \n\t\tout.write(line_visualize)\n\t\tout1.write(img_better_look)\n\t\tout2.write(combo_image)\n\t\t#show result\n\t\t#cv2.imshow(WINDOW_NAME, img)\n\t\t####\n\t\t#cv2.imshow(\"normal lanedetection without extended\",normal_result)",
+        "peekOfCode": "\t\timgx = img0\n\t\treal_result = cv2.addWeighted(img_better_look,0.7,img,1,1) #view lanedetection filtering\n\t\timg_better_look = cv2.addWeighted(im0,1,img_better_look,1,1) # \n\t\t# Persistent top-right status banner: SAFE / MEDIUM / DANGER\n\t\t# This is drawn every frame so the state is always visible in the window and saved video.\n\t\ttry:\n\t\t\toverlay = img_better_look.copy()\n\t\t\talpha = 0.55\n\t\t\t# banner size and position (top-right)\n\t\t\tbanner_w = 380",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -4945,7 +5080,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\t\treal_result = cv2.addWeighted(img_better_look,0.7,img,1,1) #view lanedetection filtering\n\t\timg_better_look = cv2.addWeighted(im0,1,img_better_look,1,1) # \n\t\tout.write(line_visualize)\n\t\tout1.write(img_better_look)\n\t\tout2.write(combo_image)\n\t\t#show result\n\t\t#cv2.imshow(WINDOW_NAME, img)\n\t\t####\n\t\t#cv2.imshow(\"normal lanedetection without extended\",normal_result)\n\t\t#cv2.imshow(\"combo img\",combo_image)",
+        "peekOfCode": "\t\treal_result = cv2.addWeighted(img_better_look,0.7,img,1,1) #view lanedetection filtering\n\t\timg_better_look = cv2.addWeighted(im0,1,img_better_look,1,1) # \n\t\t# Persistent top-right status banner: SAFE / MEDIUM / DANGER\n\t\t# This is drawn every frame so the state is always visible in the window and saved video.\n\t\ttry:\n\t\t\toverlay = img_better_look.copy()\n\t\t\talpha = 0.55\n\t\t\t# banner size and position (top-right)\n\t\t\tbanner_w = 380\n\t\t\tbanner_h = 70",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -4954,7 +5089,232 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\t\timg_better_look = cv2.addWeighted(im0,1,img_better_look,1,1) # \n\t\tout.write(line_visualize)\n\t\tout1.write(img_better_look)\n\t\tout2.write(combo_image)\n\t\t#show result\n\t\t#cv2.imshow(WINDOW_NAME, img)\n\t\t####\n\t\t#cv2.imshow(\"normal lanedetection without extended\",normal_result)\n\t\t#cv2.imshow(\"combo img\",combo_image)\n\t\t#cv2.imshow(\" img\",img_notavg) ",
+        "peekOfCode": "\t\timg_better_look = cv2.addWeighted(im0,1,img_better_look,1,1) # \n\t\t# Persistent top-right status banner: SAFE / MEDIUM / DANGER\n\t\t# This is drawn every frame so the state is always visible in the window and saved video.\n\t\ttry:\n\t\t\toverlay = img_better_look.copy()\n\t\t\talpha = 0.55\n\t\t\t# banner size and position (top-right)\n\t\t\tbanner_w = 380\n\t\t\tbanner_h = 70\n\t\t\tpad = 20",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\toverlay",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\toverlay = img_better_look.copy()\n\t\t\talpha = 0.55\n\t\t\t# banner size and position (top-right)\n\t\t\tbanner_w = 380\n\t\t\tbanner_h = 70\n\t\t\tpad = 20\n\t\t\tx1 = img_better_look.shape[1] - banner_w - pad\n\t\t\ty1 = pad\n\t\t\tx2 = img_better_look.shape[1] - pad\n\t\t\ty2 = pad + banner_h",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\talpha",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\talpha = 0.55\n\t\t\t# banner size and position (top-right)\n\t\t\tbanner_w = 380\n\t\t\tbanner_h = 70\n\t\t\tpad = 20\n\t\t\tx1 = img_better_look.shape[1] - banner_w - pad\n\t\t\ty1 = pad\n\t\t\tx2 = img_better_look.shape[1] - pad\n\t\t\ty2 = pad + banner_h\n\t\t\t# choose color and text based on state",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\tbanner_w",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\tbanner_w = 380\n\t\t\tbanner_h = 70\n\t\t\tpad = 20\n\t\t\tx1 = img_better_look.shape[1] - banner_w - pad\n\t\t\ty1 = pad\n\t\t\tx2 = img_better_look.shape[1] - pad\n\t\t\ty2 = pad + banner_h\n\t\t\t# choose color and text based on state\n\t\t\tstatus_text = \"SAFE\"\n\t\t\tcolor = (0, 255, 0)  # green",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\tbanner_h",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\tbanner_h = 70\n\t\t\tpad = 20\n\t\t\tx1 = img_better_look.shape[1] - banner_w - pad\n\t\t\ty1 = pad\n\t\t\tx2 = img_better_look.shape[1] - pad\n\t\t\ty2 = pad + banner_h\n\t\t\t# choose color and text based on state\n\t\t\tstatus_text = \"SAFE\"\n\t\t\tcolor = (0, 255, 0)  # green\n\t\t\tif danger_v:",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\tpad",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\tpad = 20\n\t\t\tx1 = img_better_look.shape[1] - banner_w - pad\n\t\t\ty1 = pad\n\t\t\tx2 = img_better_look.shape[1] - pad\n\t\t\ty2 = pad + banner_h\n\t\t\t# choose color and text based on state\n\t\t\tstatus_text = \"SAFE\"\n\t\t\tcolor = (0, 255, 0)  # green\n\t\t\tif danger_v:\n\t\t\t\tstatus_text = \"DANGER\"",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\tx1",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\tx1 = img_better_look.shape[1] - banner_w - pad\n\t\t\ty1 = pad\n\t\t\tx2 = img_better_look.shape[1] - pad\n\t\t\ty2 = pad + banner_h\n\t\t\t# choose color and text based on state\n\t\t\tstatus_text = \"SAFE\"\n\t\t\tcolor = (0, 255, 0)  # green\n\t\t\tif danger_v:\n\t\t\t\tstatus_text = \"DANGER\"\n\t\t\t\tcolor = (0, 0, 255)  # red",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\ty1",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\ty1 = pad\n\t\t\tx2 = img_better_look.shape[1] - pad\n\t\t\ty2 = pad + banner_h\n\t\t\t# choose color and text based on state\n\t\t\tstatus_text = \"SAFE\"\n\t\t\tcolor = (0, 255, 0)  # green\n\t\t\tif danger_v:\n\t\t\t\tstatus_text = \"DANGER\"\n\t\t\t\tcolor = (0, 0, 255)  # red\n\t\t\telif unsafe_v:",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\tx2",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\tx2 = img_better_look.shape[1] - pad\n\t\t\ty2 = pad + banner_h\n\t\t\t# choose color and text based on state\n\t\t\tstatus_text = \"SAFE\"\n\t\t\tcolor = (0, 255, 0)  # green\n\t\t\tif danger_v:\n\t\t\t\tstatus_text = \"DANGER\"\n\t\t\t\tcolor = (0, 0, 255)  # red\n\t\t\telif unsafe_v:\n\t\t\t\tstatus_text = \"MEDIUM\"",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\ty2",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\ty2 = pad + banner_h\n\t\t\t# choose color and text based on state\n\t\t\tstatus_text = \"SAFE\"\n\t\t\tcolor = (0, 255, 0)  # green\n\t\t\tif danger_v:\n\t\t\t\tstatus_text = \"DANGER\"\n\t\t\t\tcolor = (0, 0, 255)  # red\n\t\t\telif unsafe_v:\n\t\t\t\tstatus_text = \"MEDIUM\"\n\t\t\t\tcolor = (0, 127, 255)  # orange",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\tstatus_text",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\tstatus_text = \"SAFE\"\n\t\t\tcolor = (0, 255, 0)  # green\n\t\t\tif danger_v:\n\t\t\t\tstatus_text = \"DANGER\"\n\t\t\t\tcolor = (0, 0, 255)  # red\n\t\t\telif unsafe_v:\n\t\t\t\tstatus_text = \"MEDIUM\"\n\t\t\t\tcolor = (0, 127, 255)  # orange\n\t\t\t# draw filled rounded rectangle (approx) on overlay\n\t\t\tcv2.rectangle(overlay, (x1, y1), (x2, y2), color, -1)",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\tcolor",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\tcolor = (0, 255, 0)  # green\n\t\t\tif danger_v:\n\t\t\t\tstatus_text = \"DANGER\"\n\t\t\t\tcolor = (0, 0, 255)  # red\n\t\t\telif unsafe_v:\n\t\t\t\tstatus_text = \"MEDIUM\"\n\t\t\t\tcolor = (0, 127, 255)  # orange\n\t\t\t# draw filled rounded rectangle (approx) on overlay\n\t\t\tcv2.rectangle(overlay, (x1, y1), (x2, y2), color, -1)\n\t\t\t# blend overlay",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\t\tstatus_text",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\t\tstatus_text = \"DANGER\"\n\t\t\t\tcolor = (0, 0, 255)  # red\n\t\t\telif unsafe_v:\n\t\t\t\tstatus_text = \"MEDIUM\"\n\t\t\t\tcolor = (0, 127, 255)  # orange\n\t\t\t# draw filled rounded rectangle (approx) on overlay\n\t\t\tcv2.rectangle(overlay, (x1, y1), (x2, y2), color, -1)\n\t\t\t# blend overlay\n\t\t\tcv2.addWeighted(overlay, alpha, img_better_look, 1 - alpha, 0, img_better_look)\n\t\t\t# draw text right-aligned within banner",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\t\tcolor",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\t\tcolor = (0, 0, 255)  # red\n\t\t\telif unsafe_v:\n\t\t\t\tstatus_text = \"MEDIUM\"\n\t\t\t\tcolor = (0, 127, 255)  # orange\n\t\t\t# draw filled rounded rectangle (approx) on overlay\n\t\t\tcv2.rectangle(overlay, (x1, y1), (x2, y2), color, -1)\n\t\t\t# blend overlay\n\t\t\tcv2.addWeighted(overlay, alpha, img_better_look, 1 - alpha, 0, img_better_look)\n\t\t\t# draw text right-aligned within banner\n\t\t\tfont = cv2.FONT_HERSHEY_DUPLEX",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\t\tstatus_text",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\t\tstatus_text = \"MEDIUM\"\n\t\t\t\tcolor = (0, 127, 255)  # orange\n\t\t\t# draw filled rounded rectangle (approx) on overlay\n\t\t\tcv2.rectangle(overlay, (x1, y1), (x2, y2), color, -1)\n\t\t\t# blend overlay\n\t\t\tcv2.addWeighted(overlay, alpha, img_better_look, 1 - alpha, 0, img_better_look)\n\t\t\t# draw text right-aligned within banner\n\t\t\tfont = cv2.FONT_HERSHEY_DUPLEX\n\t\t\tfont_scale = 1.2\n\t\t\tthickness = 3",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\t\tcolor",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\t\tcolor = (0, 127, 255)  # orange\n\t\t\t# draw filled rounded rectangle (approx) on overlay\n\t\t\tcv2.rectangle(overlay, (x1, y1), (x2, y2), color, -1)\n\t\t\t# blend overlay\n\t\t\tcv2.addWeighted(overlay, alpha, img_better_look, 1 - alpha, 0, img_better_look)\n\t\t\t# draw text right-aligned within banner\n\t\t\tfont = cv2.FONT_HERSHEY_DUPLEX\n\t\t\tfont_scale = 1.2\n\t\t\tthickness = 3\n\t\t\t(text_w, text_h), _ = cv2.getTextSize(status_text, font, font_scale, thickness)",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\tfont",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\tfont = cv2.FONT_HERSHEY_DUPLEX\n\t\t\tfont_scale = 1.2\n\t\t\tthickness = 3\n\t\t\t(text_w, text_h), _ = cv2.getTextSize(status_text, font, font_scale, thickness)\n\t\t\ttext_x = x2 - 20 - text_w\n\t\t\ttext_y = y1 + (banner_h + text_h) // 2\n\t\t\tcv2.putText(img_better_look, status_text, (text_x, text_y), font, font_scale, (255, 255, 255), thickness, cv2.LINE_AA)\n\t\texcept Exception:\n\t\t\t# If overlay drawing fails for any reason, keep running without crashing\n\t\t\tpass",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\tfont_scale",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\tfont_scale = 1.2\n\t\t\tthickness = 3\n\t\t\t(text_w, text_h), _ = cv2.getTextSize(status_text, font, font_scale, thickness)\n\t\t\ttext_x = x2 - 20 - text_w\n\t\t\ttext_y = y1 + (banner_h + text_h) // 2\n\t\t\tcv2.putText(img_better_look, status_text, (text_x, text_y), font, font_scale, (255, 255, 255), thickness, cv2.LINE_AA)\n\t\texcept Exception:\n\t\t\t# If overlay drawing fails for any reason, keep running without crashing\n\t\t\tpass\n\t\t# Log status changes (only when state changes) so we can debug why alerts may not appear",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\tthickness",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\tthickness = 3\n\t\t\t(text_w, text_h), _ = cv2.getTextSize(status_text, font, font_scale, thickness)\n\t\t\ttext_x = x2 - 20 - text_w\n\t\t\ttext_y = y1 + (banner_h + text_h) // 2\n\t\t\tcv2.putText(img_better_look, status_text, (text_x, text_y), font, font_scale, (255, 255, 255), thickness, cv2.LINE_AA)\n\t\texcept Exception:\n\t\t\t# If overlay drawing fails for any reason, keep running without crashing\n\t\t\tpass\n\t\t# Log status changes (only when state changes) so we can debug why alerts may not appear\n\t\ttry:",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\ttext_x",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\ttext_x = x2 - 20 - text_w\n\t\t\ttext_y = y1 + (banner_h + text_h) // 2\n\t\t\tcv2.putText(img_better_look, status_text, (text_x, text_y), font, font_scale, (255, 255, 255), thickness, cv2.LINE_AA)\n\t\texcept Exception:\n\t\t\t# If overlay drawing fails for any reason, keep running without crashing\n\t\t\tpass\n\t\t# Log status changes (only when state changes) so we can debug why alerts may not appear\n\t\ttry:\n\t\t\tif danger_v:\n\t\t\t\tstatus = 'DANGER'",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\ttext_y",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\ttext_y = y1 + (banner_h + text_h) // 2\n\t\t\tcv2.putText(img_better_look, status_text, (text_x, text_y), font, font_scale, (255, 255, 255), thickness, cv2.LINE_AA)\n\t\texcept Exception:\n\t\t\t# If overlay drawing fails for any reason, keep running without crashing\n\t\t\tpass\n\t\t# Log status changes (only when state changes) so we can debug why alerts may not appear\n\t\ttry:\n\t\t\tif danger_v:\n\t\t\t\tstatus = 'DANGER'\n\t\t\telif unsafe_v:",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\t\tstatus",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\t\tstatus = 'DANGER'\n\t\t\telif unsafe_v:\n\t\t\t\tstatus = 'MEDIUM'\n\t\t\telse:\n\t\t\t\tstatus = 'SAFE'\n\t\t\tif status != prev_status:\n\t\t\t\tprint(f\"[ALERT] frame={framenumber} status={status} unsafe_v={unsafe_v} danger_v={danger_v}\")\n\t\t\t\tprev_status = status\n\t\texcept Exception:\n\t\t\tpass",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\t\tstatus",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\t\tstatus = 'MEDIUM'\n\t\t\telse:\n\t\t\t\tstatus = 'SAFE'\n\t\t\tif status != prev_status:\n\t\t\t\tprint(f\"[ALERT] frame={framenumber} status={status} unsafe_v={unsafe_v} danger_v={danger_v}\")\n\t\t\t\tprev_status = status\n\t\texcept Exception:\n\t\t\tpass\n\t\t# Add center flashing alert for danger\n\t\tif danger_v:",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\t\tstatus",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\t\tstatus = 'SAFE'\n\t\t\tif status != prev_status:\n\t\t\t\tprint(f\"[ALERT] frame={framenumber} status={status} unsafe_v={unsafe_v} danger_v={danger_v}\")\n\t\t\t\tprev_status = status\n\t\texcept Exception:\n\t\t\tpass\n\t\t# Add center flashing alert for danger\n\t\tif danger_v:\n\t\t\t# Flash by alternating color\n\t\t\tflash_color = (0, 0, 255) if (framenumber // 10) % 2 == 0 else (255, 255, 255)",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\t\tprev_status",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\t\tprev_status = status\n\t\texcept Exception:\n\t\t\tpass\n\t\t# Add center flashing alert for danger\n\t\tif danger_v:\n\t\t\t# Flash by alternating color\n\t\t\tflash_color = (0, 0, 255) if (framenumber // 10) % 2 == 0 else (255, 255, 255)\n\t\t\tcv2.putText(img_better_look, \"DANGER!\", (320, 240), cv2.FONT_HERSHEY_DUPLEX, 2.0, flash_color, 5, cv2.LINE_AA)\n\t\t\tprint(f\"[ALERT] Center danger alert displayed frame={framenumber}\")\n\t\tout.write(line_visualize)",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\tflash_color",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\tflash_color = (0, 0, 255) if (framenumber // 10) % 2 == 0 else (255, 255, 255)\n\t\t\tcv2.putText(img_better_look, \"DANGER!\", (320, 240), cv2.FONT_HERSHEY_DUPLEX, 2.0, flash_color, 5, cv2.LINE_AA)\n\t\t\tprint(f\"[ALERT] Center danger alert displayed frame={framenumber}\")\n\t\tout.write(line_visualize)\n\t\tout1.write(img_better_look)\n\t\tout2.write(combo_image)\n\t\t#show result\n\t\t#cv2.imshow(WINDOW_NAME, img)\n\t\t####\n\t\t#cv2.imshow(\"normal lanedetection without extended\",normal_result)",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -5035,7 +5395,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\tcam = Camera(args)\n\tif not cam.isOpened():\n\t\traise SystemExit('ERROR: failed to open camera!')\n\t########    \n\ttracker = Tracker_tiny(cfg) \n\t########\n\tcls_dict = get_cls_dict(args.category_num)\n\tyolo_dim = args.model.split('-')[-1]\n\tif 'x' in yolo_dim:\n\t\tdim_split = yolo_dim.split('x')",
+        "peekOfCode": "\tcam = Camera(args)\n\tif not cam.isOpened():\n\t\traise SystemExit('ERROR: failed to open camera!')\n\t########    \n\ttracker = Tracker_tiny(cfg) \n\t########\n\tcls_dict = get_cls_dict(args.category_num)\n\tif args.use_opencv:\n\t\t# Default input shape for OpenCV YOLO\n\t\th = w = 416",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -5044,7 +5404,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\ttracker = Tracker_tiny(cfg) \n\t########\n\tcls_dict = get_cls_dict(args.category_num)\n\tyolo_dim = args.model.split('-')[-1]\n\tif 'x' in yolo_dim:\n\t\tdim_split = yolo_dim.split('x')\n\t\tif len(dim_split) != 2:\n\t\t\t\traise SystemExit('ERROR: bad yolo_dim (%s)!' % yolo_dim)\n\t\tw, h = int(dim_split[0]), int(dim_split[1])\n\telse:",
+        "peekOfCode": "\ttracker = Tracker_tiny(cfg) \n\t########\n\tcls_dict = get_cls_dict(args.category_num)\n\tif args.use_opencv:\n\t\t# Default input shape for OpenCV YOLO\n\t\th = w = 416\n\telse:\n\t\tyolo_dim = args.model.split('-')[-1]\n\t\tif 'x' in yolo_dim:\n\t\t\tdim_split = yolo_dim.split('x')",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -5053,25 +5413,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\tcls_dict = get_cls_dict(args.category_num)\n\tyolo_dim = args.model.split('-')[-1]\n\tif 'x' in yolo_dim:\n\t\tdim_split = yolo_dim.split('x')\n\t\tif len(dim_split) != 2:\n\t\t\t\traise SystemExit('ERROR: bad yolo_dim (%s)!' % yolo_dim)\n\t\tw, h = int(dim_split[0]), int(dim_split[1])\n\telse:\n\t\th = w = int(yolo_dim)\n\tif h % 32 != 0 or w % 32 != 0:",
-        "detail": "trt_deepsort_ver2",
-        "documentation": {}
-    },
-    {
-        "label": "\tyolo_dim",
-        "kind": 5,
-        "importPath": "trt_deepsort_ver2",
-        "description": "trt_deepsort_ver2",
-        "peekOfCode": "\tyolo_dim = args.model.split('-')[-1]\n\tif 'x' in yolo_dim:\n\t\tdim_split = yolo_dim.split('x')\n\t\tif len(dim_split) != 2:\n\t\t\t\traise SystemExit('ERROR: bad yolo_dim (%s)!' % yolo_dim)\n\t\tw, h = int(dim_split[0]), int(dim_split[1])\n\telse:\n\t\th = w = int(yolo_dim)\n\tif h % 32 != 0 or w % 32 != 0:\n\t\traise SystemExit('ERROR: bad yolo_dim (%s)!' % yolo_dim)",
-        "detail": "trt_deepsort_ver2",
-        "documentation": {}
-    },
-    {
-        "label": "\t\tdim_split",
-        "kind": 5,
-        "importPath": "trt_deepsort_ver2",
-        "description": "trt_deepsort_ver2",
-        "peekOfCode": "\t\tdim_split = yolo_dim.split('x')\n\t\tif len(dim_split) != 2:\n\t\t\t\traise SystemExit('ERROR: bad yolo_dim (%s)!' % yolo_dim)\n\t\tw, h = int(dim_split[0]), int(dim_split[1])\n\telse:\n\t\th = w = int(yolo_dim)\n\tif h % 32 != 0 or w % 32 != 0:\n\t\traise SystemExit('ERROR: bad yolo_dim (%s)!' % yolo_dim)\n\tif args.use_opencv:\n\t\t# Use OpenCV DNN fallback on CPU",
+        "peekOfCode": "\tcls_dict = get_cls_dict(args.category_num)\n\tif args.use_opencv:\n\t\t# Default input shape for OpenCV YOLO\n\t\th = w = 416\n\telse:\n\t\tyolo_dim = args.model.split('-')[-1]\n\t\tif 'x' in yolo_dim:\n\t\t\tdim_split = yolo_dim.split('x')\n\t\t\tif len(dim_split) != 2:\n\t\t\t\t\traise SystemExit('ERROR: bad yolo_dim (%s)!' % yolo_dim)",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -5080,7 +5422,34 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\t\th = w = int(yolo_dim)\n\tif h % 32 != 0 or w % 32 != 0:\n\t\traise SystemExit('ERROR: bad yolo_dim (%s)!' % yolo_dim)\n\tif args.use_opencv:\n\t\t# Use OpenCV DNN fallback on CPU\n\t\tdetector = OpenCVYolo(args.yolo_cfg, args.yolo_weights, input_shape=(h, w))\n\telse:\n\t\ttrt_yolo = TrtYOLO(args.model, (h, w), args.category_num, args.letter_box)\n\t\tdetector = trt_yolo\n\t#open_window(WINDOW_NAME, 'Camera TensorRT YOLO Demo',cam.img_width, cam.img_height)",
+        "peekOfCode": "\t\th = w = 416\n\telse:\n\t\tyolo_dim = args.model.split('-')[-1]\n\t\tif 'x' in yolo_dim:\n\t\t\tdim_split = yolo_dim.split('x')\n\t\t\tif len(dim_split) != 2:\n\t\t\t\t\traise SystemExit('ERROR: bad yolo_dim (%s)!' % yolo_dim)\n\t\t\tw, h = int(dim_split[0]), int(dim_split[1])\n\t\telse:\n\t\t\th = w = int(yolo_dim)",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\tyolo_dim",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\tyolo_dim = args.model.split('-')[-1]\n\t\tif 'x' in yolo_dim:\n\t\t\tdim_split = yolo_dim.split('x')\n\t\t\tif len(dim_split) != 2:\n\t\t\t\t\traise SystemExit('ERROR: bad yolo_dim (%s)!' % yolo_dim)\n\t\t\tw, h = int(dim_split[0]), int(dim_split[1])\n\t\telse:\n\t\t\th = w = int(yolo_dim)\n\t\tif h % 32 != 0 or w % 32 != 0:\n\t\t\traise SystemExit('ERROR: bad yolo_dim (%s)!' % yolo_dim)",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\tdim_split",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\tdim_split = yolo_dim.split('x')\n\t\t\tif len(dim_split) != 2:\n\t\t\t\t\traise SystemExit('ERROR: bad yolo_dim (%s)!' % yolo_dim)\n\t\t\tw, h = int(dim_split[0]), int(dim_split[1])\n\t\telse:\n\t\t\th = w = int(yolo_dim)\n\t\tif h % 32 != 0 or w % 32 != 0:\n\t\t\traise SystemExit('ERROR: bad yolo_dim (%s)!' % yolo_dim)\n\tif args.use_opencv:\n\t\t# Use OpenCV DNN fallback on CPU",
+        "detail": "trt_deepsort_ver2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\th",
+        "kind": 5,
+        "importPath": "trt_deepsort_ver2",
+        "description": "trt_deepsort_ver2",
+        "peekOfCode": "\t\t\th = w = int(yolo_dim)\n\t\tif h % 32 != 0 or w % 32 != 0:\n\t\t\traise SystemExit('ERROR: bad yolo_dim (%s)!' % yolo_dim)\n\tif args.use_opencv:\n\t\t# Use OpenCV DNN fallback on CPU\n\t\tdetector = OpenCVYolo(args.yolo_cfg, args.yolo_weights, input_shape=(h, w))\n\telse:\n\t\ttrt_yolo = TrtYOLO(args.model, (h, w), args.category_num, args.letter_box)\n\t\tdetector = trt_yolo\n\t#open_window(WINDOW_NAME, 'Camera TensorRT YOLO Demo',cam.img_width, cam.img_height)",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -5089,7 +5458,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\t\tdetector = OpenCVYolo(args.yolo_cfg, args.yolo_weights, input_shape=(h, w))\n\telse:\n\t\ttrt_yolo = TrtYOLO(args.model, (h, w), args.category_num, args.letter_box)\n\t\tdetector = trt_yolo\n\t#open_window(WINDOW_NAME, 'Camera TensorRT YOLO Demo',cam.img_width, cam.img_height)\n\tvis = BBoxVisualization(cls_dict)\n\tloop_and_detect(cam, detector, tracker, conf_th=0.3, vis=vis)\n\tcam.release()\n\tcv2.destroyAllWindows()\nif __name__ == '__main__':",
+        "peekOfCode": "\t\tdetector = OpenCVYolo(args.yolo_cfg, args.yolo_weights, input_shape=(h, w))\n\telse:\n\t\ttrt_yolo = TrtYOLO(args.model, (h, w), args.category_num, args.letter_box)\n\t\tdetector = trt_yolo\n\t#open_window(WINDOW_NAME, 'Camera TensorRT YOLO Demo',cam.img_width, cam.img_height)\n\tvis = BBoxVisualization(cls_dict)\n\tloop_and_detect(cam, detector, tracker, conf_th=0.3, vis=vis, args=args)\n\tcam.release()\n\tcv2.destroyAllWindows()\nif __name__ == '__main__':",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -5098,7 +5467,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\t\ttrt_yolo = TrtYOLO(args.model, (h, w), args.category_num, args.letter_box)\n\t\tdetector = trt_yolo\n\t#open_window(WINDOW_NAME, 'Camera TensorRT YOLO Demo',cam.img_width, cam.img_height)\n\tvis = BBoxVisualization(cls_dict)\n\tloop_and_detect(cam, detector, tracker, conf_th=0.3, vis=vis)\n\tcam.release()\n\tcv2.destroyAllWindows()\nif __name__ == '__main__':\n\tmain()",
+        "peekOfCode": "\t\ttrt_yolo = TrtYOLO(args.model, (h, w), args.category_num, args.letter_box)\n\t\tdetector = trt_yolo\n\t#open_window(WINDOW_NAME, 'Camera TensorRT YOLO Demo',cam.img_width, cam.img_height)\n\tvis = BBoxVisualization(cls_dict)\n\tloop_and_detect(cam, detector, tracker, conf_th=0.3, vis=vis, args=args)\n\tcam.release()\n\tcv2.destroyAllWindows()\nif __name__ == '__main__':\n\tmain()",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -5107,7 +5476,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\t\tdetector = trt_yolo\n\t#open_window(WINDOW_NAME, 'Camera TensorRT YOLO Demo',cam.img_width, cam.img_height)\n\tvis = BBoxVisualization(cls_dict)\n\tloop_and_detect(cam, detector, tracker, conf_th=0.3, vis=vis)\n\tcam.release()\n\tcv2.destroyAllWindows()\nif __name__ == '__main__':\n\tmain()",
+        "peekOfCode": "\t\tdetector = trt_yolo\n\t#open_window(WINDOW_NAME, 'Camera TensorRT YOLO Demo',cam.img_width, cam.img_height)\n\tvis = BBoxVisualization(cls_dict)\n\tloop_and_detect(cam, detector, tracker, conf_th=0.3, vis=vis, args=args)\n\tcam.release()\n\tcv2.destroyAllWindows()\nif __name__ == '__main__':\n\tmain()",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     },
@@ -5116,7 +5485,7 @@
         "kind": 5,
         "importPath": "trt_deepsort_ver2",
         "description": "trt_deepsort_ver2",
-        "peekOfCode": "\tvis = BBoxVisualization(cls_dict)\n\tloop_and_detect(cam, detector, tracker, conf_th=0.3, vis=vis)\n\tcam.release()\n\tcv2.destroyAllWindows()\nif __name__ == '__main__':\n\tmain()",
+        "peekOfCode": "\tvis = BBoxVisualization(cls_dict)\n\tloop_and_detect(cam, detector, tracker, conf_th=0.3, vis=vis, args=args)\n\tcam.release()\n\tcv2.destroyAllWindows()\nif __name__ == '__main__':\n\tmain()",
         "detail": "trt_deepsort_ver2",
         "documentation": {}
     }

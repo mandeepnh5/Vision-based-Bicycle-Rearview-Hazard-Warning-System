@@ -118,7 +118,7 @@ def parse_args():
 			'-c', '--category_num', type=int, default=80,
 			help='number of object categories [80]')
 	parser.add_argument(
-			'-m', '--model', type=str, required=True,
+			'-m', '--model', type=str, required=False,
 			help=('[yolov3|yolov3-tiny|yolov3-spp|yolov4|yolov4-tiny]-'
 						'[{dimension}], where dimension could be a single '
 						'number (e.g. 288, 416, 608) or WxH (e.g. 416x256)'))
@@ -130,6 +130,8 @@ def parse_args():
 	parser.add_argument('--use_opencv', action='store_true', help='Use OpenCV DNN fallback instead of TensorRT')
 	parser.add_argument('--yolo_cfg', type=str, default='./yolo/yolov4-tiny.cfg', help='Path to YOLO cfg for OpenCV fallback')
 	parser.add_argument('--yolo_weights', type=str, default='./yolo/yolov4-tiny.weights', help='Path to YOLO weights for OpenCV fallback')
+	parser.add_argument('--unsafe_dist', type=float, default=8.0, help='Distance (m) threshold to mark Unsafe')
+	parser.add_argument('--danger_dist', type=float, default=4.0, help='Distance (m) threshold to mark Dangerous')
 	#parser.add_argument('--engine_path', type=str, default='./weights/yolov3_tiny_416.engine', help='set your engine file path to load')
 	#######################    
 	args = parser.parse_args()
@@ -205,7 +207,7 @@ def motion_cord(starting_points,line_parameters):
 	 # print(outputs_deepsort,"final outpus")
 #    return outputs_deepsort    
 ######################################
-def loop_and_detect(cam, detector, tracker, conf_th,vis):
+def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 	"""Continuously capture images from camera and do object detection.
 
 	# Arguments
@@ -238,6 +240,8 @@ def loop_and_detect(cam, detector, tracker, conf_th,vis):
 	unsafe_v = False
 	danger_v = False
 	used = False
+	# previous status to avoid spamming logs every frame
+	prev_status = None
 	lanedetection = True #False
 	puttext_car = False
 	puttext_moto = False
@@ -622,7 +626,6 @@ def loop_and_detect(cam, detector, tracker, conf_th,vis):
 						unsafe_v = True
 						danger_v = False
 						cv2.putText(img_better_look, f"Unsafe", (700, 50), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255,0,255), 2)  #bgr
-						cv2.fillPoly(im0,pol, (255,0,255))
 					if car_imptim_avg < 0.75 and motion_predict == True:
 						danger_v = True
 						unsafe_v = False
@@ -651,6 +654,19 @@ def loop_and_detect(cam, detector, tracker, conf_th,vis):
 					dis = Distance_finder(210,w)//100
 					dis = int(dis)
 					cv2.putText(img_better_look, f"Distance {dis} m", (xc-6, yc-6), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0,255,255), 2)  #bgr
+					# immediate threshold check per-object to ensure flags are set
+					try:
+						if args is not None:
+							if dis <= args.danger_dist:
+								danger_v = True
+								unsafe_v = False
+								print(f"[DBG] frame={framenumber} id={ids} class=car dis={dis} <= danger({args.danger_dist}) -> DANGER")
+							elif dis <= args.unsafe_dist:
+								unsafe_v = True
+								danger_v = False
+								print(f"[DBG] frame={framenumber} id={ids} class=car dis={dis} <= unsafe({args.unsafe_dist}) -> MEDIUM")
+					except Exception:
+						pass
 					#560
 					if yc > 530 and yc <540:
 						time_start = tim
@@ -665,7 +681,7 @@ def loop_and_detect(cam, detector, tracker, conf_th,vis):
 								print("time = 0") 
 							else:
 								speed = ((dis_start-dis_end)/(time_end-time_start))*3600/1000
-								
+							
 								#cv2.putText(img_better_look, f"distance start {dis_start}  distance end {dis_end}",  (100, 400), cv2.FONT_HERSHEY_COMPLEX, 1, (255,0,0), 2)  #bgr
 								if speed < 0:
 									speed = "calculating speed"
@@ -674,24 +690,56 @@ def loop_and_detect(cam, detector, tracker, conf_th,vis):
 									speed = int(speed)
 					if bad ==True :
 						print("")
-						#cv2.putText(img_better_look, f"car speed {speed} km/hr ",  (50,400), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)
-								
-					
-								#cv2.putText(img_better_look, f"distance start {dis_start}  distance end {dis_end}",  (100, 400), cv2.FONT_HERSHEY_COMPLEX, 1, (255,0,0), 2)  #bgr
-								#cv2.putText(img_better_look, f"time start {time_start}  time end {time_end}",  (100, 500), cv2.FONT_HERSHEY_COMPLEX, 1, (0,0,255), 2)  #bgr
-								#cv2.putText(img_better_look, f"car speed {speed} km/hr ",  (50,400 ), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)
+						cv2.putText(img_better_look, f"car speed {speed} km/hr ",  (50,400), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)
+					if bad == True :
+						# placeholder for additional car logic
+						pass
 					#f.insert(0,(xc,yc))
 					#print("car center lsit :  ",f)
-					
-					
+
 				if cls == "motorbike":
 					dis = Distance_finder(85,w)//100
 					dis = int(dis)
 					print("distance",dis)
 					cv2.putText(img_better_look, f"Distance {dis} m", (xc-6, yc-6), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0,255,255), 2)  #bgr 
-					if yc > 530 and yc <540:
-						time_start = tim
-						dis_start = dis                           
+					# immediate threshold check for motorbike
+					try:
+						if args is not None:
+							if dis <= args.danger_dist:
+								danger_v = True
+								unsafe_v = False
+								print(f"[DBG] frame={framenumber} id={ids} class=motorbike dis={dis} <= danger({args.danger_dist}) -> DANGER")
+							elif dis <= args.unsafe_dist:
+								unsafe_v = True
+								danger_v = False
+								print(f"[DBG] frame={framenumber} id={ids} class=motorbike dis={dis} <= unsafe({args.unsafe_dist}) -> MEDIUM")
+					except Exception:
+						pass
+
+				# -- distance-based alerts (configurable thresholds)
+				try:
+					if args is not None:
+						# if we have a detected class and distance, override/augment warning state
+						if cls == "car":
+							if 'dis' in locals():
+								if dis <= args.danger_dist:
+									danger_v = True
+									unsafe_v = False
+								elif dis <= args.unsafe_dist:
+									unsafe_v = True
+									danger_v = False
+						if cls == "motorbike":
+							if 'dis' in locals():
+								if dis <= args.danger_dist:
+									danger_v = True
+									unsafe_v = False
+								elif dis <= args.unsafe_dist:
+									unsafe_v = True
+									danger_v = False
+				except Exception:
+					# ignore any thresholding errors
+					pass
+
 					if yc > 560 and yc < 570:
 						used = True
 						time_end = tim
@@ -778,7 +826,65 @@ def loop_and_detect(cam, detector, tracker, conf_th,vis):
 		imgx = img0
 		real_result = cv2.addWeighted(img_better_look,0.7,img,1,1) #view lanedetection filtering
 		img_better_look = cv2.addWeighted(im0,1,img_better_look,1,1) # 
+		# Persistent top-right status banner: SAFE / MEDIUM / DANGER
+		# This is drawn every frame so the state is always visible in the window and saved video.
+		try:
+			overlay = img_better_look.copy()
+			alpha = 0.55
+			# banner size and position (top-right)
+			banner_w = 380
+			banner_h = 70
+			pad = 20
+			x1 = img_better_look.shape[1] - banner_w - pad
+			y1 = pad
+			x2 = img_better_look.shape[1] - pad
+			y2 = pad + banner_h
+			# choose color and text based on state
+			status_text = "SAFE"
+			color = (0, 255, 0)  # green
+			if danger_v:
+				status_text = "DANGER"
+				color = (0, 0, 255)  # red
+			elif unsafe_v:
+				status_text = "MEDIUM"
+				color = (0, 127, 255)  # orange
+			# draw filled rounded rectangle (approx) on overlay
+			cv2.rectangle(overlay, (x1, y1), (x2, y2), color, -1)
+			# blend overlay
+			cv2.addWeighted(overlay, alpha, img_better_look, 1 - alpha, 0, img_better_look)
+			# draw text right-aligned within banner
+			font = cv2.FONT_HERSHEY_DUPLEX
+			font_scale = 1.2
+			thickness = 3
+			(text_w, text_h), _ = cv2.getTextSize(status_text, font, font_scale, thickness)
+			text_x = x2 - 20 - text_w
+			text_y = y1 + (banner_h + text_h) // 2
+			cv2.putText(img_better_look, status_text, (text_x, text_y), font, font_scale, (255, 255, 255), thickness, cv2.LINE_AA)
+		except Exception:
+			# If overlay drawing fails for any reason, keep running without crashing
+			pass
+
+		# Log status changes (only when state changes) so we can debug why alerts may not appear
+		try:
+			if danger_v:
+				status = 'DANGER'
+			elif unsafe_v:
+				status = 'MEDIUM'
+			else:
+				status = 'SAFE'
+			if status != prev_status:
+				print(f"[ALERT] frame={framenumber} status={status} unsafe_v={unsafe_v} danger_v={danger_v}")
+				prev_status = status
+		except Exception:
+			pass
 		
+		# Add center flashing alert for danger
+		if danger_v:
+			# Flash by alternating color
+			flash_color = (0, 0, 255) if (framenumber // 10) % 2 == 0 else (255, 255, 255)
+			cv2.putText(img_better_look, "DANGER!", (320, 240), cv2.FONT_HERSHEY_DUPLEX, 2.0, flash_color, 5, cv2.LINE_AA)
+			print(f"[ALERT] Center danger alert displayed frame={framenumber}")
+
 		out.write(line_visualize)
 		out1.write(img_better_look)
 		out2.write(combo_image)
@@ -835,16 +941,20 @@ def main():
 	tracker = Tracker_tiny(cfg) 
 	########
 	cls_dict = get_cls_dict(args.category_num)
-	yolo_dim = args.model.split('-')[-1]
-	if 'x' in yolo_dim:
-		dim_split = yolo_dim.split('x')
-		if len(dim_split) != 2:
-				raise SystemExit('ERROR: bad yolo_dim (%s)!' % yolo_dim)
-		w, h = int(dim_split[0]), int(dim_split[1])
+	if args.use_opencv:
+		# Default input shape for OpenCV YOLO
+		h = w = 416
 	else:
-		h = w = int(yolo_dim)
-	if h % 32 != 0 or w % 32 != 0:
-		raise SystemExit('ERROR: bad yolo_dim (%s)!' % yolo_dim)
+		yolo_dim = args.model.split('-')[-1]
+		if 'x' in yolo_dim:
+			dim_split = yolo_dim.split('x')
+			if len(dim_split) != 2:
+					raise SystemExit('ERROR: bad yolo_dim (%s)!' % yolo_dim)
+			w, h = int(dim_split[0]), int(dim_split[1])
+		else:
+			h = w = int(yolo_dim)
+		if h % 32 != 0 or w % 32 != 0:
+			raise SystemExit('ERROR: bad yolo_dim (%s)!' % yolo_dim)
 
 	if args.use_opencv:
 		# Use OpenCV DNN fallback on CPU
@@ -857,7 +967,7 @@ def main():
 			
 	vis = BBoxVisualization(cls_dict)
 	
-	loop_and_detect(cam, detector, tracker, conf_th=0.3, vis=vis)
+	loop_and_detect(cam, detector, tracker, conf_th=0.3, vis=vis, args=args)
 
 	cam.release()
 	cv2.destroyAllWindows()
