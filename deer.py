@@ -452,6 +452,8 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 		
 		'''
 
+		# boxes, confs, clss = detector.detect(img, conf_th) ## for region
+
 		boxes, confs, clss = detector.detect(original_image, conf_th)
 		#yolo_init = boxes
 		#img0 = ez_show(img)
@@ -983,7 +985,7 @@ def main():
 			
 	vis = BBoxVisualization(cls_dict)
 	
-	loop_and_detect(cam, detector, tracker, conf_th=0.3, vis=vis, args=args)
+	loop_and_detect(cam, detector, tracker, conf_th=0.55, vis=vis, args=args)
 
 	cam.release()
 	cv2.destroyAllWindows()
