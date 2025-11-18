@@ -175,7 +175,7 @@ def parse_args():
 	parser.add_argument('--pytorch_model', type=str, default='./yolo/best.pt', help='Path to PyTorch YOLO model (.pt)')
 	parser.add_argument('--unsafe_dist', type=float, default=8.0, help='Distance (m) threshold to mark Unsafe')
 	parser.add_argument('--danger_dist', type=float, default=4.0, help='Distance (m) threshold to mark Dangerous')
-	#parser.add_argument('--engine_path', type=str, default='./weights/yolov3_tiny_416.engine', help='set your engine file path to load')
+	parser.add_argument('--no_deepsort', action='store_true', help='Disable DeepSORT tracking')
 	#######################    
 	args = parser.parse_args()
 	return args
@@ -472,25 +472,25 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 		#img0 = ez_show(img)
 		#img0 = cv2.addWeighted(img0,0.7,img,1,1)
 
-		'''
-		object tracking by DeepSort
-		
-		'''
-		
-		#compute width and height of bboxs
-		output = boxes
-		w = output[:,[2]] - output[:,[0]]
-		h = output[:,[3]] - output[:,[1]]
-		xc , yc , w , h = compute_xc_yc(output)
-		#print(xc,yc,"center")
-		boxes = np.concatenate((xc,yc,w,h),axis=1)
-		outputs = tracker.run(img, boxes, confs)
+		if args.no_deepsort:
+			# Draw raw detections without tracking
+			img_better_look = vis.draw_bboxes(img_better_look, boxes, confs, clss)
+			outputs = np.zeros((0, 5), dtype=np.float32)  # Empty outputs to skip tracked drawing
+		else:
+			# Use DeepSORT tracking
+			# compute width and height of bboxs
+			output = boxes
+			w = output[:,[2]] - output[:,[0]]
+			h = output[:,[3]] - output[:,[1]]
+			xc , yc , w , h = compute_xc_yc(output)
+			#print(xc,yc,"center")
+			boxes = np.concatenate((xc,yc,w,h),axis=1)
+			outputs = tracker.run(img, boxes, confs)
 
 		#print('boxes_changed\n',boxes,'confs\n',confs,'clss',clss,"\n############")
 		#print("         deepsort bboxs:            \n ",outputs)
 		#for tensorrt_yolo
 		#img_better_look = vis.draw_bboxes(img_better_look, output, confs, clss) 
-		img_better_look = vis.draw_bboxes(img_better_look, output, confs, clss) 
 		if len(clss)==1:
 			clss = int(clss)
 			cls = vis.cls_dict.get(clss)
