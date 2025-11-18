@@ -179,6 +179,11 @@ def parse_args():
 	parser.add_argument('--unsafe_dist', type=float, default=8.0, help='Distance (m) threshold to mark Unsafe')
 	parser.add_argument('--danger_dist', type=float, default=4.0, help='Distance (m) threshold to mark Dangerous')
 	parser.add_argument('--no_deepsort', action='store_true', help='Disable DeepSORT tracking')
+	parser.add_argument('--skip_frames', type=int, default=1, help='Process every Nth frame (e.g., 2 for every 2nd frame)')
+	parser.add_argument('--input_width', type=int, default=1280, help='Input image width')
+	parser.add_argument('--input_height', type=int, default=960, help='Input image height')
+	parser.add_argument('--disable_lane_detection', action='store_true', help='Disable lane detection for speedup')
+	parser.add_argument('--confidence_threshold', type=float, default=0.55, help='Confidence threshold for detection')
 	#######################    
 	args = parser.parse_args()
 	return args
@@ -289,7 +294,7 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 	used = False
 	# previous status to avoid spamming logs every frame
 	prev_status = None
-	lanedetection = True #False
+	lanedetection = not args.disable_lane_detection  # Disable for speedup if flagged
 	puttext_deer = False
 	puttext_moto = False
 	bad = False
@@ -320,23 +325,25 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 	#width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH) + 0.5) 
 	#height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT) + 0.5)
 	#size = (width, height)
-	fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+	fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # MPEG-4 codec
 	#out = cv2.VideoWriter('output_testingvid03.avi', fourcc, 10.0, (640,  480))
 	#out2 = cv2.VideoWriter('combo.avi', fourcc, 20.0, (1280,960))
-	out = cv2.VideoWriter(os.path.join(output_dir, 'line_vis.mp4'), fourcc, 20.0, (1280,960))
-	out1 = cv2.VideoWriter(os.path.join(output_dir, 'final_res.mp4'), fourcc, 20.0, (1280,  960))
-	out2 = cv2.VideoWriter(os.path.join(output_dir, 'combo.mp4'), fourcc, 20.0, (1280,960))
+	out = cv2.VideoWriter(os.path.join(output_dir, 'line_vis.mp4'), fourcc, 20.0, (args.input_width, args.input_height))
+	out1 = cv2.VideoWriter(os.path.join(output_dir, 'final_res.mp4'), fourcc, 20.0, (args.input_width, args.input_height))
+	out2 = cv2.VideoWriter(os.path.join(output_dir, 'combo.mp4'), fourcc, 20.0, (args.input_width, args.input_height))
 	#out1 = cv2.VideoWriter('deepsort_out4.avi', fourcc, 20.0, (1280,  960))
 	##
 	while True:
 		framenumber+=1
+		if framenumber % args.skip_frames != 0:
+			continue  # Skip this frame for speedup
 		#mylcd = I2C_LCD_driver.lcd()
 		#if cv2.getWindowProperty(WINDOW_NAME, 0) < 0:
 			#  break
 		img = cam.read()
 		if img is None:
 			break
-		img = cv2.resize(img, (1280, 960))
+		img = cv2.resize(img, (args.input_width, args.input_height))
 		tim = framenumber/20 
 		#cv2.putText(img_better_look, f"time {tim}s",  (1100, 100), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)  #bgr 
 		pol = np.array([[(224, 960), (500, 570), (586, 570),(1000, 960)]], dtype=np.int32)  
@@ -1009,7 +1016,7 @@ def main():
 			
 	vis = BBoxVisualization(cls_dict)
 	
-	loop_and_detect(cam, detector, tracker, conf_th=0.55, vis=vis, args=args)
+	loop_and_detect(cam, detector, tracker, conf_th=args.confidence_threshold, vis=vis, args=args)
 
 	cam.release()
 	cv2.destroyAllWindows()

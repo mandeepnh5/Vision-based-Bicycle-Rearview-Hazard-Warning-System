@@ -3076,7 +3076,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t#h_ls = [deque(maxlen=30) for _ in range(100)]\n\tw_list = [deque(maxlen=30) for _ in range(100)]\n\tcar_spd = [deque(maxlen=30) for _ in range(50)]\n\tmoto_spd = [deque(maxlen=30) for _ in range(50)]\n\tunsafe_v = False\n\tdanger_v = False\n\tused = False\n\t# previous status to avoid spamming logs every frame\n\tprev_status = None\n\tlanedetection = True #False",
+        "peekOfCode": "\t#h_ls = [deque(maxlen=30) for _ in range(100)]\n\tw_list = [deque(maxlen=30) for _ in range(100)]\n\tcar_spd = [deque(maxlen=30) for _ in range(50)]\n\tmoto_spd = [deque(maxlen=30) for _ in range(50)]\n\tunsafe_v = False\n\tdanger_v = False\n\tused = False\n\t# previous status to avoid spamming logs every frame\n\tprev_status = None\n\tlanedetection = not args.disable_lane_detection  # Disable for speedup if flagged",
         "detail": "deer",
         "documentation": {}
     },
@@ -3085,7 +3085,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\tw_list = [deque(maxlen=30) for _ in range(100)]\n\tcar_spd = [deque(maxlen=30) for _ in range(50)]\n\tmoto_spd = [deque(maxlen=30) for _ in range(50)]\n\tunsafe_v = False\n\tdanger_v = False\n\tused = False\n\t# previous status to avoid spamming logs every frame\n\tprev_status = None\n\tlanedetection = True #False\n\tputtext_deer = False",
+        "peekOfCode": "\tw_list = [deque(maxlen=30) for _ in range(100)]\n\tcar_spd = [deque(maxlen=30) for _ in range(50)]\n\tmoto_spd = [deque(maxlen=30) for _ in range(50)]\n\tunsafe_v = False\n\tdanger_v = False\n\tused = False\n\t# previous status to avoid spamming logs every frame\n\tprev_status = None\n\tlanedetection = not args.disable_lane_detection  # Disable for speedup if flagged\n\tputtext_deer = False",
         "detail": "deer",
         "documentation": {}
     },
@@ -3094,7 +3094,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\tcar_spd = [deque(maxlen=30) for _ in range(50)]\n\tmoto_spd = [deque(maxlen=30) for _ in range(50)]\n\tunsafe_v = False\n\tdanger_v = False\n\tused = False\n\t# previous status to avoid spamming logs every frame\n\tprev_status = None\n\tlanedetection = True #False\n\tputtext_deer = False\n\tputtext_moto = False",
+        "peekOfCode": "\tcar_spd = [deque(maxlen=30) for _ in range(50)]\n\tmoto_spd = [deque(maxlen=30) for _ in range(50)]\n\tunsafe_v = False\n\tdanger_v = False\n\tused = False\n\t# previous status to avoid spamming logs every frame\n\tprev_status = None\n\tlanedetection = not args.disable_lane_detection  # Disable for speedup if flagged\n\tputtext_deer = False\n\tputtext_moto = False",
         "detail": "deer",
         "documentation": {}
     },
@@ -3103,7 +3103,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\tmoto_spd = [deque(maxlen=30) for _ in range(50)]\n\tunsafe_v = False\n\tdanger_v = False\n\tused = False\n\t# previous status to avoid spamming logs every frame\n\tprev_status = None\n\tlanedetection = True #False\n\tputtext_deer = False\n\tputtext_moto = False\n\tbad = False",
+        "peekOfCode": "\tmoto_spd = [deque(maxlen=30) for _ in range(50)]\n\tunsafe_v = False\n\tdanger_v = False\n\tused = False\n\t# previous status to avoid spamming logs every frame\n\tprev_status = None\n\tlanedetection = not args.disable_lane_detection  # Disable for speedup if flagged\n\tputtext_deer = False\n\tputtext_moto = False\n\tbad = False",
         "detail": "deer",
         "documentation": {}
     },
@@ -3112,7 +3112,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\tunsafe_v = False\n\tdanger_v = False\n\tused = False\n\t# previous status to avoid spamming logs every frame\n\tprev_status = None\n\tlanedetection = True #False\n\tputtext_deer = False\n\tputtext_moto = False\n\tbad = False\n\tmotion_predict = False",
+        "peekOfCode": "\tunsafe_v = False\n\tdanger_v = False\n\tused = False\n\t# previous status to avoid spamming logs every frame\n\tprev_status = None\n\tlanedetection = not args.disable_lane_detection  # Disable for speedup if flagged\n\tputtext_deer = False\n\tputtext_moto = False\n\tbad = False\n\tmotion_predict = False",
         "detail": "deer",
         "documentation": {}
     },
@@ -3121,7 +3121,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\tdanger_v = False\n\tused = False\n\t# previous status to avoid spamming logs every frame\n\tprev_status = None\n\tlanedetection = True #False\n\tputtext_deer = False\n\tputtext_moto = False\n\tbad = False\n\tmotion_predict = False\n\tdrw = False",
+        "peekOfCode": "\tdanger_v = False\n\tused = False\n\t# previous status to avoid spamming logs every frame\n\tprev_status = None\n\tlanedetection = not args.disable_lane_detection  # Disable for speedup if flagged\n\tputtext_deer = False\n\tputtext_moto = False\n\tbad = False\n\tmotion_predict = False\n\tdrw = False",
         "detail": "deer",
         "documentation": {}
     },
@@ -3130,7 +3130,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\tused = False\n\t# previous status to avoid spamming logs every frame\n\tprev_status = None\n\tlanedetection = True #False\n\tputtext_deer = False\n\tputtext_moto = False\n\tbad = False\n\tmotion_predict = False\n\tdrw = False\n\tunsafe_v = False",
+        "peekOfCode": "\tused = False\n\t# previous status to avoid spamming logs every frame\n\tprev_status = None\n\tlanedetection = not args.disable_lane_detection  # Disable for speedup if flagged\n\tputtext_deer = False\n\tputtext_moto = False\n\tbad = False\n\tmotion_predict = False\n\tdrw = False\n\tunsafe_v = False",
         "detail": "deer",
         "documentation": {}
     },
@@ -3139,7 +3139,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\tprev_status = None\n\tlanedetection = True #False\n\tputtext_deer = False\n\tputtext_moto = False\n\tbad = False\n\tmotion_predict = False\n\tdrw = False\n\tunsafe_v = False\n\tdanger_v = False\n\tavg_spd_moto = \"still appending\"",
+        "peekOfCode": "\tprev_status = None\n\tlanedetection = not args.disable_lane_detection  # Disable for speedup if flagged\n\tputtext_deer = False\n\tputtext_moto = False\n\tbad = False\n\tmotion_predict = False\n\tdrw = False\n\tunsafe_v = False\n\tdanger_v = False\n\tavg_spd_moto = \"still appending\"",
         "detail": "deer",
         "documentation": {}
     },
@@ -3148,7 +3148,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\tlanedetection = True #False\n\tputtext_deer = False\n\tputtext_moto = False\n\tbad = False\n\tmotion_predict = False\n\tdrw = False\n\tunsafe_v = False\n\tdanger_v = False\n\tavg_spd_moto = \"still appending\"\n\tavg_spd_deer = \"still appending\"",
+        "peekOfCode": "\tlanedetection = not args.disable_lane_detection  # Disable for speedup if flagged\n\tputtext_deer = False\n\tputtext_moto = False\n\tbad = False\n\tmotion_predict = False\n\tdrw = False\n\tunsafe_v = False\n\tdanger_v = False\n\tavg_spd_moto = \"still appending\"\n\tavg_spd_deer = \"still appending\"",
         "detail": "deer",
         "documentation": {}
     },
@@ -3283,7 +3283,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\tnext_num = max(run_nums) + 1 if run_nums else 1\n\telse:\n\t\tnext_num = 1\n\toutput_dir = f'output/run_{next_num:03d}'\n\tos.makedirs(output_dir)\n\t#save output video\n\t#width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH) + 0.5) \n\t#height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT) + 0.5)\n\t#size = (width, height)\n\tfourcc = cv2.VideoWriter_fourcc(*'mp4v')",
+        "peekOfCode": "\t\tnext_num = max(run_nums) + 1 if run_nums else 1\n\telse:\n\t\tnext_num = 1\n\toutput_dir = f'output/run_{next_num:03d}'\n\tos.makedirs(output_dir)\n\t#save output video\n\t#width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH) + 0.5) \n\t#height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT) + 0.5)\n\t#size = (width, height)\n\tfourcc = cv2.VideoWriter_fourcc(*'mp4v')  # MPEG-4 codec",
         "detail": "deer",
         "documentation": {}
     },
@@ -3292,7 +3292,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\tnext_num = 1\n\toutput_dir = f'output/run_{next_num:03d}'\n\tos.makedirs(output_dir)\n\t#save output video\n\t#width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH) + 0.5) \n\t#height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT) + 0.5)\n\t#size = (width, height)\n\tfourcc = cv2.VideoWriter_fourcc(*'mp4v')\n\t#out = cv2.VideoWriter('output_testingvid03.avi', fourcc, 10.0, (640,  480))\n\t#out2 = cv2.VideoWriter('combo.avi', fourcc, 20.0, (1280,960))",
+        "peekOfCode": "\t\tnext_num = 1\n\toutput_dir = f'output/run_{next_num:03d}'\n\tos.makedirs(output_dir)\n\t#save output video\n\t#width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH) + 0.5) \n\t#height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT) + 0.5)\n\t#size = (width, height)\n\tfourcc = cv2.VideoWriter_fourcc(*'mp4v')  # MPEG-4 codec\n\t#out = cv2.VideoWriter('output_testingvid03.avi', fourcc, 10.0, (640,  480))\n\t#out2 = cv2.VideoWriter('combo.avi', fourcc, 20.0, (1280,960))",
         "detail": "deer",
         "documentation": {}
     },
@@ -3301,7 +3301,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\toutput_dir = f'output/run_{next_num:03d}'\n\tos.makedirs(output_dir)\n\t#save output video\n\t#width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH) + 0.5) \n\t#height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT) + 0.5)\n\t#size = (width, height)\n\tfourcc = cv2.VideoWriter_fourcc(*'mp4v')\n\t#out = cv2.VideoWriter('output_testingvid03.avi', fourcc, 10.0, (640,  480))\n\t#out2 = cv2.VideoWriter('combo.avi', fourcc, 20.0, (1280,960))\n\tout = cv2.VideoWriter(os.path.join(output_dir, 'line_vis.mp4'), fourcc, 20.0, (1280,960))",
+        "peekOfCode": "\toutput_dir = f'output/run_{next_num:03d}'\n\tos.makedirs(output_dir)\n\t#save output video\n\t#width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH) + 0.5) \n\t#height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT) + 0.5)\n\t#size = (width, height)\n\tfourcc = cv2.VideoWriter_fourcc(*'mp4v')  # MPEG-4 codec\n\t#out = cv2.VideoWriter('output_testingvid03.avi', fourcc, 10.0, (640,  480))\n\t#out2 = cv2.VideoWriter('combo.avi', fourcc, 20.0, (1280,960))\n\tout = cv2.VideoWriter(os.path.join(output_dir, 'line_vis.mp4'), fourcc, 20.0, (args.input_width, args.input_height))",
         "detail": "deer",
         "documentation": {}
     },
@@ -3310,7 +3310,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t#width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH) + 0.5) \n\t#height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT) + 0.5)\n\t#size = (width, height)\n\tfourcc = cv2.VideoWriter_fourcc(*'mp4v')\n\t#out = cv2.VideoWriter('output_testingvid03.avi', fourcc, 10.0, (640,  480))\n\t#out2 = cv2.VideoWriter('combo.avi', fourcc, 20.0, (1280,960))\n\tout = cv2.VideoWriter(os.path.join(output_dir, 'line_vis.mp4'), fourcc, 20.0, (1280,960))\n\tout1 = cv2.VideoWriter(os.path.join(output_dir, 'final_res.mp4'), fourcc, 20.0, (1280,  960))\n\tout2 = cv2.VideoWriter(os.path.join(output_dir, 'combo.mp4'), fourcc, 20.0, (1280,960))\n\t#out1 = cv2.VideoWriter('deepsort_out4.avi', fourcc, 20.0, (1280,  960))",
+        "peekOfCode": "\t#width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH) + 0.5) \n\t#height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT) + 0.5)\n\t#size = (width, height)\n\tfourcc = cv2.VideoWriter_fourcc(*'mp4v')  # MPEG-4 codec\n\t#out = cv2.VideoWriter('output_testingvid03.avi', fourcc, 10.0, (640,  480))\n\t#out2 = cv2.VideoWriter('combo.avi', fourcc, 20.0, (1280,960))\n\tout = cv2.VideoWriter(os.path.join(output_dir, 'line_vis.mp4'), fourcc, 20.0, (args.input_width, args.input_height))\n\tout1 = cv2.VideoWriter(os.path.join(output_dir, 'final_res.mp4'), fourcc, 20.0, (args.input_width, args.input_height))\n\tout2 = cv2.VideoWriter(os.path.join(output_dir, 'combo.mp4'), fourcc, 20.0, (args.input_width, args.input_height))\n\t#out1 = cv2.VideoWriter('deepsort_out4.avi', fourcc, 20.0, (1280,  960))",
         "detail": "deer",
         "documentation": {}
     },
@@ -3319,7 +3319,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t#height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT) + 0.5)\n\t#size = (width, height)\n\tfourcc = cv2.VideoWriter_fourcc(*'mp4v')\n\t#out = cv2.VideoWriter('output_testingvid03.avi', fourcc, 10.0, (640,  480))\n\t#out2 = cv2.VideoWriter('combo.avi', fourcc, 20.0, (1280,960))\n\tout = cv2.VideoWriter(os.path.join(output_dir, 'line_vis.mp4'), fourcc, 20.0, (1280,960))\n\tout1 = cv2.VideoWriter(os.path.join(output_dir, 'final_res.mp4'), fourcc, 20.0, (1280,  960))\n\tout2 = cv2.VideoWriter(os.path.join(output_dir, 'combo.mp4'), fourcc, 20.0, (1280,960))\n\t#out1 = cv2.VideoWriter('deepsort_out4.avi', fourcc, 20.0, (1280,  960))\n\t##",
+        "peekOfCode": "\t#height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT) + 0.5)\n\t#size = (width, height)\n\tfourcc = cv2.VideoWriter_fourcc(*'mp4v')  # MPEG-4 codec\n\t#out = cv2.VideoWriter('output_testingvid03.avi', fourcc, 10.0, (640,  480))\n\t#out2 = cv2.VideoWriter('combo.avi', fourcc, 20.0, (1280,960))\n\tout = cv2.VideoWriter(os.path.join(output_dir, 'line_vis.mp4'), fourcc, 20.0, (args.input_width, args.input_height))\n\tout1 = cv2.VideoWriter(os.path.join(output_dir, 'final_res.mp4'), fourcc, 20.0, (args.input_width, args.input_height))\n\tout2 = cv2.VideoWriter(os.path.join(output_dir, 'combo.mp4'), fourcc, 20.0, (args.input_width, args.input_height))\n\t#out1 = cv2.VideoWriter('deepsort_out4.avi', fourcc, 20.0, (1280,  960))\n\t##",
         "detail": "deer",
         "documentation": {}
     },
@@ -3328,7 +3328,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t#size = (width, height)\n\tfourcc = cv2.VideoWriter_fourcc(*'mp4v')\n\t#out = cv2.VideoWriter('output_testingvid03.avi', fourcc, 10.0, (640,  480))\n\t#out2 = cv2.VideoWriter('combo.avi', fourcc, 20.0, (1280,960))\n\tout = cv2.VideoWriter(os.path.join(output_dir, 'line_vis.mp4'), fourcc, 20.0, (1280,960))\n\tout1 = cv2.VideoWriter(os.path.join(output_dir, 'final_res.mp4'), fourcc, 20.0, (1280,  960))\n\tout2 = cv2.VideoWriter(os.path.join(output_dir, 'combo.mp4'), fourcc, 20.0, (1280,960))\n\t#out1 = cv2.VideoWriter('deepsort_out4.avi', fourcc, 20.0, (1280,  960))\n\t##\n\twhile True:",
+        "peekOfCode": "\t#size = (width, height)\n\tfourcc = cv2.VideoWriter_fourcc(*'mp4v')  # MPEG-4 codec\n\t#out = cv2.VideoWriter('output_testingvid03.avi', fourcc, 10.0, (640,  480))\n\t#out2 = cv2.VideoWriter('combo.avi', fourcc, 20.0, (1280,960))\n\tout = cv2.VideoWriter(os.path.join(output_dir, 'line_vis.mp4'), fourcc, 20.0, (args.input_width, args.input_height))\n\tout1 = cv2.VideoWriter(os.path.join(output_dir, 'final_res.mp4'), fourcc, 20.0, (args.input_width, args.input_height))\n\tout2 = cv2.VideoWriter(os.path.join(output_dir, 'combo.mp4'), fourcc, 20.0, (args.input_width, args.input_height))\n\t#out1 = cv2.VideoWriter('deepsort_out4.avi', fourcc, 20.0, (1280,  960))\n\t##\n\twhile True:",
         "detail": "deer",
         "documentation": {}
     },
@@ -3337,7 +3337,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\tfourcc = cv2.VideoWriter_fourcc(*'mp4v')\n\t#out = cv2.VideoWriter('output_testingvid03.avi', fourcc, 10.0, (640,  480))\n\t#out2 = cv2.VideoWriter('combo.avi', fourcc, 20.0, (1280,960))\n\tout = cv2.VideoWriter(os.path.join(output_dir, 'line_vis.mp4'), fourcc, 20.0, (1280,960))\n\tout1 = cv2.VideoWriter(os.path.join(output_dir, 'final_res.mp4'), fourcc, 20.0, (1280,  960))\n\tout2 = cv2.VideoWriter(os.path.join(output_dir, 'combo.mp4'), fourcc, 20.0, (1280,960))\n\t#out1 = cv2.VideoWriter('deepsort_out4.avi', fourcc, 20.0, (1280,  960))\n\t##\n\twhile True:\n\t\tframenumber+=1",
+        "peekOfCode": "\tfourcc = cv2.VideoWriter_fourcc(*'mp4v')  # MPEG-4 codec\n\t#out = cv2.VideoWriter('output_testingvid03.avi', fourcc, 10.0, (640,  480))\n\t#out2 = cv2.VideoWriter('combo.avi', fourcc, 20.0, (1280,960))\n\tout = cv2.VideoWriter(os.path.join(output_dir, 'line_vis.mp4'), fourcc, 20.0, (args.input_width, args.input_height))\n\tout1 = cv2.VideoWriter(os.path.join(output_dir, 'final_res.mp4'), fourcc, 20.0, (args.input_width, args.input_height))\n\tout2 = cv2.VideoWriter(os.path.join(output_dir, 'combo.mp4'), fourcc, 20.0, (args.input_width, args.input_height))\n\t#out1 = cv2.VideoWriter('deepsort_out4.avi', fourcc, 20.0, (1280,  960))\n\t##\n\twhile True:\n\t\tframenumber+=1",
         "detail": "deer",
         "documentation": {}
     },
@@ -3346,7 +3346,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t#out = cv2.VideoWriter('output_testingvid03.avi', fourcc, 10.0, (640,  480))\n\t#out2 = cv2.VideoWriter('combo.avi', fourcc, 20.0, (1280,960))\n\tout = cv2.VideoWriter(os.path.join(output_dir, 'line_vis.mp4'), fourcc, 20.0, (1280,960))\n\tout1 = cv2.VideoWriter(os.path.join(output_dir, 'final_res.mp4'), fourcc, 20.0, (1280,  960))\n\tout2 = cv2.VideoWriter(os.path.join(output_dir, 'combo.mp4'), fourcc, 20.0, (1280,960))\n\t#out1 = cv2.VideoWriter('deepsort_out4.avi', fourcc, 20.0, (1280,  960))\n\t##\n\twhile True:\n\t\tframenumber+=1\n\t\t#mylcd = I2C_LCD_driver.lcd()",
+        "peekOfCode": "\t#out = cv2.VideoWriter('output_testingvid03.avi', fourcc, 10.0, (640,  480))\n\t#out2 = cv2.VideoWriter('combo.avi', fourcc, 20.0, (1280,960))\n\tout = cv2.VideoWriter(os.path.join(output_dir, 'line_vis.mp4'), fourcc, 20.0, (args.input_width, args.input_height))\n\tout1 = cv2.VideoWriter(os.path.join(output_dir, 'final_res.mp4'), fourcc, 20.0, (args.input_width, args.input_height))\n\tout2 = cv2.VideoWriter(os.path.join(output_dir, 'combo.mp4'), fourcc, 20.0, (args.input_width, args.input_height))\n\t#out1 = cv2.VideoWriter('deepsort_out4.avi', fourcc, 20.0, (1280,  960))\n\t##\n\twhile True:\n\t\tframenumber+=1\n\t\tif framenumber % args.skip_frames != 0:",
         "detail": "deer",
         "documentation": {}
     },
@@ -3355,7 +3355,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t#out2 = cv2.VideoWriter('combo.avi', fourcc, 20.0, (1280,960))\n\tout = cv2.VideoWriter(os.path.join(output_dir, 'line_vis.mp4'), fourcc, 20.0, (1280,960))\n\tout1 = cv2.VideoWriter(os.path.join(output_dir, 'final_res.mp4'), fourcc, 20.0, (1280,  960))\n\tout2 = cv2.VideoWriter(os.path.join(output_dir, 'combo.mp4'), fourcc, 20.0, (1280,960))\n\t#out1 = cv2.VideoWriter('deepsort_out4.avi', fourcc, 20.0, (1280,  960))\n\t##\n\twhile True:\n\t\tframenumber+=1\n\t\t#mylcd = I2C_LCD_driver.lcd()\n\t\t#if cv2.getWindowProperty(WINDOW_NAME, 0) < 0:",
+        "peekOfCode": "\t#out2 = cv2.VideoWriter('combo.avi', fourcc, 20.0, (1280,960))\n\tout = cv2.VideoWriter(os.path.join(output_dir, 'line_vis.mp4'), fourcc, 20.0, (args.input_width, args.input_height))\n\tout1 = cv2.VideoWriter(os.path.join(output_dir, 'final_res.mp4'), fourcc, 20.0, (args.input_width, args.input_height))\n\tout2 = cv2.VideoWriter(os.path.join(output_dir, 'combo.mp4'), fourcc, 20.0, (args.input_width, args.input_height))\n\t#out1 = cv2.VideoWriter('deepsort_out4.avi', fourcc, 20.0, (1280,  960))\n\t##\n\twhile True:\n\t\tframenumber+=1\n\t\tif framenumber % args.skip_frames != 0:\n\t\t\tcontinue  # Skip this frame for speedup",
         "detail": "deer",
         "documentation": {}
     },
@@ -3364,7 +3364,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\tout = cv2.VideoWriter(os.path.join(output_dir, 'line_vis.mp4'), fourcc, 20.0, (1280,960))\n\tout1 = cv2.VideoWriter(os.path.join(output_dir, 'final_res.mp4'), fourcc, 20.0, (1280,  960))\n\tout2 = cv2.VideoWriter(os.path.join(output_dir, 'combo.mp4'), fourcc, 20.0, (1280,960))\n\t#out1 = cv2.VideoWriter('deepsort_out4.avi', fourcc, 20.0, (1280,  960))\n\t##\n\twhile True:\n\t\tframenumber+=1\n\t\t#mylcd = I2C_LCD_driver.lcd()\n\t\t#if cv2.getWindowProperty(WINDOW_NAME, 0) < 0:\n\t\t\t#  break",
+        "peekOfCode": "\tout = cv2.VideoWriter(os.path.join(output_dir, 'line_vis.mp4'), fourcc, 20.0, (args.input_width, args.input_height))\n\tout1 = cv2.VideoWriter(os.path.join(output_dir, 'final_res.mp4'), fourcc, 20.0, (args.input_width, args.input_height))\n\tout2 = cv2.VideoWriter(os.path.join(output_dir, 'combo.mp4'), fourcc, 20.0, (args.input_width, args.input_height))\n\t#out1 = cv2.VideoWriter('deepsort_out4.avi', fourcc, 20.0, (1280,  960))\n\t##\n\twhile True:\n\t\tframenumber+=1\n\t\tif framenumber % args.skip_frames != 0:\n\t\t\tcontinue  # Skip this frame for speedup\n\t\t#mylcd = I2C_LCD_driver.lcd()",
         "detail": "deer",
         "documentation": {}
     },
@@ -3373,7 +3373,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\tout1 = cv2.VideoWriter(os.path.join(output_dir, 'final_res.mp4'), fourcc, 20.0, (1280,  960))\n\tout2 = cv2.VideoWriter(os.path.join(output_dir, 'combo.mp4'), fourcc, 20.0, (1280,960))\n\t#out1 = cv2.VideoWriter('deepsort_out4.avi', fourcc, 20.0, (1280,  960))\n\t##\n\twhile True:\n\t\tframenumber+=1\n\t\t#mylcd = I2C_LCD_driver.lcd()\n\t\t#if cv2.getWindowProperty(WINDOW_NAME, 0) < 0:\n\t\t\t#  break\n\t\timg = cam.read()",
+        "peekOfCode": "\tout1 = cv2.VideoWriter(os.path.join(output_dir, 'final_res.mp4'), fourcc, 20.0, (args.input_width, args.input_height))\n\tout2 = cv2.VideoWriter(os.path.join(output_dir, 'combo.mp4'), fourcc, 20.0, (args.input_width, args.input_height))\n\t#out1 = cv2.VideoWriter('deepsort_out4.avi', fourcc, 20.0, (1280,  960))\n\t##\n\twhile True:\n\t\tframenumber+=1\n\t\tif framenumber % args.skip_frames != 0:\n\t\t\tcontinue  # Skip this frame for speedup\n\t\t#mylcd = I2C_LCD_driver.lcd()\n\t\t#if cv2.getWindowProperty(WINDOW_NAME, 0) < 0:",
         "detail": "deer",
         "documentation": {}
     },
@@ -3382,7 +3382,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\tout2 = cv2.VideoWriter(os.path.join(output_dir, 'combo.mp4'), fourcc, 20.0, (1280,960))\n\t#out1 = cv2.VideoWriter('deepsort_out4.avi', fourcc, 20.0, (1280,  960))\n\t##\n\twhile True:\n\t\tframenumber+=1\n\t\t#mylcd = I2C_LCD_driver.lcd()\n\t\t#if cv2.getWindowProperty(WINDOW_NAME, 0) < 0:\n\t\t\t#  break\n\t\timg = cam.read()\n\t\tif img is None:",
+        "peekOfCode": "\tout2 = cv2.VideoWriter(os.path.join(output_dir, 'combo.mp4'), fourcc, 20.0, (args.input_width, args.input_height))\n\t#out1 = cv2.VideoWriter('deepsort_out4.avi', fourcc, 20.0, (1280,  960))\n\t##\n\twhile True:\n\t\tframenumber+=1\n\t\tif framenumber % args.skip_frames != 0:\n\t\t\tcontinue  # Skip this frame for speedup\n\t\t#mylcd = I2C_LCD_driver.lcd()\n\t\t#if cv2.getWindowProperty(WINDOW_NAME, 0) < 0:\n\t\t\t#  break",
         "detail": "deer",
         "documentation": {}
     },
@@ -3391,7 +3391,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t#out1 = cv2.VideoWriter('deepsort_out4.avi', fourcc, 20.0, (1280,  960))\n\t##\n\twhile True:\n\t\tframenumber+=1\n\t\t#mylcd = I2C_LCD_driver.lcd()\n\t\t#if cv2.getWindowProperty(WINDOW_NAME, 0) < 0:\n\t\t\t#  break\n\t\timg = cam.read()\n\t\tif img is None:\n\t\t\tbreak",
+        "peekOfCode": "\t#out1 = cv2.VideoWriter('deepsort_out4.avi', fourcc, 20.0, (1280,  960))\n\t##\n\twhile True:\n\t\tframenumber+=1\n\t\tif framenumber % args.skip_frames != 0:\n\t\t\tcontinue  # Skip this frame for speedup\n\t\t#mylcd = I2C_LCD_driver.lcd()\n\t\t#if cv2.getWindowProperty(WINDOW_NAME, 0) < 0:\n\t\t\t#  break\n\t\timg = cam.read()",
         "detail": "deer",
         "documentation": {}
     },
@@ -3400,7 +3400,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t#mylcd = I2C_LCD_driver.lcd()\n\t\t#if cv2.getWindowProperty(WINDOW_NAME, 0) < 0:\n\t\t\t#  break\n\t\timg = cam.read()\n\t\tif img is None:\n\t\t\tbreak\n\t\timg = cv2.resize(img, (1280, 960))\n\t\ttim = framenumber/20 \n\t\t#cv2.putText(img_better_look, f\"time {tim}s\",  (1100, 100), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)  #bgr \n\t\tpol = np.array([[(224, 960), (500, 570), (586, 570),(1000, 960)]], dtype=np.int32)  ",
+        "peekOfCode": "\t\t#mylcd = I2C_LCD_driver.lcd()\n\t\t#if cv2.getWindowProperty(WINDOW_NAME, 0) < 0:\n\t\t\t#  break\n\t\timg = cam.read()\n\t\tif img is None:\n\t\t\tbreak\n\t\timg = cv2.resize(img, (args.input_width, args.input_height))\n\t\ttim = framenumber/20 \n\t\t#cv2.putText(img_better_look, f\"time {tim}s\",  (1100, 100), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)  #bgr \n\t\tpol = np.array([[(224, 960), (500, 570), (586, 570),(1000, 960)]], dtype=np.int32)  ",
         "detail": "deer",
         "documentation": {}
     },
@@ -3409,7 +3409,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\timg = cam.read()\n\t\tif img is None:\n\t\t\tbreak\n\t\timg = cv2.resize(img, (1280, 960))\n\t\ttim = framenumber/20 \n\t\t#cv2.putText(img_better_look, f\"time {tim}s\",  (1100, 100), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)  #bgr \n\t\tpol = np.array([[(224, 960), (500, 570), (586, 570),(1000, 960)]], dtype=np.int32)  \n\t\timg = img.astype('uint8')\n\t\toriginal_image = img\n\t\timg_better_look = img",
+        "peekOfCode": "\t\timg = cam.read()\n\t\tif img is None:\n\t\t\tbreak\n\t\timg = cv2.resize(img, (args.input_width, args.input_height))\n\t\ttim = framenumber/20 \n\t\t#cv2.putText(img_better_look, f\"time {tim}s\",  (1100, 100), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)  #bgr \n\t\tpol = np.array([[(224, 960), (500, 570), (586, 570),(1000, 960)]], dtype=np.int32)  \n\t\timg = img.astype('uint8')\n\t\toriginal_image = img\n\t\timg_better_look = img",
         "detail": "deer",
         "documentation": {}
     },
@@ -3418,7 +3418,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\timg = cv2.resize(img, (1280, 960))\n\t\ttim = framenumber/20 \n\t\t#cv2.putText(img_better_look, f\"time {tim}s\",  (1100, 100), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)  #bgr \n\t\tpol = np.array([[(224, 960), (500, 570), (586, 570),(1000, 960)]], dtype=np.int32)  \n\t\timg = img.astype('uint8')\n\t\toriginal_image = img\n\t\timg_better_look = img\n\t\tcv2.putText(img_better_look, f\"time {tim}s\",  (1100, 100), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)  #bgr \n\t\t#input_cropped = frame[550:(550+IMAGE_H), 0:IMAGE_W]\n\t\tadd_trans = np.zeros_like(img)",
+        "peekOfCode": "\t\timg = cv2.resize(img, (args.input_width, args.input_height))\n\t\ttim = framenumber/20 \n\t\t#cv2.putText(img_better_look, f\"time {tim}s\",  (1100, 100), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)  #bgr \n\t\tpol = np.array([[(224, 960), (500, 570), (586, 570),(1000, 960)]], dtype=np.int32)  \n\t\timg = img.astype('uint8')\n\t\toriginal_image = img\n\t\timg_better_look = img\n\t\tcv2.putText(img_better_look, f\"time {tim}s\",  (1100, 100), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)  #bgr \n\t\t#input_cropped = frame[550:(550+IMAGE_H), 0:IMAGE_W]\n\t\tadd_trans = np.zeros_like(img)",
         "detail": "deer",
         "documentation": {}
     },
@@ -5677,7 +5677,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\th = w = int(yolo_dim)\n\t\tif h % 32 != 0 or w % 32 != 0:\n\t\t\traise SystemExit('ERROR: bad yolo_dim (%s)!' % yolo_dim)\n\t\ttrt_yolo = TrtYOLO(args.model, (h, w), args.category_num, args.letter_box)\n\t\tdetector = trt_yolo\n\t#open_window(WINDOW_NAME, 'Camera TensorRT YOLO Demo',cam.img_width, cam.img_height)\n\tvis = BBoxVisualization(cls_dict)\n\tloop_and_detect(cam, detector, tracker, conf_th=0.55, vis=vis, args=args)\n\tcam.release()\n\tcv2.destroyAllWindows()",
+        "peekOfCode": "\t\t\th = w = int(yolo_dim)\n\t\tif h % 32 != 0 or w % 32 != 0:\n\t\t\traise SystemExit('ERROR: bad yolo_dim (%s)!' % yolo_dim)\n\t\ttrt_yolo = TrtYOLO(args.model, (h, w), args.category_num, args.letter_box)\n\t\tdetector = trt_yolo\n\t#open_window(WINDOW_NAME, 'Camera TensorRT YOLO Demo',cam.img_width, cam.img_height)\n\tvis = BBoxVisualization(cls_dict)\n\tloop_and_detect(cam, detector, tracker, conf_th=args.confidence_threshold, vis=vis, args=args)\n\tcam.release()\n\tcv2.destroyAllWindows()",
         "detail": "deer",
         "documentation": {}
     },
@@ -5686,7 +5686,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\ttrt_yolo = TrtYOLO(args.model, (h, w), args.category_num, args.letter_box)\n\t\tdetector = trt_yolo\n\t#open_window(WINDOW_NAME, 'Camera TensorRT YOLO Demo',cam.img_width, cam.img_height)\n\tvis = BBoxVisualization(cls_dict)\n\tloop_and_detect(cam, detector, tracker, conf_th=0.55, vis=vis, args=args)\n\tcam.release()\n\tcv2.destroyAllWindows()\nif __name__ == '__main__':\n\tmain()",
+        "peekOfCode": "\t\ttrt_yolo = TrtYOLO(args.model, (h, w), args.category_num, args.letter_box)\n\t\tdetector = trt_yolo\n\t#open_window(WINDOW_NAME, 'Camera TensorRT YOLO Demo',cam.img_width, cam.img_height)\n\tvis = BBoxVisualization(cls_dict)\n\tloop_and_detect(cam, detector, tracker, conf_th=args.confidence_threshold, vis=vis, args=args)\n\tcam.release()\n\tcv2.destroyAllWindows()\nif __name__ == '__main__':\n\tmain()",
         "detail": "deer",
         "documentation": {}
     },
@@ -5695,7 +5695,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\tdetector = trt_yolo\n\t#open_window(WINDOW_NAME, 'Camera TensorRT YOLO Demo',cam.img_width, cam.img_height)\n\tvis = BBoxVisualization(cls_dict)\n\tloop_and_detect(cam, detector, tracker, conf_th=0.55, vis=vis, args=args)\n\tcam.release()\n\tcv2.destroyAllWindows()\nif __name__ == '__main__':\n\tmain()",
+        "peekOfCode": "\t\tdetector = trt_yolo\n\t#open_window(WINDOW_NAME, 'Camera TensorRT YOLO Demo',cam.img_width, cam.img_height)\n\tvis = BBoxVisualization(cls_dict)\n\tloop_and_detect(cam, detector, tracker, conf_th=args.confidence_threshold, vis=vis, args=args)\n\tcam.release()\n\tcv2.destroyAllWindows()\nif __name__ == '__main__':\n\tmain()",
         "detail": "deer",
         "documentation": {}
     },
@@ -5704,7 +5704,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\tvis = BBoxVisualization(cls_dict)\n\tloop_and_detect(cam, detector, tracker, conf_th=0.55, vis=vis, args=args)\n\tcam.release()\n\tcv2.destroyAllWindows()\nif __name__ == '__main__':\n\tmain()",
+        "peekOfCode": "\tvis = BBoxVisualization(cls_dict)\n\tloop_and_detect(cam, detector, tracker, conf_th=args.confidence_threshold, vis=vis, args=args)\n\tcam.release()\n\tcv2.destroyAllWindows()\nif __name__ == '__main__':\n\tmain()",
         "detail": "deer",
         "documentation": {}
     },
