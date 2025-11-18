@@ -515,6 +515,14 @@
         "documentation": {}
     },
     {
+        "label": "YOLO",
+        "importPath": "ultralytics",
+        "description": "ultralytics",
+        "isExtraImport": true,
+        "detail": "ultralytics",
+        "documentation": {}
+    },
+    {
         "label": "get_cls_dict",
         "importPath": "utils.yolo_classes",
         "description": "utils.yolo_classes",
@@ -3815,7 +3823,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t#img0 = np.zeros_like(img_better_look)\n\t\t\tcv2.fillPoly(im0,pol, (0,255,0))\n\t\t\t#img_better_look = cv2.addWeighted(img0,0.7,img_better_look,1,1)\n\t\t\t#speed estimate zone\n\t\t\t#cv2.line(img_better_look,(50,530),(1260,530),(0,127,255),3)\n\t\t\t#cv2.line(img_better_look,(50,560),(1260,560),(0,127,255),3)\n\t\t'''\n\t\tyolov4 + Tensorrt\n\t\t'''\n\t\tboxes, confs, clss = detector.detect(img, conf_th)",
+        "peekOfCode": "\t\t\t#img0 = np.zeros_like(img_better_look)\n\t\t\tcv2.fillPoly(im0,pol, (0,255,0))\n\t\t\t#img_better_look = cv2.addWeighted(img0,0.7,img_better_look,1,1)\n\t\t\t#speed estimate zone\n\t\t\t#cv2.line(img_better_look,(50,530),(1260,530),(0,127,255),3)\n\t\t\t#cv2.line(img_better_look,(50,560),(1260,560),(0,127,255),3)\n\t\t'''\n\t\tyolov4 + Tensorrt\n\t\t'''\n\t\tboxes, confs, clss = detector.detect(original_image, conf_th)",
         "detail": "deer",
         "documentation": {}
     },
@@ -3824,7 +3832,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t#img_better_look = cv2.addWeighted(img0,0.7,img_better_look,1,1)\n\t\t\t#speed estimate zone\n\t\t\t#cv2.line(img_better_look,(50,530),(1260,530),(0,127,255),3)\n\t\t\t#cv2.line(img_better_look,(50,560),(1260,560),(0,127,255),3)\n\t\t'''\n\t\tyolov4 + Tensorrt\n\t\t'''\n\t\tboxes, confs, clss = detector.detect(img, conf_th)\n\t\t#yolo_init = boxes\n\t\t#img0 = ez_show(img)",
+        "peekOfCode": "\t\t\t#img_better_look = cv2.addWeighted(img0,0.7,img_better_look,1,1)\n\t\t\t#speed estimate zone\n\t\t\t#cv2.line(img_better_look,(50,530),(1260,530),(0,127,255),3)\n\t\t\t#cv2.line(img_better_look,(50,560),(1260,560),(0,127,255),3)\n\t\t'''\n\t\tyolov4 + Tensorrt\n\t\t'''\n\t\tboxes, confs, clss = detector.detect(original_image, conf_th)\n\t\t#yolo_init = boxes\n\t\t#img0 = ez_show(img)",
         "detail": "deer",
         "documentation": {}
     },
@@ -5599,6 +5607,42 @@
         "description": "deer",
         "peekOfCode": "\tvis = BBoxVisualization(cls_dict)\n\tloop_and_detect(cam, detector, tracker, conf_th=0.3, vis=vis, args=args)\n\tcam.release()\n\tcv2.destroyAllWindows()\nif __name__ == '__main__':\n\tmain()",
         "detail": "deer",
+        "documentation": {}
+    },
+    {
+        "label": "model",
+        "kind": 5,
+        "importPath": "simple_yolo",
+        "description": "simple_yolo",
+        "peekOfCode": "model = YOLO(\"deer.pt\")\n# 2. Set the path to your video file\nVIDEO_PATH = \"deer/1.mp4\"  # <-- IMPORTANT: Change this\n# 3. (Optional) Print the model's class names to find the 'deer' ID\n# This helps you verify the class ID. In this model, 'deer' is typically class 0.\nprint(\"Model classes:\", model.names)\nDEER_CLASS_ID = 0  # Assuming 'deer' is class 0, adjust if model.names shows differently\n# --- End Configuration ---\n# Open the video file\ncap = cv2.VideoCapture(VIDEO_PATH)",
+        "detail": "simple_yolo",
+        "documentation": {}
+    },
+    {
+        "label": "VIDEO_PATH",
+        "kind": 5,
+        "importPath": "simple_yolo",
+        "description": "simple_yolo",
+        "peekOfCode": "VIDEO_PATH = \"deer/1.mp4\"  # <-- IMPORTANT: Change this\n# 3. (Optional) Print the model's class names to find the 'deer' ID\n# This helps you verify the class ID. In this model, 'deer' is typically class 0.\nprint(\"Model classes:\", model.names)\nDEER_CLASS_ID = 0  # Assuming 'deer' is class 0, adjust if model.names shows differently\n# --- End Configuration ---\n# Open the video file\ncap = cv2.VideoCapture(VIDEO_PATH)\n# Check if video opened successfully\nif not cap.isOpened():",
+        "detail": "simple_yolo",
+        "documentation": {}
+    },
+    {
+        "label": "DEER_CLASS_ID",
+        "kind": 5,
+        "importPath": "simple_yolo",
+        "description": "simple_yolo",
+        "peekOfCode": "DEER_CLASS_ID = 0  # Assuming 'deer' is class 0, adjust if model.names shows differently\n# --- End Configuration ---\n# Open the video file\ncap = cv2.VideoCapture(VIDEO_PATH)\n# Check if video opened successfully\nif not cap.isOpened():\n    print(f\"Error: Could not open video file {VIDEO_PATH}\")\n    exit()\n# Loop through the video frames\nwhile cap.isOpened():",
+        "detail": "simple_yolo",
+        "documentation": {}
+    },
+    {
+        "label": "cap",
+        "kind": 5,
+        "importPath": "simple_yolo",
+        "description": "simple_yolo",
+        "peekOfCode": "cap = cv2.VideoCapture(VIDEO_PATH)\n# Check if video opened successfully\nif not cap.isOpened():\n    print(f\"Error: Could not open video file {VIDEO_PATH}\")\n    exit()\n# Loop through the video frames\nwhile cap.isOpened():\n    # Read a frame from the video\n    success, frame = cap.read()\n    if success:",
+        "detail": "simple_yolo",
         "documentation": {}
     },
     {

@@ -452,7 +452,7 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 		
 		'''
 
-		boxes, confs, clss = detector.detect(img, conf_th)
+		boxes, confs, clss = detector.detect(original_image, conf_th)
 		#yolo_init = boxes
 		#img0 = ez_show(img)
 		#img0 = cv2.addWeighted(img0,0.7,img,1,1)
