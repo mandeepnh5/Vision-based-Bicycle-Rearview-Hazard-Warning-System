@@ -114,9 +114,12 @@ class PyTorchYolo:
 	Provides a .detect(img, conf_th) method that returns boxes, scores, classes
 	with the same shape/semantics as the other detectors.
 	"""
-	def __init__(self, model_path, device='cpu'):
+	def __init__(self, model_path, device='auto'):
+		if device == 'auto':
+			device = 'cuda' if torch.cuda.is_available() else 'cpu'
 		self.model = YOLO(model_path)
 		self.device = device
+		self.model.to(self.device)
 
 	def detect(self, img, conf_th=0.3, letter_box=False):
 		# Inference with ultralytics
@@ -263,6 +266,7 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 	full_scrn = False
 	fps = 0.0
 	tic = time.time()
+	start_time = time.time()  # For total processing time
 	f = [] 
 	m = []
 	n = 0
@@ -948,6 +952,13 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 			full_scrn = not full_scrn
 			set_display(WINDOW_NAME, full_scrn)
 
+	# Processing complete
+	total_time = time.time() - start_time
+	if hasattr(detector, 'device'):
+		print(f"Processing complete. Device used: {detector.device}. Total time: {total_time:.2f} seconds")
+	else:
+		print(f"Processing complete. Total time: {total_time:.2f} seconds")
+
 
 def main():
 	args = parse_args()
@@ -974,7 +985,7 @@ def main():
 		cls_dict = get_cls_dict(args.category_num)
 	if args.use_pytorch:
 		# Use PyTorch YOLO
-		detector = PyTorchYolo(args.pytorch_model, device='cpu')
+		detector = PyTorchYolo(args.pytorch_model)
 	elif args.use_opencv:
 		# Default input shape for OpenCV YOLO
 		h = w = 416

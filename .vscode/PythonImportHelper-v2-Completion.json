@@ -2230,7 +2230,7 @@
         "kind": 6,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "class PyTorchYolo:\n\t\"\"\"PyTorch YOLO wrapper for .pt models (YOLOv5/v8 via ultralytics).\n\tProvides a .detect(img, conf_th) method that returns boxes, scores, classes\n\twith the same shape/semantics as the other detectors.\n\t\"\"\"\n\tdef __init__(self, model_path, device='cpu'):\n\t\tself.model = YOLO(model_path)\n\t\tself.device = device\n\tdef detect(self, img, conf_th=0.3, letter_box=False):\n\t\t# Inference with ultralytics",
+        "peekOfCode": "class PyTorchYolo:\n\t\"\"\"PyTorch YOLO wrapper for .pt models (YOLOv5/v8 via ultralytics).\n\tProvides a .detect(img, conf_th) method that returns boxes, scores, classes\n\twith the same shape/semantics as the other detectors.\n\t\"\"\"\n\tdef __init__(self, model_path, device='auto'):\n\t\tif device == 'auto':\n\t\t\tdevice = 'cuda' if torch.cuda.is_available() else 'cpu'\n\t\tself.model = YOLO(model_path)\n\t\tself.device = device",
         "detail": "deer",
         "documentation": {}
     },
@@ -2608,7 +2608,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\tboxes = np.zeros((0,4), dtype=np.int32)\n\t\t\tscores = np.zeros((0,), dtype=np.float32)\n\t\t\tclasses = np.zeros((0,), dtype=np.int32)\n\t\treturn boxes, scores, classes\nclass PyTorchYolo:\n\t\"\"\"PyTorch YOLO wrapper for .pt models (YOLOv5/v8 via ultralytics).\n\tProvides a .detect(img, conf_th) method that returns boxes, scores, classes\n\twith the same shape/semantics as the other detectors.\n\t\"\"\"\n\tdef __init__(self, model_path, device='cpu'):",
+        "peekOfCode": "\t\t\tboxes = np.zeros((0,4), dtype=np.int32)\n\t\t\tscores = np.zeros((0,), dtype=np.float32)\n\t\t\tclasses = np.zeros((0,), dtype=np.int32)\n\t\treturn boxes, scores, classes\nclass PyTorchYolo:\n\t\"\"\"PyTorch YOLO wrapper for .pt models (YOLOv5/v8 via ultralytics).\n\tProvides a .detect(img, conf_th) method that returns boxes, scores, classes\n\twith the same shape/semantics as the other detectors.\n\t\"\"\"\n\tdef __init__(self, model_path, device='auto'):",
         "detail": "deer",
         "documentation": {}
     },
@@ -2617,7 +2617,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\tscores = np.zeros((0,), dtype=np.float32)\n\t\t\tclasses = np.zeros((0,), dtype=np.int32)\n\t\treturn boxes, scores, classes\nclass PyTorchYolo:\n\t\"\"\"PyTorch YOLO wrapper for .pt models (YOLOv5/v8 via ultralytics).\n\tProvides a .detect(img, conf_th) method that returns boxes, scores, classes\n\twith the same shape/semantics as the other detectors.\n\t\"\"\"\n\tdef __init__(self, model_path, device='cpu'):\n\t\tself.model = YOLO(model_path)",
+        "peekOfCode": "\t\t\tscores = np.zeros((0,), dtype=np.float32)\n\t\t\tclasses = np.zeros((0,), dtype=np.int32)\n\t\treturn boxes, scores, classes\nclass PyTorchYolo:\n\t\"\"\"PyTorch YOLO wrapper for .pt models (YOLOv5/v8 via ultralytics).\n\tProvides a .detect(img, conf_th) method that returns boxes, scores, classes\n\twith the same shape/semantics as the other detectors.\n\t\"\"\"\n\tdef __init__(self, model_path, device='auto'):\n\t\tif device == 'auto':",
         "detail": "deer",
         "documentation": {}
     },
@@ -2626,7 +2626,16 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\tclasses = np.zeros((0,), dtype=np.int32)\n\t\treturn boxes, scores, classes\nclass PyTorchYolo:\n\t\"\"\"PyTorch YOLO wrapper for .pt models (YOLOv5/v8 via ultralytics).\n\tProvides a .detect(img, conf_th) method that returns boxes, scores, classes\n\twith the same shape/semantics as the other detectors.\n\t\"\"\"\n\tdef __init__(self, model_path, device='cpu'):\n\t\tself.model = YOLO(model_path)\n\t\tself.device = device",
+        "peekOfCode": "\t\t\tclasses = np.zeros((0,), dtype=np.int32)\n\t\treturn boxes, scores, classes\nclass PyTorchYolo:\n\t\"\"\"PyTorch YOLO wrapper for .pt models (YOLOv5/v8 via ultralytics).\n\tProvides a .detect(img, conf_th) method that returns boxes, scores, classes\n\twith the same shape/semantics as the other detectors.\n\t\"\"\"\n\tdef __init__(self, model_path, device='auto'):\n\t\tif device == 'auto':\n\t\t\tdevice = 'cuda' if torch.cuda.is_available() else 'cpu'",
+        "detail": "deer",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\tdevice",
+        "kind": 5,
+        "importPath": "deer",
+        "description": "deer",
+        "peekOfCode": "\t\t\tdevice = 'cuda' if torch.cuda.is_available() else 'cpu'\n\t\tself.model = YOLO(model_path)\n\t\tself.device = device\n\t\tself.model.to(self.device)\n\tdef detect(self, img, conf_th=0.3, letter_box=False):\n\t\t# Inference with ultralytics\n\t\tresults = self.model(img, conf=conf_th, verbose=False)\n\t\t# Parse YOLOv8 results\n\t\tdetections = results[0].boxes.data.cpu().numpy()  # [x1,y1,x2,y2,conf,cls]\n\t\tboxes = []",
         "detail": "deer",
         "documentation": {}
     },
@@ -2635,7 +2644,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\tself.model = YOLO(model_path)\n\t\tself.device = device\n\tdef detect(self, img, conf_th=0.3, letter_box=False):\n\t\t# Inference with ultralytics\n\t\tresults = self.model(img, conf=conf_th, verbose=False)\n\t\t# Parse YOLOv8 results\n\t\tdetections = results[0].boxes.data.cpu().numpy()  # [x1,y1,x2,y2,conf,cls]\n\t\tboxes = []\n\t\tscores = []\n\t\tclasses = []",
+        "peekOfCode": "\t\tself.model = YOLO(model_path)\n\t\tself.device = device\n\t\tself.model.to(self.device)\n\tdef detect(self, img, conf_th=0.3, letter_box=False):\n\t\t# Inference with ultralytics\n\t\tresults = self.model(img, conf=conf_th, verbose=False)\n\t\t# Parse YOLOv8 results\n\t\tdetections = results[0].boxes.data.cpu().numpy()  # [x1,y1,x2,y2,conf,cls]\n\t\tboxes = []\n\t\tscores = []",
         "detail": "deer",
         "documentation": {}
     },
@@ -2644,7 +2653,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\tself.device = device\n\tdef detect(self, img, conf_th=0.3, letter_box=False):\n\t\t# Inference with ultralytics\n\t\tresults = self.model(img, conf=conf_th, verbose=False)\n\t\t# Parse YOLOv8 results\n\t\tdetections = results[0].boxes.data.cpu().numpy()  # [x1,y1,x2,y2,conf,cls]\n\t\tboxes = []\n\t\tscores = []\n\t\tclasses = []\n\t\tfor det in detections:",
+        "peekOfCode": "\t\tself.device = device\n\t\tself.model.to(self.device)\n\tdef detect(self, img, conf_th=0.3, letter_box=False):\n\t\t# Inference with ultralytics\n\t\tresults = self.model(img, conf=conf_th, verbose=False)\n\t\t# Parse YOLOv8 results\n\t\tdetections = results[0].boxes.data.cpu().numpy()  # [x1,y1,x2,y2,conf,cls]\n\t\tboxes = []\n\t\tscores = []\n\t\tclasses = []",
         "detail": "deer",
         "documentation": {}
     },
@@ -2923,7 +2932,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\tfull_scrn = False\n\tfps = 0.0\n\ttic = time.time()\n\tf = [] \n\tm = []\n\tn = 0\n\tcls = \"\"\n\tframenumber = -1\n\tspeed = \"\"\n\tk = 0",
+        "peekOfCode": "\tfull_scrn = False\n\tfps = 0.0\n\ttic = time.time()\n\tstart_time = time.time()  # For total processing time\n\tf = [] \n\tm = []\n\tn = 0\n\tcls = \"\"\n\tframenumber = -1\n\tspeed = \"\"",
         "detail": "deer",
         "documentation": {}
     },
@@ -2932,7 +2941,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\tfps = 0.0\n\ttic = time.time()\n\tf = [] \n\tm = []\n\tn = 0\n\tcls = \"\"\n\tframenumber = -1\n\tspeed = \"\"\n\tk = 0\n\t#tic = 0",
+        "peekOfCode": "\tfps = 0.0\n\ttic = time.time()\n\tstart_time = time.time()  # For total processing time\n\tf = [] \n\tm = []\n\tn = 0\n\tcls = \"\"\n\tframenumber = -1\n\tspeed = \"\"\n\tk = 0",
         "detail": "deer",
         "documentation": {}
     },
@@ -2941,7 +2950,16 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\ttic = time.time()\n\tf = [] \n\tm = []\n\tn = 0\n\tcls = \"\"\n\tframenumber = -1\n\tspeed = \"\"\n\tk = 0\n\t#tic = 0\n\ttime_start = time_end = 0",
+        "peekOfCode": "\ttic = time.time()\n\tstart_time = time.time()  # For total processing time\n\tf = [] \n\tm = []\n\tn = 0\n\tcls = \"\"\n\tframenumber = -1\n\tspeed = \"\"\n\tk = 0\n\t#tic = 0",
+        "detail": "deer",
+        "documentation": {}
+    },
+    {
+        "label": "\tstart_time",
+        "kind": 5,
+        "importPath": "deer",
+        "description": "deer",
+        "peekOfCode": "\tstart_time = time.time()  # For total processing time\n\tf = [] \n\tm = []\n\tn = 0\n\tcls = \"\"\n\tframenumber = -1\n\tspeed = \"\"\n\tk = 0\n\t#tic = 0\n\ttime_start = time_end = 0",
         "detail": "deer",
         "documentation": {}
     },
@@ -5515,7 +5533,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\tfps = curr_fps if fps == 0.0 else (fps*0.95 + curr_fps*0.05)\n\t\ttic = toc\n\t\tkey = cv2.waitKey(1)\n\t\tif key == 27:  # ESC key: quit program\n\t\t\tbreak\n\t\telif key == ord('F') or key == ord('f'):  # Toggle fullscreen\n\t\t\tfull_scrn = not full_scrn\n\t\t\tset_display(WINDOW_NAME, full_scrn)\ndef main():\n\targs = parse_args()",
+        "peekOfCode": "\t\tfps = curr_fps if fps == 0.0 else (fps*0.95 + curr_fps*0.05)\n\t\ttic = toc\n\t\tkey = cv2.waitKey(1)\n\t\tif key == 27:  # ESC key: quit program\n\t\t\tbreak\n\t\telif key == ord('F') or key == ord('f'):  # Toggle fullscreen\n\t\t\tfull_scrn = not full_scrn\n\t\t\tset_display(WINDOW_NAME, full_scrn)\n\t# Processing complete\n\ttotal_time = time.time() - start_time",
         "detail": "deer",
         "documentation": {}
     },
@@ -5524,7 +5542,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\ttic = toc\n\t\tkey = cv2.waitKey(1)\n\t\tif key == 27:  # ESC key: quit program\n\t\t\tbreak\n\t\telif key == ord('F') or key == ord('f'):  # Toggle fullscreen\n\t\t\tfull_scrn = not full_scrn\n\t\t\tset_display(WINDOW_NAME, full_scrn)\ndef main():\n\targs = parse_args()\n\t########",
+        "peekOfCode": "\t\ttic = toc\n\t\tkey = cv2.waitKey(1)\n\t\tif key == 27:  # ESC key: quit program\n\t\t\tbreak\n\t\telif key == ord('F') or key == ord('f'):  # Toggle fullscreen\n\t\t\tfull_scrn = not full_scrn\n\t\t\tset_display(WINDOW_NAME, full_scrn)\n\t# Processing complete\n\ttotal_time = time.time() - start_time\n\tif hasattr(detector, 'device'):",
         "detail": "deer",
         "documentation": {}
     },
@@ -5533,7 +5551,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\tkey = cv2.waitKey(1)\n\t\tif key == 27:  # ESC key: quit program\n\t\t\tbreak\n\t\telif key == ord('F') or key == ord('f'):  # Toggle fullscreen\n\t\t\tfull_scrn = not full_scrn\n\t\t\tset_display(WINDOW_NAME, full_scrn)\ndef main():\n\targs = parse_args()\n\t########\n\tcfg = get_config()",
+        "peekOfCode": "\t\tkey = cv2.waitKey(1)\n\t\tif key == 27:  # ESC key: quit program\n\t\t\tbreak\n\t\telif key == ord('F') or key == ord('f'):  # Toggle fullscreen\n\t\t\tfull_scrn = not full_scrn\n\t\t\tset_display(WINDOW_NAME, full_scrn)\n\t# Processing complete\n\ttotal_time = time.time() - start_time\n\tif hasattr(detector, 'device'):\n\t\tprint(f\"Processing complete. Device used: {detector.device}. Total time: {total_time:.2f} seconds\")",
         "detail": "deer",
         "documentation": {}
     },
@@ -5542,7 +5560,16 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\tfull_scrn = not full_scrn\n\t\t\tset_display(WINDOW_NAME, full_scrn)\ndef main():\n\targs = parse_args()\n\t########\n\tcfg = get_config()\n\tcfg.merge_from_file(args.config_deepsort)    \n\t########\n\tif args.category_num <= 0:\n\t\traise SystemExit('ERROR: bad category_num (%d)!' % args.category_num)",
+        "peekOfCode": "\t\t\tfull_scrn = not full_scrn\n\t\t\tset_display(WINDOW_NAME, full_scrn)\n\t# Processing complete\n\ttotal_time = time.time() - start_time\n\tif hasattr(detector, 'device'):\n\t\tprint(f\"Processing complete. Device used: {detector.device}. Total time: {total_time:.2f} seconds\")\n\telse:\n\t\tprint(f\"Processing complete. Total time: {total_time:.2f} seconds\")\ndef main():\n\targs = parse_args()",
+        "detail": "deer",
+        "documentation": {}
+    },
+    {
+        "label": "\ttotal_time",
+        "kind": 5,
+        "importPath": "deer",
+        "description": "deer",
+        "peekOfCode": "\ttotal_time = time.time() - start_time\n\tif hasattr(detector, 'device'):\n\t\tprint(f\"Processing complete. Device used: {detector.device}. Total time: {total_time:.2f} seconds\")\n\telse:\n\t\tprint(f\"Processing complete. Total time: {total_time:.2f} seconds\")\ndef main():\n\targs = parse_args()\n\t########\n\tcfg = get_config()\n\tcfg.merge_from_file(args.config_deepsort)    ",
         "detail": "deer",
         "documentation": {}
     },
@@ -5578,7 +5605,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\ttracker = Tracker_tiny(cfg) \n\t########\n\tif args.use_pytorch:\n\t\t# For custom PyTorch model, assume class 0 is deer\n\t\tcls_dict = {0: 'deer'}\n\telse:\n\t\tcls_dict = get_cls_dict(args.category_num)\n\tif args.use_pytorch:\n\t\t# Use PyTorch YOLO\n\t\tdetector = PyTorchYolo(args.pytorch_model, device='cpu')",
+        "peekOfCode": "\ttracker = Tracker_tiny(cfg) \n\t########\n\tif args.use_pytorch:\n\t\t# For custom PyTorch model, assume class 0 is deer\n\t\tcls_dict = {0: 'deer'}\n\telse:\n\t\tcls_dict = get_cls_dict(args.category_num)\n\tif args.use_pytorch:\n\t\t# Use PyTorch YOLO\n\t\tdetector = PyTorchYolo(args.pytorch_model)",
         "detail": "deer",
         "documentation": {}
     },
@@ -5587,7 +5614,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\tcls_dict = {0: 'deer'}\n\telse:\n\t\tcls_dict = get_cls_dict(args.category_num)\n\tif args.use_pytorch:\n\t\t# Use PyTorch YOLO\n\t\tdetector = PyTorchYolo(args.pytorch_model, device='cpu')\n\telif args.use_opencv:\n\t\t# Default input shape for OpenCV YOLO\n\t\th = w = 416\n\t\t# Use OpenCV DNN fallback on CPU",
+        "peekOfCode": "\t\tcls_dict = {0: 'deer'}\n\telse:\n\t\tcls_dict = get_cls_dict(args.category_num)\n\tif args.use_pytorch:\n\t\t# Use PyTorch YOLO\n\t\tdetector = PyTorchYolo(args.pytorch_model)\n\telif args.use_opencv:\n\t\t# Default input shape for OpenCV YOLO\n\t\th = w = 416\n\t\t# Use OpenCV DNN fallback on CPU",
         "detail": "deer",
         "documentation": {}
     },
@@ -5596,7 +5623,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\tcls_dict = get_cls_dict(args.category_num)\n\tif args.use_pytorch:\n\t\t# Use PyTorch YOLO\n\t\tdetector = PyTorchYolo(args.pytorch_model, device='cpu')\n\telif args.use_opencv:\n\t\t# Default input shape for OpenCV YOLO\n\t\th = w = 416\n\t\t# Use OpenCV DNN fallback on CPU\n\t\tdetector = OpenCVYolo(args.yolo_cfg, args.yolo_weights, input_shape=(h, w))\n\telse:",
+        "peekOfCode": "\t\tcls_dict = get_cls_dict(args.category_num)\n\tif args.use_pytorch:\n\t\t# Use PyTorch YOLO\n\t\tdetector = PyTorchYolo(args.pytorch_model)\n\telif args.use_opencv:\n\t\t# Default input shape for OpenCV YOLO\n\t\th = w = 416\n\t\t# Use OpenCV DNN fallback on CPU\n\t\tdetector = OpenCVYolo(args.yolo_cfg, args.yolo_weights, input_shape=(h, w))\n\telse:",
         "detail": "deer",
         "documentation": {}
     },
@@ -5605,7 +5632,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\tdetector = PyTorchYolo(args.pytorch_model, device='cpu')\n\telif args.use_opencv:\n\t\t# Default input shape for OpenCV YOLO\n\t\th = w = 416\n\t\t# Use OpenCV DNN fallback on CPU\n\t\tdetector = OpenCVYolo(args.yolo_cfg, args.yolo_weights, input_shape=(h, w))\n\telse:\n\t\tyolo_dim = args.model.split('-')[-1]\n\t\tif 'x' in yolo_dim:\n\t\t\tdim_split = yolo_dim.split('x')",
+        "peekOfCode": "\t\tdetector = PyTorchYolo(args.pytorch_model)\n\telif args.use_opencv:\n\t\t# Default input shape for OpenCV YOLO\n\t\th = w = 416\n\t\t# Use OpenCV DNN fallback on CPU\n\t\tdetector = OpenCVYolo(args.yolo_cfg, args.yolo_weights, input_shape=(h, w))\n\telse:\n\t\tyolo_dim = args.model.split('-')[-1]\n\t\tif 'x' in yolo_dim:\n\t\t\tdim_split = yolo_dim.split('x')",
         "detail": "deer",
         "documentation": {}
     },
@@ -5715,6 +5742,15 @@
         "description": "simple_yolo",
         "peekOfCode": "cap = cv2.VideoCapture(VIDEO_PATH)\n# Check if video opened successfully\nif not cap.isOpened():\n    print(f\"Error: Could not open video file {VIDEO_PATH}\")\n    exit()\n# Loop through the video frames\nwhile cap.isOpened():\n    # Read a frame from the video\n    success, frame = cap.read()\n    if success:",
         "detail": "simple_yolo",
+        "documentation": {}
+    },
+    {
+        "label": "device",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')\nprint('Using device:', device)",
+        "detail": "test",
         "documentation": {}
     },
     {
