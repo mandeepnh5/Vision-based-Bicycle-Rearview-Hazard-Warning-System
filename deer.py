@@ -182,6 +182,10 @@ def parse_args():
 	parser.add_argument('--skip_frames', type=int, default=1, help='Process every Nth frame (e.g., 2 for every 2nd frame)')
 	parser.add_argument('--input_width', type=int, default=1280, help='Input image width')
 	parser.add_argument('--input_height', type=int, default=960, help='Input image height')
+	parser.add_argument('--enable_trajectory_extrapolation', action='store_true', help='Enable trajectory extrapolation for proactive alerts')
+	parser.add_argument('--enable_ttc_forecasting', action='store_true', help='Enable enhanced TTC forecasting')
+	parser.add_argument('--enable_optical_flow', action='store_true', help='Enable optical flow motion analysis')
+	parser.add_argument('--enable_proactive_thresholds', action='store_true', help='Enable proactive alert thresholds based on context')
 	parser.add_argument('--disable_lane_detection', action='store_true', help='Disable lane detection for speedup')
 	parser.add_argument('--confidence_threshold', type=float, default=0.55, help='Confidence threshold for detection')
 	#######################    
@@ -241,6 +245,48 @@ def motion_cord(starting_points,line_parameters):
 		x2 = int((y2-intercept)/(slope))
 		return x1, y1, x2, y2
 		
+def trajectory_extrapolation(outputs, img_shape, safety_zone):
+	"""Extrapolate trajectories and check for future hazards."""
+	alert = False
+	for x1, y1, x2, y2, ids in outputs:
+		# Simple extrapolation: assume constant velocity from recent positions
+		# For demo, predict 2 seconds ahead (assuming 20 FPS, 40 frames)
+		pred_x = x1 + (x2 - x1) * 2  # rough velocity
+		pred_y = y1 + (y2 - y1) * 2
+		# Check if predicted position is in safety zone (simplified)
+		if pred_y > img_shape[0] * 0.8:  # bottom 20% as safety
+			alert = True
+			break
+	return alert
+
+def enhanced_ttc_forecasting(dis, speed, threshold=2.0):
+	"""Forecast TTC and alert if predicted < threshold seconds."""
+	if speed > 0:
+		ttc = dis / (speed * 1000 / 3600)  # convert to seconds
+		if ttc < threshold:
+			return True
+	return False
+
+def optical_flow_analysis(prev_gray, gray, bbox):
+	"""Compute optical flow for motion vectors."""
+	flow = cv2.calcOpticalFlowFarneback(prev_gray, gray, None, 0.5, 3, 15, 3, 5, 1.2, 0)
+	# Average flow in bbox
+	x1, y1, x2, y2 = bbox
+	mean_flow = np.mean(flow[y1:y2, x1:x2], axis=(0,1))
+	magnitude = np.linalg.norm(mean_flow)
+	direction = np.arctan2(mean_flow[1], mean_flow[0])  # towards camera if positive y
+	return magnitude > 1.0 and direction > 0  # simple threshold
+
+def proactive_alert_thresholds(dis, speed, in_lane, motion_predict):
+	"""Adjust thresholds based on context."""
+	if in_lane and motion_predict:
+		danger_dist = 6.0  # lower threshold
+		unsafe_dist = 12.0
+	else:
+		danger_dist = 4.0
+		unsafe_dist = 8.0
+	return dis <= danger_dist or (dis <= unsafe_dist and speed > 10)
+		
 #def output_right_box (inputs,output):   
 #    id = output[:,[-1]]
 #    xc , yc = compute_xc_yc(inputs)
@@ -289,6 +335,7 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 	w_list = [deque(maxlen=30) for _ in range(100)]
 	car_spd = [deque(maxlen=30) for _ in range(50)]
 	moto_spd = [deque(maxlen=30) for _ in range(50)]
+	history = {}  # for drawing trajectory paths
 	unsafe_v = False
 	danger_v = False
 	used = False
@@ -307,6 +354,7 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 	deer_speed = 0
 	x_dir = []
 	y_dir = []
+	prev_gray = None  # For optical flow
 	
 	# Create incremental output folder
 	import os
@@ -344,6 +392,7 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 		if img is None:
 			break
 		img = cv2.resize(img, (args.input_width, args.input_height))
+		gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)  # For optical flow
 		tim = framenumber/20 
 		#cv2.putText(img_better_look, f"time {tim}s",  (1100, 100), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)  #bgr 
 		pol = np.array([[(224, 960), (500, 570), (586, 570),(1000, 960)]], dtype=np.int32)  
@@ -479,9 +528,6 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 			boxes = np.array(filtered_boxes)
 			confs = np.array(filtered_confs)
 			clss = np.array(filtered_clss)
-		#yolo_init = boxes
-		#img0 = ez_show(img)
-		#img0 = cv2.addWeighted(img0,0.7,img,1,1)
 
 		if args.no_deepsort:
 			# Draw raw detections without tracking
@@ -497,6 +543,35 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 			#print(xc,yc,"center")
 			boxes = np.concatenate((xc,yc,w,h),axis=1)
 			outputs = tracker.run(img, boxes, confs)
+
+		# Predictive checks after outputs is defined
+		if args.enable_trajectory_extrapolation and len(outputs) > 0:
+			if trajectory_extrapolation(outputs, img.shape, pol):
+				cv2.putText(img_better_look, "Trajectory Alert!", (50, 200), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,0,255), 2)
+		
+		if prev_gray is not None and args.enable_optical_flow and len(outputs) > 0:
+			for x1,y1,x2,y2,ids in outputs:
+				if optical_flow_analysis(prev_gray, gray, (int(x1),int(y1),int(x2),int(y2))):
+					cv2.putText(img_better_look, "Optical Flow Alert!", (50, 250), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255,0,255), 2)
+					break
+		
+		prev_gray = gray
+
+		if args.no_deepsort:
+			# Draw paths for raw detections
+			for i, (x1,y1,x2,y2) in enumerate(boxes):
+				xc = int((x1 + x2)/2)
+				yc = int((y1 + y2)/2)
+				ids = i  # dummy id per detection
+				if ids not in history:
+					history[ids] = deque(maxlen=50)
+				history[ids].append((xc, yc))
+				if len(history[ids]) > 1:
+					points = list(history[ids])
+					for j in range(1, len(points)):
+						cv2.line(img_better_look, points[j-1], points[j], (0,255,0), 2)
+				# Draw ID for raw detection
+				cv2.putText(img_better_look, f"ID: {i}", (int(x1), int(y1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,255,0), 2)
 
 		#print('boxes_changed\n',boxes,'confs\n',confs,'clss',clss,"\n############")
 		#print("         deepsort bboxs:            \n ",outputs)
@@ -523,6 +598,10 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 			#outputs.astype(int)
 			#print("before x1 y1......",outputs)
 			for x1,y1,x2,y2,ids in outputs:
+				# Draw bounding box
+				cv2.rectangle(img_better_look, (int(x1),int(y1)), (int(x2),int(y2)), (0,255,0), 2)
+				# Draw ID
+				cv2.putText(img_better_look, f"ID: {int(ids)}", (int(x1), int(y1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,255,0), 2)
 				xmin = x1
 				ymin = y2
 				w = x2 - x1 #w
@@ -550,6 +629,31 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 				w_list[ids].append(w_tim)
 				#print("pt:\n",pt,"\n")
 				print("w_list:\n",w_list,"\n")
+				
+				# Add to history for path drawing
+				if ids not in history:
+					history[ids] = deque(maxlen=50)
+				history[ids].append((xc, yc))
+				# Draw the trajectory path
+				if len(history[ids]) > 1:
+					points = list(history[ids])
+					for i in range(1, len(points)):
+						cv2.line(img_better_look, points[i-1], points[i], (0,255,0), 2)
+				# Draw predicted path arrow
+				if not args.no_deepsort and hasattr(tracker, 'tracks'):
+					for track in tracker.tracks:
+						if track.track_id == ids and track.is_confirmed():
+							kf = track.kalman_filter
+							vel_x = kf.x[4]
+							vel_y = kf.x[5]
+							vel_mag = (vel_x**2 + vel_y**2)**0.5
+							if vel_mag > 0:
+								dir_x = vel_x / vel_mag
+								dir_y = vel_y / vel_mag
+								arrow_length = 50  # fixed length for visibility
+								pred_center = (xc + dir_x * arrow_length, yc + dir_y * arrow_length)
+								cv2.arrowedLine(img_better_look, (xc, yc), tuple(map(int, pred_center)), (0,255,255), 3, tipLength=0.3)
+							break
 				
 				#print("the ids now :",ids,"\n")
 				for j in range(0, len(pt[ids])): #start with 1
@@ -713,6 +817,10 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 					cv2.putText(img_better_look, f"danger True", (700, 80), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)  #bgr
 					#speed estimation ends here       
 					
+					if args.enable_ttc_forecasting and deer_speed > 0:
+						if enhanced_ttc_forecasting(dis_deer, deer_speed):
+							cv2.putText(img_better_look, "TTC Forecast Alert!", (50, 300), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255,255,0), 2)       
+					
 					
 				
 				if cls == "deer":
@@ -721,7 +829,12 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 					cv2.putText(img_better_look, f"Distance {dis} m", (xc-6, yc-6), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0,255,255), 2)  #bgr
 					# immediate threshold check per-object to ensure flags are set
 					try:
-						if args is not None:
+						if args.enable_proactive_thresholds:
+							if proactive_alert_thresholds(dis, deer_speed, True, motion_predict):
+								danger_v = True
+								unsafe_v = False
+								print(f"[DBG] frame={framenumber} id={ids} class=deer dis={dis} proactive alert -> DANGER")
+						else:
 							if dis <= args.danger_dist:
 								danger_v = True
 								unsafe_v = False
@@ -764,8 +877,11 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 
 				# -- distance-based alerts (configurable thresholds)
 				try:
-					if args is not None:
-						# if we have a detected class and distance, override/augment warning state
+					if args.enable_proactive_thresholds:
+						if proactive_alert_thresholds(dis, deer_speed, True, motion_predict):
+							danger_v = True
+							unsafe_v = False
+					else:
 						if cls == "deer":
 							if 'dis' in locals():
 								if dis <= args.danger_dist:
