@@ -455,6 +455,19 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 		# boxes, confs, clss = detector.detect(img, conf_th) ## for region
 
 		boxes, confs, clss = detector.detect(original_image, conf_th)
+		# Apply additional NMS to avoid duplicate bounding boxes
+		if len(boxes) > 0:
+			idxs = cv2.dnn.NMSBoxes(boxes.tolist(), confs.tolist(), 0.55, 0.4)
+			filtered_boxes = []
+			filtered_confs = []
+			filtered_clss = []
+			for i in idxs.flatten():
+				filtered_boxes.append(boxes[i])
+				filtered_confs.append(confs[i])
+				filtered_clss.append(clss[i])
+			boxes = np.array(filtered_boxes)
+			confs = np.array(filtered_confs)
+			clss = np.array(filtered_clss)
 		#yolo_init = boxes
 		#img0 = ez_show(img)
 		#img0 = cv2.addWeighted(img0,0.7,img,1,1)
