@@ -2248,7 +2248,7 @@
         "kind": 2,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "def append_speed(ids,deque_list):\n\tspeed_list = []\n\tfor j in range(0 , len(deque_list[ids]) ):\n\t\tspeed_list.append((deque_list[ids][j]))\n\tif len(deque_list[ids])>10:\n\t\tspd_avg = np.average(speed_list,axis=0)\n\t\treturn spd_avg\n\telse:\n\t\treturn \"still appending\"\n\t\t#sys.exit()",
+        "peekOfCode": "def append_speed(ids,deque_list):\n\tspeed_list = []\n\tfor j in range(0 , len(deque_list[ids]) ):\n\t\tspeed_list.append((deque_list[ids][j]))\n\tif len(deque_list[ids])>10:\n\t\tspd_avg = np.average(speed_list,axis=0)\n\t\treturn spd_avg\n\telse:\n\t\treturn \"still appending\"\n#fix bbox issues",
         "detail": "deer",
         "documentation": {}
     },
@@ -2266,7 +2266,7 @@
         "kind": 2,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "def draw (pos,img):\n\tfor poss in pos :\n\t\t#print(\"before error in draw func\",poss)\n\t\tcv2.circle(img, poss, 4, (0, 255,255), -1)\n\t\tcv2.polylines(img,[np.int32(pos)], False, (0,255,255), 1)\ndef ez_show(img):\n\timg0 = np.zeros_like(img)\n\tcv2.line(img0,(1000,960),(586,570),(255,255,0),3)  #shift 514 pixels\n\tcv2.line(img0,(586,570),(500,570),(255,255,0),4)\n\tpol = np.array([[(224, 960), (500, 570), (586, 570),(1000, 960)]], dtype=np.int32)  ",
+        "peekOfCode": "def draw (pos,img):\n\tfor poss in pos :\n\t\tcv2.circle(img, poss, 4, (0, 255,255), -1)\n\t\tcv2.polylines(img,[np.int32(pos)], False, (0,255,255), 1)\ndef ez_show(img):\n\timg0 = np.zeros_like(img)\n\tcv2.line(img0,(1000,960),(586,570),(255,255,0),3)  \n\tcv2.line(img0,(586,570),(500,570),(255,255,0),4)\n\tpol = np.array([[(224, 960), (500, 570), (586, 570),(1000, 960)]], dtype=np.int32)  \n\tcv2.fillPoly(img0,pol, (0,255,0))",
         "detail": "deer",
         "documentation": {}
     },
@@ -2275,7 +2275,7 @@
         "kind": 2,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "def ez_show(img):\n\timg0 = np.zeros_like(img)\n\tcv2.line(img0,(1000,960),(586,570),(255,255,0),3)  #shift 514 pixels\n\tcv2.line(img0,(586,570),(500,570),(255,255,0),4)\n\tpol = np.array([[(224, 960), (500, 570), (586, 570),(1000, 960)]], dtype=np.int32)  \n\tcv2.fillPoly(img0,pol, (0,255,0))\n\treturn img0\ndef Distance_finder(real_width, face_width_in_frame):\t\n\tFocal_Length = 958\n\tdistance = (real_width * Focal_Length)/face_width_in_frame",
+        "peekOfCode": "def ez_show(img):\n\timg0 = np.zeros_like(img)\n\tcv2.line(img0,(1000,960),(586,570),(255,255,0),3)  \n\tcv2.line(img0,(586,570),(500,570),(255,255,0),4)\n\tpol = np.array([[(224, 960), (500, 570), (586, 570),(1000, 960)]], dtype=np.int32)  \n\tcv2.fillPoly(img0,pol, (0,255,0))\n\treturn img0\ndef Distance_finder(real_width, face_width_in_frame):\t\n\tFocal_Length = 958\n\tdistance = (real_width * Focal_Length)/face_width_in_frame",
         "detail": "deer",
         "documentation": {}
     },
@@ -2329,7 +2329,7 @@
         "kind": 2,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "def proactive_alert_thresholds(dis, speed, in_lane, motion_predict):\n\t\"\"\"Adjust thresholds based on context.\"\"\"\n\tif in_lane and motion_predict:\n\t\tdanger_dist = 6.0  # lower threshold\n\t\tunsafe_dist = 12.0\n\telse:\n\t\tdanger_dist = 4.0\n\t\tunsafe_dist = 8.0\n\treturn dis <= danger_dist or (dis <= unsafe_dist and speed > 10)\n#def output_right_box (inputs,output):   ",
+        "peekOfCode": "def proactive_alert_thresholds(dis, speed, in_lane, motion_predict):\n\t\"\"\"Adjust thresholds based on context.\"\"\"\n\tif in_lane and motion_predict:\n\t\tdanger_dist = 6.0  # lower threshold\n\t\tunsafe_dist = 12.0\n\telse:\n\t\tdanger_dist = 4.0\n\t\tunsafe_dist = 8.0\n\treturn dis <= danger_dist or (dis <= unsafe_dist and speed > 10)\ndef loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):",
         "detail": "deer",
         "documentation": {}
     },
@@ -2833,7 +2833,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\tspeed_list = []\n\tfor j in range(0 , len(deque_list[ids]) ):\n\t\tspeed_list.append((deque_list[ids][j]))\n\tif len(deque_list[ids])>10:\n\t\tspd_avg = np.average(speed_list,axis=0)\n\t\treturn spd_avg\n\telse:\n\t\treturn \"still appending\"\n\t\t#sys.exit()\n#fix bbox issues",
+        "peekOfCode": "\tspeed_list = []\n\tfor j in range(0 , len(deque_list[ids]) ):\n\t\tspeed_list.append((deque_list[ids][j]))\n\tif len(deque_list[ids])>10:\n\t\tspd_avg = np.average(speed_list,axis=0)\n\t\treturn spd_avg\n\telse:\n\t\treturn \"still appending\"\n#fix bbox issues\ndef compute_xc_yc(out):",
         "detail": "deer",
         "documentation": {}
     },
@@ -2842,7 +2842,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\tspd_avg = np.average(speed_list,axis=0)\n\t\treturn spd_avg\n\telse:\n\t\treturn \"still appending\"\n\t\t#sys.exit()\n#fix bbox issues\ndef compute_xc_yc(out):\n\tw = out[:,[2]] - out[:,[0]]\n\th = out[:,[3]] - out[:,[1]]\n\txmin = out[:,[0]]",
+        "peekOfCode": "\t\tspd_avg = np.average(speed_list,axis=0)\n\t\treturn spd_avg\n\telse:\n\t\treturn \"still appending\"\n#fix bbox issues\ndef compute_xc_yc(out):\n\tw = out[:,[2]] - out[:,[0]]\n\th = out[:,[3]] - out[:,[1]]\n\txmin = out[:,[0]]\n\tymin = out[:,[1]]",
         "detail": "deer",
         "documentation": {}
     },
@@ -2851,7 +2851,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\tw = out[:,[2]] - out[:,[0]]\n\th = out[:,[3]] - out[:,[1]]\n\txmin = out[:,[0]]\n\tymin = out[:,[1]]\n\txc = w/2 + xmin\n\tyc = h/2 + ymin \n\treturn xc,yc,w,h\ndef draw (pos,img):\n\tfor poss in pos :\n\t\t#print(\"before error in draw func\",poss)",
+        "peekOfCode": "\tw = out[:,[2]] - out[:,[0]]\n\th = out[:,[3]] - out[:,[1]]\n\txmin = out[:,[0]]\n\tymin = out[:,[1]]\n\txc = w/2 + xmin\n\tyc = h/2 + ymin \n\treturn xc,yc,w,h\ndef draw (pos,img):\n\tfor poss in pos :\n\t\tcv2.circle(img, poss, 4, (0, 255,255), -1)",
         "detail": "deer",
         "documentation": {}
     },
@@ -2860,7 +2860,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\th = out[:,[3]] - out[:,[1]]\n\txmin = out[:,[0]]\n\tymin = out[:,[1]]\n\txc = w/2 + xmin\n\tyc = h/2 + ymin \n\treturn xc,yc,w,h\ndef draw (pos,img):\n\tfor poss in pos :\n\t\t#print(\"before error in draw func\",poss)\n\t\tcv2.circle(img, poss, 4, (0, 255,255), -1)",
+        "peekOfCode": "\th = out[:,[3]] - out[:,[1]]\n\txmin = out[:,[0]]\n\tymin = out[:,[1]]\n\txc = w/2 + xmin\n\tyc = h/2 + ymin \n\treturn xc,yc,w,h\ndef draw (pos,img):\n\tfor poss in pos :\n\t\tcv2.circle(img, poss, 4, (0, 255,255), -1)\n\t\tcv2.polylines(img,[np.int32(pos)], False, (0,255,255), 1)",
         "detail": "deer",
         "documentation": {}
     },
@@ -2869,7 +2869,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\txmin = out[:,[0]]\n\tymin = out[:,[1]]\n\txc = w/2 + xmin\n\tyc = h/2 + ymin \n\treturn xc,yc,w,h\ndef draw (pos,img):\n\tfor poss in pos :\n\t\t#print(\"before error in draw func\",poss)\n\t\tcv2.circle(img, poss, 4, (0, 255,255), -1)\n\t\tcv2.polylines(img,[np.int32(pos)], False, (0,255,255), 1)",
+        "peekOfCode": "\txmin = out[:,[0]]\n\tymin = out[:,[1]]\n\txc = w/2 + xmin\n\tyc = h/2 + ymin \n\treturn xc,yc,w,h\ndef draw (pos,img):\n\tfor poss in pos :\n\t\tcv2.circle(img, poss, 4, (0, 255,255), -1)\n\t\tcv2.polylines(img,[np.int32(pos)], False, (0,255,255), 1)\ndef ez_show(img):",
         "detail": "deer",
         "documentation": {}
     },
@@ -2878,7 +2878,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\tymin = out[:,[1]]\n\txc = w/2 + xmin\n\tyc = h/2 + ymin \n\treturn xc,yc,w,h\ndef draw (pos,img):\n\tfor poss in pos :\n\t\t#print(\"before error in draw func\",poss)\n\t\tcv2.circle(img, poss, 4, (0, 255,255), -1)\n\t\tcv2.polylines(img,[np.int32(pos)], False, (0,255,255), 1)\ndef ez_show(img):",
+        "peekOfCode": "\tymin = out[:,[1]]\n\txc = w/2 + xmin\n\tyc = h/2 + ymin \n\treturn xc,yc,w,h\ndef draw (pos,img):\n\tfor poss in pos :\n\t\tcv2.circle(img, poss, 4, (0, 255,255), -1)\n\t\tcv2.polylines(img,[np.int32(pos)], False, (0,255,255), 1)\ndef ez_show(img):\n\timg0 = np.zeros_like(img)",
         "detail": "deer",
         "documentation": {}
     },
@@ -2887,7 +2887,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\txc = w/2 + xmin\n\tyc = h/2 + ymin \n\treturn xc,yc,w,h\ndef draw (pos,img):\n\tfor poss in pos :\n\t\t#print(\"before error in draw func\",poss)\n\t\tcv2.circle(img, poss, 4, (0, 255,255), -1)\n\t\tcv2.polylines(img,[np.int32(pos)], False, (0,255,255), 1)\ndef ez_show(img):\n\timg0 = np.zeros_like(img)",
+        "peekOfCode": "\txc = w/2 + xmin\n\tyc = h/2 + ymin \n\treturn xc,yc,w,h\ndef draw (pos,img):\n\tfor poss in pos :\n\t\tcv2.circle(img, poss, 4, (0, 255,255), -1)\n\t\tcv2.polylines(img,[np.int32(pos)], False, (0,255,255), 1)\ndef ez_show(img):\n\timg0 = np.zeros_like(img)\n\tcv2.line(img0,(1000,960),(586,570),(255,255,0),3)  ",
         "detail": "deer",
         "documentation": {}
     },
@@ -2896,7 +2896,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\tyc = h/2 + ymin \n\treturn xc,yc,w,h\ndef draw (pos,img):\n\tfor poss in pos :\n\t\t#print(\"before error in draw func\",poss)\n\t\tcv2.circle(img, poss, 4, (0, 255,255), -1)\n\t\tcv2.polylines(img,[np.int32(pos)], False, (0,255,255), 1)\ndef ez_show(img):\n\timg0 = np.zeros_like(img)\n\tcv2.line(img0,(1000,960),(586,570),(255,255,0),3)  #shift 514 pixels",
+        "peekOfCode": "\tyc = h/2 + ymin \n\treturn xc,yc,w,h\ndef draw (pos,img):\n\tfor poss in pos :\n\t\tcv2.circle(img, poss, 4, (0, 255,255), -1)\n\t\tcv2.polylines(img,[np.int32(pos)], False, (0,255,255), 1)\ndef ez_show(img):\n\timg0 = np.zeros_like(img)\n\tcv2.line(img0,(1000,960),(586,570),(255,255,0),3)  \n\tcv2.line(img0,(586,570),(500,570),(255,255,0),4)",
         "detail": "deer",
         "documentation": {}
     },
@@ -2905,7 +2905,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\timg0 = np.zeros_like(img)\n\tcv2.line(img0,(1000,960),(586,570),(255,255,0),3)  #shift 514 pixels\n\tcv2.line(img0,(586,570),(500,570),(255,255,0),4)\n\tpol = np.array([[(224, 960), (500, 570), (586, 570),(1000, 960)]], dtype=np.int32)  \n\tcv2.fillPoly(img0,pol, (0,255,0))\n\treturn img0\ndef Distance_finder(real_width, face_width_in_frame):\t\n\tFocal_Length = 958\n\tdistance = (real_width * Focal_Length)/face_width_in_frame\n\treturn distance    ",
+        "peekOfCode": "\timg0 = np.zeros_like(img)\n\tcv2.line(img0,(1000,960),(586,570),(255,255,0),3)  \n\tcv2.line(img0,(586,570),(500,570),(255,255,0),4)\n\tpol = np.array([[(224, 960), (500, 570), (586, 570),(1000, 960)]], dtype=np.int32)  \n\tcv2.fillPoly(img0,pol, (0,255,0))\n\treturn img0\ndef Distance_finder(real_width, face_width_in_frame):\t\n\tFocal_Length = 958\n\tdistance = (real_width * Focal_Length)/face_width_in_frame\n\treturn distance    ",
         "detail": "deer",
         "documentation": {}
     },
@@ -3049,7 +3049,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\tdanger_dist = 6.0  # lower threshold\n\t\tunsafe_dist = 12.0\n\telse:\n\t\tdanger_dist = 4.0\n\t\tunsafe_dist = 8.0\n\treturn dis <= danger_dist or (dis <= unsafe_dist and speed > 10)\n#def output_right_box (inputs,output):   \n#    id = output[:,[-1]]\n#    xc , yc = compute_xc_yc(inputs)\n#    width = output[:,[2]] - output[:,[0]]",
+        "peekOfCode": "\t\tdanger_dist = 6.0  # lower threshold\n\t\tunsafe_dist = 12.0\n\telse:\n\t\tdanger_dist = 4.0\n\t\tunsafe_dist = 8.0\n\treturn dis <= danger_dist or (dis <= unsafe_dist and speed > 10)\ndef loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):\n\t\"\"\"Continuously capture images from camera and do object detection.\n\t# Arguments\n\t\tcam: the camera instance (video source).",
         "detail": "deer",
         "documentation": {}
     },
@@ -3058,7 +3058,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\tunsafe_dist = 12.0\n\telse:\n\t\tdanger_dist = 4.0\n\t\tunsafe_dist = 8.0\n\treturn dis <= danger_dist or (dis <= unsafe_dist and speed > 10)\n#def output_right_box (inputs,output):   \n#    id = output[:,[-1]]\n#    xc , yc = compute_xc_yc(inputs)\n#    width = output[:,[2]] - output[:,[0]]\n#    height = output[:,[3]] - output[:,[1]]",
+        "peekOfCode": "\t\tunsafe_dist = 12.0\n\telse:\n\t\tdanger_dist = 4.0\n\t\tunsafe_dist = 8.0\n\treturn dis <= danger_dist or (dis <= unsafe_dist and speed > 10)\ndef loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):\n\t\"\"\"Continuously capture images from camera and do object detection.\n\t# Arguments\n\t\tcam: the camera instance (video source).\n\t\ttrt_yolo: the TRT YOLO object detector instance.",
         "detail": "deer",
         "documentation": {}
     },
@@ -3067,7 +3067,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\tdanger_dist = 4.0\n\t\tunsafe_dist = 8.0\n\treturn dis <= danger_dist or (dis <= unsafe_dist and speed > 10)\n#def output_right_box (inputs,output):   \n#    id = output[:,[-1]]\n#    xc , yc = compute_xc_yc(inputs)\n#    width = output[:,[2]] - output[:,[0]]\n#    height = output[:,[3]] - output[:,[1]]\n#    width = width/2\n#    height = height/2",
+        "peekOfCode": "\t\tdanger_dist = 4.0\n\t\tunsafe_dist = 8.0\n\treturn dis <= danger_dist or (dis <= unsafe_dist and speed > 10)\ndef loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):\n\t\"\"\"Continuously capture images from camera and do object detection.\n\t# Arguments\n\t\tcam: the camera instance (video source).\n\t\ttrt_yolo: the TRT YOLO object detector instance.\n\t\tconf_th: confidence/score threshold for object detection.\n\t\tvis: for visualization.",
         "detail": "deer",
         "documentation": {}
     },
@@ -3076,7 +3076,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\tunsafe_dist = 8.0\n\treturn dis <= danger_dist or (dis <= unsafe_dist and speed > 10)\n#def output_right_box (inputs,output):   \n#    id = output[:,[-1]]\n#    xc , yc = compute_xc_yc(inputs)\n#    width = output[:,[2]] - output[:,[0]]\n#    height = output[:,[3]] - output[:,[1]]\n#    width = width/2\n#    height = height/2\n#    xmin = xc - width",
+        "peekOfCode": "\t\tunsafe_dist = 8.0\n\treturn dis <= danger_dist or (dis <= unsafe_dist and speed > 10)\ndef loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):\n\t\"\"\"Continuously capture images from camera and do object detection.\n\t# Arguments\n\t\tcam: the camera instance (video source).\n\t\ttrt_yolo: the TRT YOLO object detector instance.\n\t\tconf_th: confidence/score threshold for object detection.\n\t\tvis: for visualization.\n\t\"\"\"",
         "detail": "deer",
         "documentation": {}
     },

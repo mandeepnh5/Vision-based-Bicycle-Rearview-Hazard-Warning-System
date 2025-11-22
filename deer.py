@@ -6,31 +6,22 @@ TensorRT optimized YOLO engine.
 
 import sys 
 from utils_deepsort.parser import get_config
-#from tracker.tracker_tiny import Tracker_tiny --->yolo_with_plugins.py has it
 from utils.yolo_with_plugins import Tracker_tiny
 from utils_deepsort.draw import draw_boxes
 from collections import deque
-##above##revise##by##me#######################################
 import os
 import time
 import argparse
 import numpy as np 
 import cv2
-import pycuda.autoinit  #  initializing CUDA driver
 import torch
 from ultralytics import YOLO
-#import RPi.GPIO as GPIO
-#import I2C_LCD_driver
-
-
-
 from utils.yolo_classes import get_cls_dict
 from utils.camera import add_camera_args, Camera
 from utils.display import open_window, set_display, show_fps
 from utils.visualization import BBoxVisualization
 from utils.yolo_with_plugins import TrtYOLO
 from utils.project_lanedetection import *
-#from utils.test_buzzer import *
 
 
 WINDOW_NAME = 'ProjectDemo'
@@ -202,11 +193,6 @@ def append_speed(ids,deque_list):
 	else:
 		return "still appending"
 
-
-
-	
- 
-		#sys.exit()
 #fix bbox issues
 def compute_xc_yc(out):
 	w = out[:,[2]] - out[:,[0]]
@@ -219,14 +205,13 @@ def compute_xc_yc(out):
 		
 def draw (pos,img):
 	for poss in pos :
-		#print("before error in draw func",poss)
 		cv2.circle(img, poss, 4, (0, 255,255), -1)
 		cv2.polylines(img,[np.int32(pos)], False, (0,255,255), 1)
 		
 				
 def ez_show(img):
 	img0 = np.zeros_like(img)
-	cv2.line(img0,(1000,960),(586,570),(255,255,0),3)  #shift 514 pixels
+	cv2.line(img0,(1000,960),(586,570),(255,255,0),3)  
 	cv2.line(img0,(586,570),(500,570),(255,255,0),4)
 	pol = np.array([[(224, 960), (500, 570), (586, 570),(1000, 960)]], dtype=np.int32)  
 	cv2.fillPoly(img0,pol, (0,255,0))
@@ -287,23 +272,6 @@ def proactive_alert_thresholds(dis, speed, in_lane, motion_predict):
 		unsafe_dist = 8.0
 	return dis <= danger_dist or (dis <= unsafe_dist and speed > 10)
 		
-#def output_right_box (inputs,output):   
-#    id = output[:,[-1]]
-#    xc , yc = compute_xc_yc(inputs)
-#    width = output[:,[2]] - output[:,[0]]
-#    height = output[:,[3]] - output[:,[1]]
-#    width = width/2
-#    height = height/2
-#    xmin = xc - width
-#    ymin = yc - height
-#    xmax = xmin + width*2
-#    ymax = ymin + height*2
-		#or 
-#    outputs_deepsort = np.concatenate((xmin,ymin,xmax,ymax,id),axis=1)
-	 # print(result,"result")
-	 # print(outputs_deepsort,"final outpus")
-#    return outputs_deepsort    
-######################################
 def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 	"""Continuously capture images from camera and do object detection.
 
