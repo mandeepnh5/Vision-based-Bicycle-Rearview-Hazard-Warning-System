@@ -3976,7 +3976,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\tnormal_result = cv2.addWeighted(img,1,img_zero,1,1)\n\t\t#print(\"vertices polly :\",vertices_polly)\n\t\tcombo_image = cv2.addWeighted(img, 1, line_image, 1, 1)\n\t\t#combo_image = cv2.addWeighted(combo_image, 1, line_image_not_avg, 1, 1) #addWeighted function cant add two srcs\n\t\timg_notavg = cv2.addWeighted(img, 1, line_image_not_avg, 1, 1)\n\t\t#allowing safety zone to draw on ->or the color of safety zone will be too dark        \n\t\tim0 = np.zeros_like(img)      \n\t\tif unsafe_v == False and danger_v == False:\n\t\t\tcv2.putText(img_better_look, f\"safe\", (800, 100), cv2.FONT_HERSHEY_COMPLEX, 1, (0,255,0), 2)  #bgr\n\t\t\t#img0 = np.zeros_like(img_better_look)",
+        "peekOfCode": "\t\tnormal_result = cv2.addWeighted(img,1,img_zero,1,1)\n\t\t#print(\"vertices polly :\",vertices_polly)\n\t\tcombo_image = cv2.addWeighted(img, 1, line_image, 1, 1)\n\t\t#combo_image = cv2.addWeighted(combo_image, 1, line_image_not_avg, 1, 1) #addWeighted function cant add two srcs\n\t\timg_notavg = cv2.addWeighted(img, 1, line_image_not_avg, 1, 1)\n\t\t#allowing safety zone to draw on ->or the color of safety zone will be too dark        \n\t\tim0 = np.zeros_like(img)      \n\t\tif unsafe_v == False and danger_v == False:\n\t\t\tpass  # Banner will show SAFE\n\t\t\t#img0 = np.zeros_like(img_better_look)",
         "detail": "deer",
         "documentation": {}
     },
@@ -3985,7 +3985,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\tcombo_image = cv2.addWeighted(img, 1, line_image, 1, 1)\n\t\t#combo_image = cv2.addWeighted(combo_image, 1, line_image_not_avg, 1, 1) #addWeighted function cant add two srcs\n\t\timg_notavg = cv2.addWeighted(img, 1, line_image_not_avg, 1, 1)\n\t\t#allowing safety zone to draw on ->or the color of safety zone will be too dark        \n\t\tim0 = np.zeros_like(img)      \n\t\tif unsafe_v == False and danger_v == False:\n\t\t\tcv2.putText(img_better_look, f\"safe\", (800, 100), cv2.FONT_HERSHEY_COMPLEX, 1, (0,255,0), 2)  #bgr\n\t\t\t#img0 = np.zeros_like(img_better_look)\n\t\t\tcv2.fillPoly(im0,pol, (0,255,0))\n\t\t\t#img_better_look = cv2.addWeighted(img0,0.7,img_better_look,1,1)",
+        "peekOfCode": "\t\tcombo_image = cv2.addWeighted(img, 1, line_image, 1, 1)\n\t\t#combo_image = cv2.addWeighted(combo_image, 1, line_image_not_avg, 1, 1) #addWeighted function cant add two srcs\n\t\timg_notavg = cv2.addWeighted(img, 1, line_image_not_avg, 1, 1)\n\t\t#allowing safety zone to draw on ->or the color of safety zone will be too dark        \n\t\tim0 = np.zeros_like(img)      \n\t\tif unsafe_v == False and danger_v == False:\n\t\t\tpass  # Banner will show SAFE\n\t\t\t#img0 = np.zeros_like(img_better_look)\n\t\t\tcv2.fillPoly(im0,pol, (0,255,0))\n\t\t\t#img_better_look = cv2.addWeighted(img0,0.7,img_better_look,1,1)",
         "detail": "deer",
         "documentation": {}
     },
@@ -3994,7 +3994,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t#combo_image = cv2.addWeighted(combo_image, 1, line_image_not_avg, 1, 1) #addWeighted function cant add two srcs\n\t\timg_notavg = cv2.addWeighted(img, 1, line_image_not_avg, 1, 1)\n\t\t#allowing safety zone to draw on ->or the color of safety zone will be too dark        \n\t\tim0 = np.zeros_like(img)      \n\t\tif unsafe_v == False and danger_v == False:\n\t\t\tcv2.putText(img_better_look, f\"safe\", (800, 100), cv2.FONT_HERSHEY_COMPLEX, 1, (0,255,0), 2)  #bgr\n\t\t\t#img0 = np.zeros_like(img_better_look)\n\t\t\tcv2.fillPoly(im0,pol, (0,255,0))\n\t\t\t#img_better_look = cv2.addWeighted(img0,0.7,img_better_look,1,1)\n\t\t\t#speed estimate zone",
+        "peekOfCode": "\t\t#combo_image = cv2.addWeighted(combo_image, 1, line_image_not_avg, 1, 1) #addWeighted function cant add two srcs\n\t\timg_notavg = cv2.addWeighted(img, 1, line_image_not_avg, 1, 1)\n\t\t#allowing safety zone to draw on ->or the color of safety zone will be too dark        \n\t\tim0 = np.zeros_like(img)      \n\t\tif unsafe_v == False and danger_v == False:\n\t\t\tpass  # Banner will show SAFE\n\t\t\t#img0 = np.zeros_like(img_better_look)\n\t\t\tcv2.fillPoly(im0,pol, (0,255,0))\n\t\t\t#img_better_look = cv2.addWeighted(img0,0.7,img_better_look,1,1)\n\t\t\t#speed estimate zone",
         "detail": "deer",
         "documentation": {}
     },
@@ -4003,7 +4003,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\timg_notavg = cv2.addWeighted(img, 1, line_image_not_avg, 1, 1)\n\t\t#allowing safety zone to draw on ->or the color of safety zone will be too dark        \n\t\tim0 = np.zeros_like(img)      \n\t\tif unsafe_v == False and danger_v == False:\n\t\t\tcv2.putText(img_better_look, f\"safe\", (800, 100), cv2.FONT_HERSHEY_COMPLEX, 1, (0,255,0), 2)  #bgr\n\t\t\t#img0 = np.zeros_like(img_better_look)\n\t\t\tcv2.fillPoly(im0,pol, (0,255,0))\n\t\t\t#img_better_look = cv2.addWeighted(img0,0.7,img_better_look,1,1)\n\t\t\t#speed estimate zone\n\t\t\t#cv2.line(img_better_look,(50,530),(1260,530),(0,127,255),3)",
+        "peekOfCode": "\t\timg_notavg = cv2.addWeighted(img, 1, line_image_not_avg, 1, 1)\n\t\t#allowing safety zone to draw on ->or the color of safety zone will be too dark        \n\t\tim0 = np.zeros_like(img)      \n\t\tif unsafe_v == False and danger_v == False:\n\t\t\tpass  # Banner will show SAFE\n\t\t\t#img0 = np.zeros_like(img_better_look)\n\t\t\tcv2.fillPoly(im0,pol, (0,255,0))\n\t\t\t#img_better_look = cv2.addWeighted(img0,0.7,img_better_look,1,1)\n\t\t\t#speed estimate zone\n\t\t\t#cv2.line(img_better_look,(50,530),(1260,530),(0,127,255),3)",
         "detail": "deer",
         "documentation": {}
     },
@@ -4012,7 +4012,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\tim0 = np.zeros_like(img)      \n\t\tif unsafe_v == False and danger_v == False:\n\t\t\tcv2.putText(img_better_look, f\"safe\", (800, 100), cv2.FONT_HERSHEY_COMPLEX, 1, (0,255,0), 2)  #bgr\n\t\t\t#img0 = np.zeros_like(img_better_look)\n\t\t\tcv2.fillPoly(im0,pol, (0,255,0))\n\t\t\t#img_better_look = cv2.addWeighted(img0,0.7,img_better_look,1,1)\n\t\t\t#speed estimate zone\n\t\t\t#cv2.line(img_better_look,(50,530),(1260,530),(0,127,255),3)\n\t\t\t#cv2.line(img_better_look,(50,560),(1260,560),(0,127,255),3)\n\t\t'''",
+        "peekOfCode": "\t\tim0 = np.zeros_like(img)      \n\t\tif unsafe_v == False and danger_v == False:\n\t\t\tpass  # Banner will show SAFE\n\t\t\t#img0 = np.zeros_like(img_better_look)\n\t\t\tcv2.fillPoly(im0,pol, (0,255,0))\n\t\t\t#img_better_look = cv2.addWeighted(img0,0.7,img_better_look,1,1)\n\t\t\t#speed estimate zone\n\t\t\t#cv2.line(img_better_look,(50,530),(1260,530),(0,127,255),3)\n\t\t\t#cv2.line(img_better_look,(50,560),(1260,560),(0,127,255),3)\n\t\t'''",
         "detail": "deer",
         "documentation": {}
     },
@@ -5083,7 +5083,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\t\tdeer_imptim_avg = round(dis_deer/(avg_spd_deer*1000/3600),2)               \n\t\t\t\t\tdeer_imptim = round(dis_deer/(deer_speed*1000/3600),2)\n\t\t\t\t\tcv2.putText(img_better_look, f\"average deer speed {avg_spd_deer} km/h Collision time {deer_imptim_avg} s\",  (50, 90), cv2.FONT_HERSHEY_COMPLEX, 0.65, (0,0,255), 2)  #bgr\n\t\t\t\t\tcv2.putText(img_better_look, f\"deer speed {int(deer_speed)} km/h  Collision time {deer_imptim}s  \",  (50, 50), cv2.FONT_HERSHEY_COMPLEX, 0.65, (255,0,255), 2)  #bgr\n\t\t\t\t\tif deer_imptim_avg < 1.25 and motion_predict == True:\n\t\t\t\t\t\tunsafe_v = True\n\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\t\tcv2.putText(img_better_look, f\"Unsafe\", (700, 50), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255,0,255), 2)  #bgr\n\t\t\t\t\tif deer_imptim_avg < 0.75 and motion_predict == True:\n\t\t\t\t\t\tdanger_v = True",
+        "peekOfCode": "\t\t\t\t\tdeer_imptim_avg = round(dis_deer/(avg_spd_deer*1000/3600),2)               \n\t\t\t\t\tdeer_imptim = round(dis_deer/(deer_speed*1000/3600),2)\n\t\t\t\t\tcv2.putText(img_better_look, f\"average deer speed {avg_spd_deer} km/h Collision time {deer_imptim_avg} s\",  (50, 90), cv2.FONT_HERSHEY_COMPLEX, 0.65, (0,0,255), 2)  #bgr\n\t\t\t\t\tcv2.putText(img_better_look, f\"deer speed {int(deer_speed)} km/h  Collision time {deer_imptim}s  \",  (50, 50), cv2.FONT_HERSHEY_COMPLEX, 0.65, (255,0,255), 2)  #bgr\n\t\t\t\t\tif deer_imptim_avg < 1.25 and motion_predict == True:\n\t\t\t\t\t\tunsafe_v = True\n\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\tif deer_imptim_avg < 0.75 and motion_predict == True:\n\t\t\t\t\t\tdanger_v = True\n\t\t\t\t\t\tunsafe_v = False",
         "detail": "deer",
         "documentation": {}
     },
@@ -5092,7 +5092,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\t\tdeer_imptim = round(dis_deer/(deer_speed*1000/3600),2)\n\t\t\t\t\tcv2.putText(img_better_look, f\"average deer speed {avg_spd_deer} km/h Collision time {deer_imptim_avg} s\",  (50, 90), cv2.FONT_HERSHEY_COMPLEX, 0.65, (0,0,255), 2)  #bgr\n\t\t\t\t\tcv2.putText(img_better_look, f\"deer speed {int(deer_speed)} km/h  Collision time {deer_imptim}s  \",  (50, 50), cv2.FONT_HERSHEY_COMPLEX, 0.65, (255,0,255), 2)  #bgr\n\t\t\t\t\tif deer_imptim_avg < 1.25 and motion_predict == True:\n\t\t\t\t\t\tunsafe_v = True\n\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\t\tcv2.putText(img_better_look, f\"Unsafe\", (700, 50), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255,0,255), 2)  #bgr\n\t\t\t\t\tif deer_imptim_avg < 0.75 and motion_predict == True:\n\t\t\t\t\t\tdanger_v = True\n\t\t\t\t\t\tunsafe_v = False",
+        "peekOfCode": "\t\t\t\t\tdeer_imptim = round(dis_deer/(deer_speed*1000/3600),2)\n\t\t\t\t\tcv2.putText(img_better_look, f\"average deer speed {avg_spd_deer} km/h Collision time {deer_imptim_avg} s\",  (50, 90), cv2.FONT_HERSHEY_COMPLEX, 0.65, (0,0,255), 2)  #bgr\n\t\t\t\t\tcv2.putText(img_better_look, f\"deer speed {int(deer_speed)} km/h  Collision time {deer_imptim}s  \",  (50, 50), cv2.FONT_HERSHEY_COMPLEX, 0.65, (255,0,255), 2)  #bgr\n\t\t\t\t\tif deer_imptim_avg < 1.25 and motion_predict == True:\n\t\t\t\t\t\tunsafe_v = True\n\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\tif deer_imptim_avg < 0.75 and motion_predict == True:\n\t\t\t\t\t\tdanger_v = True\n\t\t\t\t\t\tunsafe_v = False\n\t\t\t\t\telse:",
         "detail": "deer",
         "documentation": {}
     },
@@ -5101,7 +5101,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\t\t\tunsafe_v = True\n\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\t\tcv2.putText(img_better_look, f\"Unsafe\", (700, 50), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255,0,255), 2)  #bgr\n\t\t\t\t\tif deer_imptim_avg < 0.75 and motion_predict == True:\n\t\t\t\t\t\tdanger_v = True\n\t\t\t\t\t\tunsafe_v = False\n\t\t\t\t\telse:\n\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\tcv2.putText(img_better_look, f\"danger True\", (700, 80), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)  #bgr\n\t\t\t\t\t#speed estimation ends here       ",
+        "peekOfCode": "\t\t\t\t\t\tunsafe_v = True\n\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\tif deer_imptim_avg < 0.75 and motion_predict == True:\n\t\t\t\t\t\tdanger_v = True\n\t\t\t\t\t\tunsafe_v = False\n\t\t\t\t\telse:\n\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\t#speed estimation ends here       \n\t\t\t\t\tif args.enable_ttc_forecasting and deer_speed > 0:\n\t\t\t\t\t\tif enhanced_ttc_forecasting(dis_deer, deer_speed):",
         "detail": "deer",
         "documentation": {}
     },
@@ -5110,7 +5110,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\t\tcv2.putText(img_better_look, f\"Unsafe\", (700, 50), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255,0,255), 2)  #bgr\n\t\t\t\t\tif deer_imptim_avg < 0.75 and motion_predict == True:\n\t\t\t\t\t\tdanger_v = True\n\t\t\t\t\t\tunsafe_v = False\n\t\t\t\t\telse:\n\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\tcv2.putText(img_better_look, f\"danger True\", (700, 80), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)  #bgr\n\t\t\t\t\t#speed estimation ends here       \n\t\t\t\t\tif args.enable_ttc_forecasting and deer_speed > 0:",
+        "peekOfCode": "\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\tif deer_imptim_avg < 0.75 and motion_predict == True:\n\t\t\t\t\t\tdanger_v = True\n\t\t\t\t\t\tunsafe_v = False\n\t\t\t\t\telse:\n\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\t#speed estimation ends here       \n\t\t\t\t\tif args.enable_ttc_forecasting and deer_speed > 0:\n\t\t\t\t\t\tif enhanced_ttc_forecasting(dis_deer, deer_speed):\n\t\t\t\t\t\t\tcv2.putText(img_better_look, \"TTC Forecast Alert!\", (50, 300), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255,255,0), 2)       ",
         "detail": "deer",
         "documentation": {}
     },
@@ -5119,7 +5119,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\t\t\tdanger_v = True\n\t\t\t\t\t\tunsafe_v = False\n\t\t\t\t\telse:\n\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\tcv2.putText(img_better_look, f\"danger True\", (700, 80), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)  #bgr\n\t\t\t\t\t#speed estimation ends here       \n\t\t\t\t\tif args.enable_ttc_forecasting and deer_speed > 0:\n\t\t\t\t\t\tif enhanced_ttc_forecasting(dis_deer, deer_speed):\n\t\t\t\t\t\t\tcv2.putText(img_better_look, \"TTC Forecast Alert!\", (50, 300), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255,255,0), 2)       \n\t\t\t\tif cls == \"deer\":",
+        "peekOfCode": "\t\t\t\t\t\tdanger_v = True\n\t\t\t\t\t\tunsafe_v = False\n\t\t\t\t\telse:\n\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\t#speed estimation ends here       \n\t\t\t\t\tif args.enable_ttc_forecasting and deer_speed > 0:\n\t\t\t\t\t\tif enhanced_ttc_forecasting(dis_deer, deer_speed):\n\t\t\t\t\t\t\tcv2.putText(img_better_look, \"TTC Forecast Alert!\", (50, 300), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255,255,0), 2)       \n\t\t\t\tif cls == \"deer\":\n\t\t\t\t\tdis = Distance_finder(100,w)//100",
         "detail": "deer",
         "documentation": {}
     },
@@ -5128,7 +5128,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\t\t\tunsafe_v = False\n\t\t\t\t\telse:\n\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\tcv2.putText(img_better_look, f\"danger True\", (700, 80), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)  #bgr\n\t\t\t\t\t#speed estimation ends here       \n\t\t\t\t\tif args.enable_ttc_forecasting and deer_speed > 0:\n\t\t\t\t\t\tif enhanced_ttc_forecasting(dis_deer, deer_speed):\n\t\t\t\t\t\t\tcv2.putText(img_better_look, \"TTC Forecast Alert!\", (50, 300), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255,255,0), 2)       \n\t\t\t\tif cls == \"deer\":\n\t\t\t\t\tdis = Distance_finder(100,w)//100",
+        "peekOfCode": "\t\t\t\t\t\tunsafe_v = False\n\t\t\t\t\telse:\n\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\t#speed estimation ends here       \n\t\t\t\t\tif args.enable_ttc_forecasting and deer_speed > 0:\n\t\t\t\t\t\tif enhanced_ttc_forecasting(dis_deer, deer_speed):\n\t\t\t\t\t\t\tcv2.putText(img_better_look, \"TTC Forecast Alert!\", (50, 300), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255,255,0), 2)       \n\t\t\t\tif cls == \"deer\":\n\t\t\t\t\tdis = Distance_finder(100,w)//100\n\t\t\t\t\tdis = int(dis)",
         "detail": "deer",
         "documentation": {}
     },
@@ -5137,7 +5137,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\tcv2.putText(img_better_look, f\"danger True\", (700, 80), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)  #bgr\n\t\t\t\t\t#speed estimation ends here       \n\t\t\t\t\tif args.enable_ttc_forecasting and deer_speed > 0:\n\t\t\t\t\t\tif enhanced_ttc_forecasting(dis_deer, deer_speed):\n\t\t\t\t\t\t\tcv2.putText(img_better_look, \"TTC Forecast Alert!\", (50, 300), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255,255,0), 2)       \n\t\t\t\tif cls == \"deer\":\n\t\t\t\t\tdis = Distance_finder(100,w)//100\n\t\t\t\t\tdis = int(dis)\n\t\t\t\t\tcv2.putText(img_better_look, f\"Distance {dis} m\", (xc-6, yc-6), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0,255,255), 2)  #bgr",
+        "peekOfCode": "\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\t#speed estimation ends here       \n\t\t\t\t\tif args.enable_ttc_forecasting and deer_speed > 0:\n\t\t\t\t\t\tif enhanced_ttc_forecasting(dis_deer, deer_speed):\n\t\t\t\t\t\t\tcv2.putText(img_better_look, \"TTC Forecast Alert!\", (50, 300), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255,255,0), 2)       \n\t\t\t\tif cls == \"deer\":\n\t\t\t\t\tdis = Distance_finder(100,w)//100\n\t\t\t\t\tdis = int(dis)\n\t\t\t\t\tcv2.putText(img_better_look, f\"Distance {dis} m\", (xc-6, yc-6), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0,255,255), 2)  #bgr\n\t\t\t\t\t# immediate threshold check per-object to ensure flags are set",
         "detail": "deer",
         "documentation": {}
     },
@@ -5704,7 +5704,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\tstatus_text = \"SAFE\"\n\t\t\tcolor = (0, 255, 0)  # green\n\t\t\tif danger_v:\n\t\t\t\tstatus_text = \"DANGER\"\n\t\t\t\tcolor = (0, 0, 255)  # red\n\t\t\telif unsafe_v:\n\t\t\t\tstatus_text = \"MEDIUM\"\n\t\t\t\tcolor = (0, 127, 255)  # orange\n\t\t\t# draw filled rounded rectangle (approx) on overlay\n\t\t\tcv2.rectangle(overlay, (x1, y1), (x2, y2), color, -1)",
+        "peekOfCode": "\t\t\tstatus_text = \"SAFE\"\n\t\t\tcolor = (0, 255, 0)  # green\n\t\t\tif danger_v:\n\t\t\t\tstatus_text = \"DANGER\"\n\t\t\t\tcolor = (0, 0, 255)  # red\n\t\t\telif unsafe_v:\n\t\t\t\tstatus_text = \"MEDIUM\"\n\t\t\t\tcolor = (0, 127, 255)  # orange\n\t\t\t# draw filled rounded rectangle (approx) on overlay\n\t\t\t# cv2.rectangle(overlay, (x1, y1), (x2, y2), color, -1)",
         "detail": "deer",
         "documentation": {}
     },
@@ -5713,7 +5713,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\tcolor = (0, 255, 0)  # green\n\t\t\tif danger_v:\n\t\t\t\tstatus_text = \"DANGER\"\n\t\t\t\tcolor = (0, 0, 255)  # red\n\t\t\telif unsafe_v:\n\t\t\t\tstatus_text = \"MEDIUM\"\n\t\t\t\tcolor = (0, 127, 255)  # orange\n\t\t\t# draw filled rounded rectangle (approx) on overlay\n\t\t\tcv2.rectangle(overlay, (x1, y1), (x2, y2), color, -1)\n\t\t\t# blend overlay",
+        "peekOfCode": "\t\t\tcolor = (0, 255, 0)  # green\n\t\t\tif danger_v:\n\t\t\t\tstatus_text = \"DANGER\"\n\t\t\t\tcolor = (0, 0, 255)  # red\n\t\t\telif unsafe_v:\n\t\t\t\tstatus_text = \"MEDIUM\"\n\t\t\t\tcolor = (0, 127, 255)  # orange\n\t\t\t# draw filled rounded rectangle (approx) on overlay\n\t\t\t# cv2.rectangle(overlay, (x1, y1), (x2, y2), color, -1)\n\t\t\t# blend overlay",
         "detail": "deer",
         "documentation": {}
     },
@@ -5722,7 +5722,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\tstatus_text = \"DANGER\"\n\t\t\t\tcolor = (0, 0, 255)  # red\n\t\t\telif unsafe_v:\n\t\t\t\tstatus_text = \"MEDIUM\"\n\t\t\t\tcolor = (0, 127, 255)  # orange\n\t\t\t# draw filled rounded rectangle (approx) on overlay\n\t\t\tcv2.rectangle(overlay, (x1, y1), (x2, y2), color, -1)\n\t\t\t# blend overlay\n\t\t\tcv2.addWeighted(overlay, alpha, img_better_look, 1 - alpha, 0, img_better_look)\n\t\t\t# draw text right-aligned within banner",
+        "peekOfCode": "\t\t\t\tstatus_text = \"DANGER\"\n\t\t\t\tcolor = (0, 0, 255)  # red\n\t\t\telif unsafe_v:\n\t\t\t\tstatus_text = \"MEDIUM\"\n\t\t\t\tcolor = (0, 127, 255)  # orange\n\t\t\t# draw filled rounded rectangle (approx) on overlay\n\t\t\t# cv2.rectangle(overlay, (x1, y1), (x2, y2), color, -1)\n\t\t\t# blend overlay\n\t\t\t# cv2.addWeighted(overlay, alpha, img_better_look, 1 - alpha, 0, img_better_look)\n\t\t\t# draw text right-aligned within banner",
         "detail": "deer",
         "documentation": {}
     },
@@ -5731,7 +5731,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\tcolor = (0, 0, 255)  # red\n\t\t\telif unsafe_v:\n\t\t\t\tstatus_text = \"MEDIUM\"\n\t\t\t\tcolor = (0, 127, 255)  # orange\n\t\t\t# draw filled rounded rectangle (approx) on overlay\n\t\t\tcv2.rectangle(overlay, (x1, y1), (x2, y2), color, -1)\n\t\t\t# blend overlay\n\t\t\tcv2.addWeighted(overlay, alpha, img_better_look, 1 - alpha, 0, img_better_look)\n\t\t\t# draw text right-aligned within banner\n\t\t\tfont = cv2.FONT_HERSHEY_DUPLEX",
+        "peekOfCode": "\t\t\t\tcolor = (0, 0, 255)  # red\n\t\t\telif unsafe_v:\n\t\t\t\tstatus_text = \"MEDIUM\"\n\t\t\t\tcolor = (0, 127, 255)  # orange\n\t\t\t# draw filled rounded rectangle (approx) on overlay\n\t\t\t# cv2.rectangle(overlay, (x1, y1), (x2, y2), color, -1)\n\t\t\t# blend overlay\n\t\t\t# cv2.addWeighted(overlay, alpha, img_better_look, 1 - alpha, 0, img_better_look)\n\t\t\t# draw text right-aligned within banner\n\t\t\tfont = cv2.FONT_HERSHEY_DUPLEX",
         "detail": "deer",
         "documentation": {}
     },
@@ -5740,7 +5740,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\tstatus_text = \"MEDIUM\"\n\t\t\t\tcolor = (0, 127, 255)  # orange\n\t\t\t# draw filled rounded rectangle (approx) on overlay\n\t\t\tcv2.rectangle(overlay, (x1, y1), (x2, y2), color, -1)\n\t\t\t# blend overlay\n\t\t\tcv2.addWeighted(overlay, alpha, img_better_look, 1 - alpha, 0, img_better_look)\n\t\t\t# draw text right-aligned within banner\n\t\t\tfont = cv2.FONT_HERSHEY_DUPLEX\n\t\t\tfont_scale = 1.2\n\t\t\tthickness = 3",
+        "peekOfCode": "\t\t\t\tstatus_text = \"MEDIUM\"\n\t\t\t\tcolor = (0, 127, 255)  # orange\n\t\t\t# draw filled rounded rectangle (approx) on overlay\n\t\t\t# cv2.rectangle(overlay, (x1, y1), (x2, y2), color, -1)\n\t\t\t# blend overlay\n\t\t\t# cv2.addWeighted(overlay, alpha, img_better_look, 1 - alpha, 0, img_better_look)\n\t\t\t# draw text right-aligned within banner\n\t\t\tfont = cv2.FONT_HERSHEY_DUPLEX\n\t\t\tfont_scale = 1.2\n\t\t\tthickness = 3",
         "detail": "deer",
         "documentation": {}
     },
@@ -5749,7 +5749,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\tcolor = (0, 127, 255)  # orange\n\t\t\t# draw filled rounded rectangle (approx) on overlay\n\t\t\tcv2.rectangle(overlay, (x1, y1), (x2, y2), color, -1)\n\t\t\t# blend overlay\n\t\t\tcv2.addWeighted(overlay, alpha, img_better_look, 1 - alpha, 0, img_better_look)\n\t\t\t# draw text right-aligned within banner\n\t\t\tfont = cv2.FONT_HERSHEY_DUPLEX\n\t\t\tfont_scale = 1.2\n\t\t\tthickness = 3\n\t\t\t(text_w, text_h), _ = cv2.getTextSize(status_text, font, font_scale, thickness)",
+        "peekOfCode": "\t\t\t\tcolor = (0, 127, 255)  # orange\n\t\t\t# draw filled rounded rectangle (approx) on overlay\n\t\t\t# cv2.rectangle(overlay, (x1, y1), (x2, y2), color, -1)\n\t\t\t# blend overlay\n\t\t\t# cv2.addWeighted(overlay, alpha, img_better_look, 1 - alpha, 0, img_better_look)\n\t\t\t# draw text right-aligned within banner\n\t\t\tfont = cv2.FONT_HERSHEY_DUPLEX\n\t\t\tfont_scale = 1.2\n\t\t\tthickness = 3\n\t\t\t(text_w, text_h), _ = cv2.getTextSize(status_text, font, font_scale, thickness)",
         "detail": "deer",
         "documentation": {}
     },
@@ -5758,7 +5758,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\tfont = cv2.FONT_HERSHEY_DUPLEX\n\t\t\tfont_scale = 1.2\n\t\t\tthickness = 3\n\t\t\t(text_w, text_h), _ = cv2.getTextSize(status_text, font, font_scale, thickness)\n\t\t\ttext_x = x2 - 20 - text_w\n\t\t\ttext_y = y1 + (banner_h + text_h) // 2\n\t\t\tcv2.putText(img_better_look, status_text, (text_x, text_y), font, font_scale, (255, 255, 255), thickness, cv2.LINE_AA)\n\t\texcept Exception:\n\t\t\t# If overlay drawing fails for any reason, keep running without crashing\n\t\t\tpass",
+        "peekOfCode": "\t\t\tfont = cv2.FONT_HERSHEY_DUPLEX\n\t\t\tfont_scale = 1.2\n\t\t\tthickness = 3\n\t\t\t(text_w, text_h), _ = cv2.getTextSize(status_text, font, font_scale, thickness)\n\t\t\ttext_x = x2 - 20 - text_w\n\t\t\ttext_y = y1 + (banner_h + text_h) // 2\n\t\t\t# cv2.putText(img_better_look, status_text, (text_x, text_y), font, font_scale, (255, 255, 255), thickness, cv2.LINE_AA)\n\t\texcept Exception:\n\t\t\t# If overlay drawing fails for any reason, keep running without crashing\n\t\t\tpass",
         "detail": "deer",
         "documentation": {}
     },
@@ -5767,7 +5767,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\tfont_scale = 1.2\n\t\t\tthickness = 3\n\t\t\t(text_w, text_h), _ = cv2.getTextSize(status_text, font, font_scale, thickness)\n\t\t\ttext_x = x2 - 20 - text_w\n\t\t\ttext_y = y1 + (banner_h + text_h) // 2\n\t\t\tcv2.putText(img_better_look, status_text, (text_x, text_y), font, font_scale, (255, 255, 255), thickness, cv2.LINE_AA)\n\t\texcept Exception:\n\t\t\t# If overlay drawing fails for any reason, keep running without crashing\n\t\t\tpass\n\t\t# Log status changes (only when state changes) so we can debug why alerts may not appear",
+        "peekOfCode": "\t\t\tfont_scale = 1.2\n\t\t\tthickness = 3\n\t\t\t(text_w, text_h), _ = cv2.getTextSize(status_text, font, font_scale, thickness)\n\t\t\ttext_x = x2 - 20 - text_w\n\t\t\ttext_y = y1 + (banner_h + text_h) // 2\n\t\t\t# cv2.putText(img_better_look, status_text, (text_x, text_y), font, font_scale, (255, 255, 255), thickness, cv2.LINE_AA)\n\t\texcept Exception:\n\t\t\t# If overlay drawing fails for any reason, keep running without crashing\n\t\t\tpass\n\t\t# Log status changes (only when state changes) so we can debug why alerts may not appear",
         "detail": "deer",
         "documentation": {}
     },
@@ -5776,7 +5776,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\tthickness = 3\n\t\t\t(text_w, text_h), _ = cv2.getTextSize(status_text, font, font_scale, thickness)\n\t\t\ttext_x = x2 - 20 - text_w\n\t\t\ttext_y = y1 + (banner_h + text_h) // 2\n\t\t\tcv2.putText(img_better_look, status_text, (text_x, text_y), font, font_scale, (255, 255, 255), thickness, cv2.LINE_AA)\n\t\texcept Exception:\n\t\t\t# If overlay drawing fails for any reason, keep running without crashing\n\t\t\tpass\n\t\t# Log status changes (only when state changes) so we can debug why alerts may not appear\n\t\ttry:",
+        "peekOfCode": "\t\t\tthickness = 3\n\t\t\t(text_w, text_h), _ = cv2.getTextSize(status_text, font, font_scale, thickness)\n\t\t\ttext_x = x2 - 20 - text_w\n\t\t\ttext_y = y1 + (banner_h + text_h) // 2\n\t\t\t# cv2.putText(img_better_look, status_text, (text_x, text_y), font, font_scale, (255, 255, 255), thickness, cv2.LINE_AA)\n\t\texcept Exception:\n\t\t\t# If overlay drawing fails for any reason, keep running without crashing\n\t\t\tpass\n\t\t# Log status changes (only when state changes) so we can debug why alerts may not appear\n\t\ttry:",
         "detail": "deer",
         "documentation": {}
     },
@@ -5785,7 +5785,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\ttext_x = x2 - 20 - text_w\n\t\t\ttext_y = y1 + (banner_h + text_h) // 2\n\t\t\tcv2.putText(img_better_look, status_text, (text_x, text_y), font, font_scale, (255, 255, 255), thickness, cv2.LINE_AA)\n\t\texcept Exception:\n\t\t\t# If overlay drawing fails for any reason, keep running without crashing\n\t\t\tpass\n\t\t# Log status changes (only when state changes) so we can debug why alerts may not appear\n\t\ttry:\n\t\t\tif danger_v:\n\t\t\t\tstatus = 'DANGER'",
+        "peekOfCode": "\t\t\ttext_x = x2 - 20 - text_w\n\t\t\ttext_y = y1 + (banner_h + text_h) // 2\n\t\t\t# cv2.putText(img_better_look, status_text, (text_x, text_y), font, font_scale, (255, 255, 255), thickness, cv2.LINE_AA)\n\t\texcept Exception:\n\t\t\t# If overlay drawing fails for any reason, keep running without crashing\n\t\t\tpass\n\t\t# Log status changes (only when state changes) so we can debug why alerts may not appear\n\t\ttry:\n\t\t\tif danger_v:\n\t\t\t\tstatus = 'DANGER'",
         "detail": "deer",
         "documentation": {}
     },
@@ -5794,7 +5794,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\ttext_y = y1 + (banner_h + text_h) // 2\n\t\t\tcv2.putText(img_better_look, status_text, (text_x, text_y), font, font_scale, (255, 255, 255), thickness, cv2.LINE_AA)\n\t\texcept Exception:\n\t\t\t# If overlay drawing fails for any reason, keep running without crashing\n\t\t\tpass\n\t\t# Log status changes (only when state changes) so we can debug why alerts may not appear\n\t\ttry:\n\t\t\tif danger_v:\n\t\t\t\tstatus = 'DANGER'\n\t\t\telif unsafe_v:",
+        "peekOfCode": "\t\t\ttext_y = y1 + (banner_h + text_h) // 2\n\t\t\t# cv2.putText(img_better_look, status_text, (text_x, text_y), font, font_scale, (255, 255, 255), thickness, cv2.LINE_AA)\n\t\texcept Exception:\n\t\t\t# If overlay drawing fails for any reason, keep running without crashing\n\t\t\tpass\n\t\t# Log status changes (only when state changes) so we can debug why alerts may not appear\n\t\ttry:\n\t\t\tif danger_v:\n\t\t\t\tstatus = 'DANGER'\n\t\t\telif unsafe_v:",
         "detail": "deer",
         "documentation": {}
     },
@@ -5830,7 +5830,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\tprev_status = status\n\t\texcept Exception:\n\t\t\tpass\n\t\t# Add center flashing alert for danger\n\t\tif danger_v:\n\t\t\t# Flash by alternating color\n\t\t\tflash_color = (0, 0, 255) if (framenumber // 10) % 2 == 0 else (255, 255, 255)\n\t\t\tcv2.putText(img_better_look, \"DANGER!\", (320, 240), cv2.FONT_HERSHEY_DUPLEX, 2.0, flash_color, 5, cv2.LINE_AA)\n\t\t\tprint(f\"[ALERT] Center danger alert displayed frame={framenumber}\")\n\t\tout.write(line_visualize)",
+        "peekOfCode": "\t\t\t\tprev_status = status\n\t\texcept Exception:\n\t\t\tpass\n\t\t# Add center flashing alert for danger\n\t\tif danger_v:\n\t\t\t# Flash by alternating color\n\t\t\tflash_color = (0, 0, 255) if (framenumber // 10) % 2 == 0 else (255, 255, 255)\n\t\t\tcv2.putText(img_better_look, \"DANGER!\", (320, 240), cv2.FONT_HERSHEY_DUPLEX, 2.0, flash_color, 5, cv2.LINE_AA)\n\t\t\tprint(f\"[ALERT] Center danger alert displayed frame={framenumber}\")\n\t\t# Draw status banner",
         "detail": "deer",
         "documentation": {}
     },
@@ -5839,7 +5839,124 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\tflash_color = (0, 0, 255) if (framenumber // 10) % 2 == 0 else (255, 255, 255)\n\t\t\tcv2.putText(img_better_look, \"DANGER!\", (320, 240), cv2.FONT_HERSHEY_DUPLEX, 2.0, flash_color, 5, cv2.LINE_AA)\n\t\t\tprint(f\"[ALERT] Center danger alert displayed frame={framenumber}\")\n\t\tout.write(line_visualize)\n\t\tout1.write(img_better_look)\n\t\tout2.write(combo_image)\n\t\t#show result\n\t\t#cv2.imshow(WINDOW_NAME, img)\n\t\t####\n\t\t#cv2.imshow(\"normal lanedetection without extended\",normal_result)",
+        "peekOfCode": "\t\t\tflash_color = (0, 0, 255) if (framenumber // 10) % 2 == 0 else (255, 255, 255)\n\t\t\tcv2.putText(img_better_look, \"DANGER!\", (320, 240), cv2.FONT_HERSHEY_DUPLEX, 2.0, flash_color, 5, cv2.LINE_AA)\n\t\t\tprint(f\"[ALERT] Center danger alert displayed frame={framenumber}\")\n\t\t# Draw status banner\n\t\tbanner_x = img.shape[1] - 200\n\t\tbanner_y = 20\n\t\tbanner_w = 180\n\t\tbanner_h = 40\n\t\tif danger_v:\n\t\t\tbanner_color = (0, 0, 255)  # Red",
+        "detail": "deer",
+        "documentation": {}
+    },
+    {
+        "label": "\t\tbanner_x",
+        "kind": 5,
+        "importPath": "deer",
+        "description": "deer",
+        "peekOfCode": "\t\tbanner_x = img.shape[1] - 200\n\t\tbanner_y = 20\n\t\tbanner_w = 180\n\t\tbanner_h = 40\n\t\tif danger_v:\n\t\t\tbanner_color = (0, 0, 255)  # Red\n\t\t\tstatus_text = \"DANGER\"\n\t\t\ttext_color = (255, 255, 255)\n\t\telif unsafe_v:\n\t\t\tbanner_color = (0, 165, 255)  # Orange",
+        "detail": "deer",
+        "documentation": {}
+    },
+    {
+        "label": "\t\tbanner_y",
+        "kind": 5,
+        "importPath": "deer",
+        "description": "deer",
+        "peekOfCode": "\t\tbanner_y = 20\n\t\tbanner_w = 180\n\t\tbanner_h = 40\n\t\tif danger_v:\n\t\t\tbanner_color = (0, 0, 255)  # Red\n\t\t\tstatus_text = \"DANGER\"\n\t\t\ttext_color = (255, 255, 255)\n\t\telif unsafe_v:\n\t\t\tbanner_color = (0, 165, 255)  # Orange\n\t\t\tstatus_text = \"MEDIUM\"",
+        "detail": "deer",
+        "documentation": {}
+    },
+    {
+        "label": "\t\tbanner_w",
+        "kind": 5,
+        "importPath": "deer",
+        "description": "deer",
+        "peekOfCode": "\t\tbanner_w = 180\n\t\tbanner_h = 40\n\t\tif danger_v:\n\t\t\tbanner_color = (0, 0, 255)  # Red\n\t\t\tstatus_text = \"DANGER\"\n\t\t\ttext_color = (255, 255, 255)\n\t\telif unsafe_v:\n\t\t\tbanner_color = (0, 165, 255)  # Orange\n\t\t\tstatus_text = \"MEDIUM\"\n\t\t\ttext_color = (255, 255, 255)",
+        "detail": "deer",
+        "documentation": {}
+    },
+    {
+        "label": "\t\tbanner_h",
+        "kind": 5,
+        "importPath": "deer",
+        "description": "deer",
+        "peekOfCode": "\t\tbanner_h = 40\n\t\tif danger_v:\n\t\t\tbanner_color = (0, 0, 255)  # Red\n\t\t\tstatus_text = \"DANGER\"\n\t\t\ttext_color = (255, 255, 255)\n\t\telif unsafe_v:\n\t\t\tbanner_color = (0, 165, 255)  # Orange\n\t\t\tstatus_text = \"MEDIUM\"\n\t\t\ttext_color = (255, 255, 255)\n\t\telse:",
+        "detail": "deer",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\tbanner_color",
+        "kind": 5,
+        "importPath": "deer",
+        "description": "deer",
+        "peekOfCode": "\t\t\tbanner_color = (0, 0, 255)  # Red\n\t\t\tstatus_text = \"DANGER\"\n\t\t\ttext_color = (255, 255, 255)\n\t\telif unsafe_v:\n\t\t\tbanner_color = (0, 165, 255)  # Orange\n\t\t\tstatus_text = \"MEDIUM\"\n\t\t\ttext_color = (255, 255, 255)\n\t\telse:\n\t\t\tbanner_color = (0, 255, 0)  # Green\n\t\t\tstatus_text = \"SAFE\"",
+        "detail": "deer",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\tstatus_text",
+        "kind": 5,
+        "importPath": "deer",
+        "description": "deer",
+        "peekOfCode": "\t\t\tstatus_text = \"DANGER\"\n\t\t\ttext_color = (255, 255, 255)\n\t\telif unsafe_v:\n\t\t\tbanner_color = (0, 165, 255)  # Orange\n\t\t\tstatus_text = \"MEDIUM\"\n\t\t\ttext_color = (255, 255, 255)\n\t\telse:\n\t\t\tbanner_color = (0, 255, 0)  # Green\n\t\t\tstatus_text = \"SAFE\"\n\t\t\ttext_color = (0, 0, 0)",
+        "detail": "deer",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\ttext_color",
+        "kind": 5,
+        "importPath": "deer",
+        "description": "deer",
+        "peekOfCode": "\t\t\ttext_color = (255, 255, 255)\n\t\telif unsafe_v:\n\t\t\tbanner_color = (0, 165, 255)  # Orange\n\t\t\tstatus_text = \"MEDIUM\"\n\t\t\ttext_color = (255, 255, 255)\n\t\telse:\n\t\t\tbanner_color = (0, 255, 0)  # Green\n\t\t\tstatus_text = \"SAFE\"\n\t\t\ttext_color = (0, 0, 0)\n\t\t# cv2.rectangle(img_better_look, (banner_x, banner_y + 150), (banner_x + banner_w, banner_y + 200 + banner_h), banner_color, -1)",
+        "detail": "deer",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\tbanner_color",
+        "kind": 5,
+        "importPath": "deer",
+        "description": "deer",
+        "peekOfCode": "\t\t\tbanner_color = (0, 165, 255)  # Orange\n\t\t\tstatus_text = \"MEDIUM\"\n\t\t\ttext_color = (255, 255, 255)\n\t\telse:\n\t\t\tbanner_color = (0, 255, 0)  # Green\n\t\t\tstatus_text = \"SAFE\"\n\t\t\ttext_color = (0, 0, 0)\n\t\t# cv2.rectangle(img_better_look, (banner_x, banner_y + 150), (banner_x + banner_w, banner_y + 200 + banner_h), banner_color, -1)\n\t\t# cv2.putText(img_better_look, status_text, (banner_x + 10, banner_y + 200), cv2.FONT_HERSHEY_COMPLEX, 1.0, text_color, 2)\n\t\tout.write(line_visualize)",
+        "detail": "deer",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\tstatus_text",
+        "kind": 5,
+        "importPath": "deer",
+        "description": "deer",
+        "peekOfCode": "\t\t\tstatus_text = \"MEDIUM\"\n\t\t\ttext_color = (255, 255, 255)\n\t\telse:\n\t\t\tbanner_color = (0, 255, 0)  # Green\n\t\t\tstatus_text = \"SAFE\"\n\t\t\ttext_color = (0, 0, 0)\n\t\t# cv2.rectangle(img_better_look, (banner_x, banner_y + 150), (banner_x + banner_w, banner_y + 200 + banner_h), banner_color, -1)\n\t\t# cv2.putText(img_better_look, status_text, (banner_x + 10, banner_y + 200), cv2.FONT_HERSHEY_COMPLEX, 1.0, text_color, 2)\n\t\tout.write(line_visualize)\n\t\tout1.write(img_better_look)",
+        "detail": "deer",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\ttext_color",
+        "kind": 5,
+        "importPath": "deer",
+        "description": "deer",
+        "peekOfCode": "\t\t\ttext_color = (255, 255, 255)\n\t\telse:\n\t\t\tbanner_color = (0, 255, 0)  # Green\n\t\t\tstatus_text = \"SAFE\"\n\t\t\ttext_color = (0, 0, 0)\n\t\t# cv2.rectangle(img_better_look, (banner_x, banner_y + 150), (banner_x + banner_w, banner_y + 200 + banner_h), banner_color, -1)\n\t\t# cv2.putText(img_better_look, status_text, (banner_x + 10, banner_y + 200), cv2.FONT_HERSHEY_COMPLEX, 1.0, text_color, 2)\n\t\tout.write(line_visualize)\n\t\tout1.write(img_better_look)\n\t\tout2.write(combo_image)",
+        "detail": "deer",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\tbanner_color",
+        "kind": 5,
+        "importPath": "deer",
+        "description": "deer",
+        "peekOfCode": "\t\t\tbanner_color = (0, 255, 0)  # Green\n\t\t\tstatus_text = \"SAFE\"\n\t\t\ttext_color = (0, 0, 0)\n\t\t# cv2.rectangle(img_better_look, (banner_x, banner_y + 150), (banner_x + banner_w, banner_y + 200 + banner_h), banner_color, -1)\n\t\t# cv2.putText(img_better_look, status_text, (banner_x + 10, banner_y + 200), cv2.FONT_HERSHEY_COMPLEX, 1.0, text_color, 2)\n\t\tout.write(line_visualize)\n\t\tout1.write(img_better_look)\n\t\tout2.write(combo_image)\n\t\t#show result\n\t\t#cv2.imshow(WINDOW_NAME, img)",
+        "detail": "deer",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\tstatus_text",
+        "kind": 5,
+        "importPath": "deer",
+        "description": "deer",
+        "peekOfCode": "\t\t\tstatus_text = \"SAFE\"\n\t\t\ttext_color = (0, 0, 0)\n\t\t# cv2.rectangle(img_better_look, (banner_x, banner_y + 150), (banner_x + banner_w, banner_y + 200 + banner_h), banner_color, -1)\n\t\t# cv2.putText(img_better_look, status_text, (banner_x + 10, banner_y + 200), cv2.FONT_HERSHEY_COMPLEX, 1.0, text_color, 2)\n\t\tout.write(line_visualize)\n\t\tout1.write(img_better_look)\n\t\tout2.write(combo_image)\n\t\t#show result\n\t\t#cv2.imshow(WINDOW_NAME, img)\n\t\t####",
+        "detail": "deer",
+        "documentation": {}
+    },
+    {
+        "label": "\t\t\ttext_color",
+        "kind": 5,
+        "importPath": "deer",
+        "description": "deer",
+        "peekOfCode": "\t\t\ttext_color = (0, 0, 0)\n\t\t# cv2.rectangle(img_better_look, (banner_x, banner_y + 150), (banner_x + banner_w, banner_y + 200 + banner_h), banner_color, -1)\n\t\t# cv2.putText(img_better_look, status_text, (banner_x + 10, banner_y + 200), cv2.FONT_HERSHEY_COMPLEX, 1.0, text_color, 2)\n\t\tout.write(line_visualize)\n\t\tout1.write(img_better_look)\n\t\tout2.write(combo_image)\n\t\t#show result\n\t\t#cv2.imshow(WINDOW_NAME, img)\n\t\t####\n\t\t#cv2.imshow(\"normal lanedetection without extended\",normal_result)",
         "detail": "deer",
         "documentation": {}
     },

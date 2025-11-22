@@ -497,7 +497,7 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 		#allowing safety zone to draw on ->or the color of safety zone will be too dark        
 		im0 = np.zeros_like(img)      
 		if unsafe_v == False and danger_v == False:
-			cv2.putText(img_better_look, f"safe", (800, 100), cv2.FONT_HERSHEY_COMPLEX, 1, (0,255,0), 2)  #bgr
+			pass  # Banner will show SAFE
 			
 			#img0 = np.zeros_like(img_better_look)
 			cv2.fillPoly(im0,pol, (0,255,0))
@@ -807,14 +807,12 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 					if deer_imptim_avg < 1.25 and motion_predict == True:
 						unsafe_v = True
 						danger_v = False
-						cv2.putText(img_better_look, f"Unsafe", (700, 50), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255,0,255), 2)  #bgr
 					if deer_imptim_avg < 0.75 and motion_predict == True:
 						danger_v = True
 						unsafe_v = False
 					else:
 						danger_v = False
 				
-					cv2.putText(img_better_look, f"danger True", (700, 80), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,255,255), 2)  #bgr
 					#speed estimation ends here       
 					
 					if args.enable_ttc_forecasting and deer_speed > 0:
@@ -1003,9 +1001,9 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 				status_text = "MEDIUM"
 				color = (0, 127, 255)  # orange
 			# draw filled rounded rectangle (approx) on overlay
-			cv2.rectangle(overlay, (x1, y1), (x2, y2), color, -1)
+			# cv2.rectangle(overlay, (x1, y1), (x2, y2), color, -1)
 			# blend overlay
-			cv2.addWeighted(overlay, alpha, img_better_look, 1 - alpha, 0, img_better_look)
+			# cv2.addWeighted(overlay, alpha, img_better_look, 1 - alpha, 0, img_better_look)
 			# draw text right-aligned within banner
 			font = cv2.FONT_HERSHEY_DUPLEX
 			font_scale = 1.2
@@ -1013,7 +1011,7 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 			(text_w, text_h), _ = cv2.getTextSize(status_text, font, font_scale, thickness)
 			text_x = x2 - 20 - text_w
 			text_y = y1 + (banner_h + text_h) // 2
-			cv2.putText(img_better_look, status_text, (text_x, text_y), font, font_scale, (255, 255, 255), thickness, cv2.LINE_AA)
+			# cv2.putText(img_better_look, status_text, (text_x, text_y), font, font_scale, (255, 255, 255), thickness, cv2.LINE_AA)
 		except Exception:
 			# If overlay drawing fails for any reason, keep running without crashing
 			pass
@@ -1038,6 +1036,26 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 			flash_color = (0, 0, 255) if (framenumber // 10) % 2 == 0 else (255, 255, 255)
 			cv2.putText(img_better_look, "DANGER!", (320, 240), cv2.FONT_HERSHEY_DUPLEX, 2.0, flash_color, 5, cv2.LINE_AA)
 			print(f"[ALERT] Center danger alert displayed frame={framenumber}")
+
+		# Draw status banner
+		banner_x = img.shape[1] - 200
+		banner_y = 20
+		banner_w = 180
+		banner_h = 40
+		if danger_v:
+			banner_color = (0, 0, 255)  # Red
+			status_text = "DANGER"
+			text_color = (255, 255, 255)
+		elif unsafe_v:
+			banner_color = (0, 165, 255)  # Orange
+			status_text = "MEDIUM"
+			text_color = (255, 255, 255)
+		else:
+			banner_color = (0, 255, 0)  # Green
+			status_text = "SAFE"
+			text_color = (0, 0, 0)
+		# cv2.rectangle(img_better_look, (banner_x, banner_y + 150), (banner_x + banner_w, banner_y + 200 + banner_h), banner_color, -1)
+		# cv2.putText(img_better_look, status_text, (banner_x + 10, banner_y + 200), cv2.FONT_HERSHEY_COMPLEX, 1.0, text_color, 2)
 
 		out.write(line_visualize)
 		out1.write(img_better_look)
