@@ -20,8 +20,53 @@
   - [Demo 2 (YouTube Link)](#demo-2-youtube-link)
 ___
 
-## Introduction & Background 
-There are many fully developed and practical active warning systems based on image recognition nowadays, but most of them are designed for vehicles. Bicycles that often travel on various roads are easily collided by the vehicles behind because they lack rear vision and are slower than most vehicles. Therefore, a hazard warning system is needed to reduce the occurrence of accidents. The purpose of this research is to design a hazard warning system based on the rear view of the bicycle. 
+## Recent Updates and Enhancements
+
+This project has been enhanced with several key improvements for better performance, accuracy, and functionality:
+
+### Deer Detection Integration
+- Switched from vehicle detection to deer detection using a custom PyTorch YOLOv8 model (`deer.pt`).
+- Integrated ultralytics YOLOv8 for GPU-accelerated detection with automatic CPU fallback.
+- Added configurable confidence threshold (default 0.55) to reduce false positives.
+
+### Performance Optimizations
+- Frame skipping (`--skip_frames`) to process every Nth frame for faster video analysis.
+- Lower input resolution (`--input_width`, `--input_height`) for reduced computation.
+- Optional lane detection disabling for scenarios without road lanes.
+- GPU auto-detection with fallback to CPU.
+- Added processing time logging and device usage display.
+
+### Detection and Tracking Improvements
+- Additional Non-Maximum Suppression (NMS) with threshold 0.4 to eliminate duplicate bounding boxes.
+- Fixed NumPy compatibility issues in DeepSORT.
+- Enhanced distance and speed estimation with visual alerts (SAFE/MEDIUM/DANGER banners and flashing text).
+- Configurable unsafe and danger distance thresholds (`--unsafe_dist`, `--danger_dist`).
+
+### Predictive Hazard Alerts
+- **Trajectory Extrapolation**: Uses Kalman filter predictions to forecast object position and alert if entering safety zone.
+- **TTC Forecasting**: Estimates Time-to-Collision and warns if below threshold (e.g., <2 seconds).
+- **Optical Flow Analysis**: Detects motion towards camera using frame-to-frame optical flow.
+- **Proactive Thresholds**: Context-aware alert adjustments.
+- Enable with flags: `--enable_trajectory_extrapolation`, `--enable_ttc_forecasting`, `--enable_optical_flow`, `--enable_proactive_thresholds`.
+
+### Visualization Enhancements
+- Historical trajectory paths (green lines connecting past positions).
+- Predicted motion arrows (yellow arrows indicating Kalman-filtered direction).
+- Bounding boxes and track IDs for all detected objects.
+- Alert overlays for distance, speed, and predictive warnings.
+
+### Output and Processing
+- Incremental output folders (`output/run_001/`, `run_002/`, etc.) to avoid overwriting.
+- Batch processing script (`run_parallel.ps1`) for parallel video analysis in configurable batches.
+- File existence checks to skip missing videos.
+
+### Usage Examples
+- Basic deer detection: `python deer.py --use_pytorch --pytorch_model ./deer.pt --video ./deer/1.mp4 --output ./output/`
+- With optimizations: `python deer.py --use_pytorch --pytorch_model ./deer.pt --video ./deer/1.mp4 --skip_frames 2 --input_width 640 --input_height 480 --confidence_threshold 0.6 --output ./output/`
+- With predictive alerts: `python deer.py --use_pytorch --pytorch_model ./deer.pt --video ./deer/1.mp4 --enable_trajectory_extrapolation --enable_optical_flow --output ./output/`
+- Batch processing: `.\run_parallel.ps1` (processes videos in parallel batches of 5).
+
+These updates make the system more robust for deer detection in bicycle rearview scenarios, with faster processing and advanced predictive warnings. 
 ## An overview of our algorithm
 Our algorithm first employs lane detection to remove uninteresting objects; then, we used Yolov4-tiny object detection algorithm to identify the type of vehicle behind and combine with DeepSort object tracking algorithm to obtain the position and speed information of the vehicle behind the cyclist. Finally, together with the logic and safety zone we designed, the rider could determine whether the rear vehicle will cause danger with the information immediately displayed on the LCD screen. 
 ![ss_diag](https://user-images.githubusercontent.com/69750888/207406779-1ec4d2da-66ae-4c8e-8979-9cac38399f55.jpg)
