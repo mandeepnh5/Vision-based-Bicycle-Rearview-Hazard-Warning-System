@@ -3706,7 +3706,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t#yellow_white = select_yellow_white(img)\n\t\t#cannyresult = canny(yellow_white)\n\t\t#frame_for_dis = draw_dis_lines(frame)\n\t\tcannyresult = canny(img)\n\t\t#get the right vertice automatically\n\t\tvertice = get_vetices()\n\t\tcropped_image , mask = region_of_interest2(cannyresult,vertice)\n\t\tlines = cv2.HoughLinesP(cropped_image, 2, np.pi/180, 100, np.array([]), minLineLength=40, maxLineGap=5)  #minLineLength=40, maxLineGap=5\n\t\t#print(\"lines\\n\",lines)\n\t\tif lines is not None :",
+        "peekOfCode": "\t\t#yellow_white = select_yellow_white(img)\n\t\t#cannyresult = canny(yellow_white)\n\t\t#frame_for_dis = draw_dis_lines(frame)\n\t\tcannyresult = canny(img)\n\t\t#get the right vertice automatically\n\t\tvertice = get_vetices()\n\t\tcropped_image , mask = region_of_interest2(cannyresult,vertice)\n\t\tlines = cv2.HoughLinesP(cropped_image, 2, np.pi/180, 100, np.array([]), minLineLength=40, maxLineGap=5)  #minLineLength=40, maxLineGap=5\n\t\tif lines is not None :\n\t\t\tlines = np.reshape(lines, [len(lines),4]) #lines will be None sometimes",
         "detail": "deer",
         "documentation": {}
     },
@@ -3715,7 +3715,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t#cannyresult = canny(yellow_white)\n\t\t#frame_for_dis = draw_dis_lines(frame)\n\t\tcannyresult = canny(img)\n\t\t#get the right vertice automatically\n\t\tvertice = get_vetices()\n\t\tcropped_image , mask = region_of_interest2(cannyresult,vertice)\n\t\tlines = cv2.HoughLinesP(cropped_image, 2, np.pi/180, 100, np.array([]), minLineLength=40, maxLineGap=5)  #minLineLength=40, maxLineGap=5\n\t\t#print(\"lines\\n\",lines)\n\t\tif lines is not None :\n\t\t\tlines = np.reshape(lines, [len(lines),4]) #lines will be None sometimes",
+        "peekOfCode": "\t\t#cannyresult = canny(yellow_white)\n\t\t#frame_for_dis = draw_dis_lines(frame)\n\t\tcannyresult = canny(img)\n\t\t#get the right vertice automatically\n\t\tvertice = get_vetices()\n\t\tcropped_image , mask = region_of_interest2(cannyresult,vertice)\n\t\tlines = cv2.HoughLinesP(cropped_image, 2, np.pi/180, 100, np.array([]), minLineLength=40, maxLineGap=5)  #minLineLength=40, maxLineGap=5\n\t\tif lines is not None :\n\t\t\tlines = np.reshape(lines, [len(lines),4]) #lines will be None sometimes\n\t\t\t#avg_lines = average_slope_intercept(frame,lines)",
         "detail": "deer",
         "documentation": {}
     },
@@ -3724,7 +3724,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t#frame_for_dis = draw_dis_lines(frame)\n\t\tcannyresult = canny(img)\n\t\t#get the right vertice automatically\n\t\tvertice = get_vetices()\n\t\tcropped_image , mask = region_of_interest2(cannyresult,vertice)\n\t\tlines = cv2.HoughLinesP(cropped_image, 2, np.pi/180, 100, np.array([]), minLineLength=40, maxLineGap=5)  #minLineLength=40, maxLineGap=5\n\t\t#print(\"lines\\n\",lines)\n\t\tif lines is not None :\n\t\t\tlines = np.reshape(lines, [len(lines),4]) #lines will be None sometimes\n\t\t\t#avg_lines = average_slope_intercept(frame,lines)",
+        "peekOfCode": "\t\t#frame_for_dis = draw_dis_lines(frame)\n\t\tcannyresult = canny(img)\n\t\t#get the right vertice automatically\n\t\tvertice = get_vetices()\n\t\tcropped_image , mask = region_of_interest2(cannyresult,vertice)\n\t\tlines = cv2.HoughLinesP(cropped_image, 2, np.pi/180, 100, np.array([]), minLineLength=40, maxLineGap=5)  #minLineLength=40, maxLineGap=5\n\t\tif lines is not None :\n\t\t\tlines = np.reshape(lines, [len(lines),4]) #lines will be None sometimes\n\t\t\t#avg_lines = average_slope_intercept(frame,lines)\n\t\t\tavg_lane, left , right = average_slope_intercept(img,lines)",
         "detail": "deer",
         "documentation": {}
     },
@@ -3733,7 +3733,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\tcannyresult = canny(img)\n\t\t#get the right vertice automatically\n\t\tvertice = get_vetices()\n\t\tcropped_image , mask = region_of_interest2(cannyresult,vertice)\n\t\tlines = cv2.HoughLinesP(cropped_image, 2, np.pi/180, 100, np.array([]), minLineLength=40, maxLineGap=5)  #minLineLength=40, maxLineGap=5\n\t\t#print(\"lines\\n\",lines)\n\t\tif lines is not None :\n\t\t\tlines = np.reshape(lines, [len(lines),4]) #lines will be None sometimes\n\t\t\t#avg_lines = average_slope_intercept(frame,lines)\n\t\t\tavg_lane, left , right = average_slope_intercept(img,lines)",
+        "peekOfCode": "\t\tcannyresult = canny(img)\n\t\t#get the right vertice automatically\n\t\tvertice = get_vetices()\n\t\tcropped_image , mask = region_of_interest2(cannyresult,vertice)\n\t\tlines = cv2.HoughLinesP(cropped_image, 2, np.pi/180, 100, np.array([]), minLineLength=40, maxLineGap=5)  #minLineLength=40, maxLineGap=5\n\t\tif lines is not None :\n\t\t\tlines = np.reshape(lines, [len(lines),4]) #lines will be None sometimes\n\t\t\t#avg_lines = average_slope_intercept(frame,lines)\n\t\t\tavg_lane, left , right = average_slope_intercept(img,lines)\n\t\t\t#fix road disappear issue ->works well",
         "detail": "deer",
         "documentation": {}
     },
@@ -3742,7 +3742,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\tvertice = get_vetices()\n\t\tcropped_image , mask = region_of_interest2(cannyresult,vertice)\n\t\tlines = cv2.HoughLinesP(cropped_image, 2, np.pi/180, 100, np.array([]), minLineLength=40, maxLineGap=5)  #minLineLength=40, maxLineGap=5\n\t\t#print(\"lines\\n\",lines)\n\t\tif lines is not None :\n\t\t\tlines = np.reshape(lines, [len(lines),4]) #lines will be None sometimes\n\t\t\t#avg_lines = average_slope_intercept(frame,lines)\n\t\t\tavg_lane, left , right = average_slope_intercept(img,lines)\n\t\t\t#print(len(avg_lane)) #if len(avg_lane)==1 ->only left or right if len(avg_lane)==2 ->both left and right\n\t\t\t#fix road disappear issue ->works well",
+        "peekOfCode": "\t\tvertice = get_vetices()\n\t\tcropped_image , mask = region_of_interest2(cannyresult,vertice)\n\t\tlines = cv2.HoughLinesP(cropped_image, 2, np.pi/180, 100, np.array([]), minLineLength=40, maxLineGap=5)  #minLineLength=40, maxLineGap=5\n\t\tif lines is not None :\n\t\t\tlines = np.reshape(lines, [len(lines),4]) #lines will be None sometimes\n\t\t\t#avg_lines = average_slope_intercept(frame,lines)\n\t\t\tavg_lane, left , right = average_slope_intercept(img,lines)\n\t\t\t#fix road disappear issue ->works well\n\t\t\tif len(avg_lane)==2:\n\t\t\t\tleft_avg_lines = avg_lane[[0]]",
         "detail": "deer",
         "documentation": {}
     },
@@ -3751,7 +3751,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\tlines = cv2.HoughLinesP(cropped_image, 2, np.pi/180, 100, np.array([]), minLineLength=40, maxLineGap=5)  #minLineLength=40, maxLineGap=5\n\t\t#print(\"lines\\n\",lines)\n\t\tif lines is not None :\n\t\t\tlines = np.reshape(lines, [len(lines),4]) #lines will be None sometimes\n\t\t\t#avg_lines = average_slope_intercept(frame,lines)\n\t\t\tavg_lane, left , right = average_slope_intercept(img,lines)\n\t\t\t#print(len(avg_lane)) #if len(avg_lane)==1 ->only left or right if len(avg_lane)==2 ->both left and right\n\t\t\t#fix road disappear issue ->works well\n\t\t\tif len(avg_lane)==2:\n\t\t\t\tleft_avg_lines = avg_lane[[0]]",
+        "peekOfCode": "\t\tlines = cv2.HoughLinesP(cropped_image, 2, np.pi/180, 100, np.array([]), minLineLength=40, maxLineGap=5)  #minLineLength=40, maxLineGap=5\n\t\tif lines is not None :\n\t\t\tlines = np.reshape(lines, [len(lines),4]) #lines will be None sometimes\n\t\t\t#avg_lines = average_slope_intercept(frame,lines)\n\t\t\tavg_lane, left , right = average_slope_intercept(img,lines)\n\t\t\t#fix road disappear issue ->works well\n\t\t\tif len(avg_lane)==2:\n\t\t\t\tleft_avg_lines = avg_lane[[0]]\n\t\t\t\tright_avg_lines = avg_lane[[1]]\n\t\t\t\tfor x1 , y1 , x2 , y2 in left_avg_lines :",
         "detail": "deer",
         "documentation": {}
     },
@@ -3760,7 +3760,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\tlines = np.reshape(lines, [len(lines),4]) #lines will be None sometimes\n\t\t\t#avg_lines = average_slope_intercept(frame,lines)\n\t\t\tavg_lane, left , right = average_slope_intercept(img,lines)\n\t\t\t#print(len(avg_lane)) #if len(avg_lane)==1 ->only left or right if len(avg_lane)==2 ->both left and right\n\t\t\t#fix road disappear issue ->works well\n\t\t\tif len(avg_lane)==2:\n\t\t\t\tleft_avg_lines = avg_lane[[0]]\n\t\t\t\tright_avg_lines = avg_lane[[1]]\n\t\t\t\tfor x1 , y1 , x2 , y2 in left_avg_lines :\n\t\t\t\t\txl1 , yl1 ,xl2 ,yl2 = x1 , y1 , x2 , y2  ",
+        "peekOfCode": "\t\t\tlines = np.reshape(lines, [len(lines),4]) #lines will be None sometimes\n\t\t\t#avg_lines = average_slope_intercept(frame,lines)\n\t\t\tavg_lane, left , right = average_slope_intercept(img,lines)\n\t\t\t#fix road disappear issue ->works well\n\t\t\tif len(avg_lane)==2:\n\t\t\t\tleft_avg_lines = avg_lane[[0]]\n\t\t\t\tright_avg_lines = avg_lane[[1]]\n\t\t\t\tfor x1 , y1 , x2 , y2 in left_avg_lines :\n\t\t\t\t\txl1 , yl1 ,xl2 ,yl2 = x1 , y1 , x2 , y2  \n\t\t\t\tfor x1 , y1 , x2 , y2 in right_avg_lines :",
         "detail": "deer",
         "documentation": {}
     },
@@ -3769,7 +3769,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t#avg_lines = average_slope_intercept(frame,lines)\n\t\t\tavg_lane, left , right = average_slope_intercept(img,lines)\n\t\t\t#print(len(avg_lane)) #if len(avg_lane)==1 ->only left or right if len(avg_lane)==2 ->both left and right\n\t\t\t#fix road disappear issue ->works well\n\t\t\tif len(avg_lane)==2:\n\t\t\t\tleft_avg_lines = avg_lane[[0]]\n\t\t\t\tright_avg_lines = avg_lane[[1]]\n\t\t\t\tfor x1 , y1 , x2 , y2 in left_avg_lines :\n\t\t\t\t\txl1 , yl1 ,xl2 ,yl2 = x1 , y1 , x2 , y2  \n\t\t\t\tfor x1 , y1 , x2 , y2 in right_avg_lines :",
+        "peekOfCode": "\t\t\t#avg_lines = average_slope_intercept(frame,lines)\n\t\t\tavg_lane, left , right = average_slope_intercept(img,lines)\n\t\t\t#fix road disappear issue ->works well\n\t\t\tif len(avg_lane)==2:\n\t\t\t\tleft_avg_lines = avg_lane[[0]]\n\t\t\t\tright_avg_lines = avg_lane[[1]]\n\t\t\t\tfor x1 , y1 , x2 , y2 in left_avg_lines :\n\t\t\t\t\txl1 , yl1 ,xl2 ,yl2 = x1 , y1 , x2 , y2  \n\t\t\t\tfor x1 , y1 , x2 , y2 in right_avg_lines :\n\t\t\t\t\txr1 , yr1 ,xr2 ,yr2 = x1 , y1 , x2 , y2",
         "detail": "deer",
         "documentation": {}
     },
@@ -3805,7 +3805,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\t\txr1 = xl1 + 1100\n\t\t\t\tif (xr2+5)-(xl2-5) < 130:\n\t\t\t\t\txl2 = xr2 + 10 +150\n\t\t\t\tif (xr2+5) < (xl2-5) :\n\t\t\t\t\txl2 , xr2 = xr2 + 10 , xl2 - 10 \n\t\t\t\tvertices_polly = np.array([[(xl1, yl1), (xl2-5, yl2-80), (xr2+5, yr2-80), (xr1, yr1)]], dtype=np.int32) #extend trapezoid\n\t\t\t\tvertices_polly_unextd = np.array([[(xl1, yl1), (xl2, yl2), (xr2, yr2), (xr1, yr1)]], dtype=np.int32) #unextend trapezoid\n\t\t\texcept (NameError,OverflowError):\n\t\t\t\tprint(\"xl1 is not defined ->only one side of line works\")\n\t\telse:",
+        "peekOfCode": "\t\t\t\t\txr1 = xl1 + 1100\n\t\t\t\tif (xr2+5)-(xl2-5) < 130:\n\t\t\t\t\txl2 = xr2 + 10 +150\n\t\t\t\tif (xr2+5) < (xl2-5) :\n\t\t\t\t\txl2 , xr2 = xr2 + 10 , xl2 - 10 \n\t\t\t\tvertices_polly = np.array([[(xl1, yl1), (xl2-5, yl2-80), (xr2+5, yr2-80), (xr1, yr1)]], dtype=np.int32) #extend trapezoid\n\t\t\t\tvertices_polly_unextd = np.array([[(xl1, yl1), (xl2, yl2), (xr2, yr2), (xr1, yr1)]], dtype=np.int32) #unextend trapezoid\n\t\t\texcept (NameError,OverflowError):\n\t\t\t\t# lane variables missing; continue without lane extension\n\t\t\t\tpass",
         "detail": "deer",
         "documentation": {}
     },
@@ -3814,7 +3814,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\t\txl2 = xr2 + 10 +150\n\t\t\t\tif (xr2+5) < (xl2-5) :\n\t\t\t\t\txl2 , xr2 = xr2 + 10 , xl2 - 10 \n\t\t\t\tvertices_polly = np.array([[(xl1, yl1), (xl2-5, yl2-80), (xr2+5, yr2-80), (xr1, yr1)]], dtype=np.int32) #extend trapezoid\n\t\t\t\tvertices_polly_unextd = np.array([[(xl1, yl1), (xl2, yl2), (xr2, yr2), (xr1, yr1)]], dtype=np.int32) #unextend trapezoid\n\t\t\texcept (NameError,OverflowError):\n\t\t\t\tprint(\"xl1 is not defined ->only one side of line works\")\n\t\telse:\n\t\t\tprint(\"default avg_lines(not detecting lanes)\")\n\t\t\tavg_lane = np.array([[0 ,572 ,479 ,205],   #0 572 ; 479  205 ; 641 193 ; 1268 481",
+        "peekOfCode": "\t\t\t\t\txl2 = xr2 + 10 +150\n\t\t\t\tif (xr2+5) < (xl2-5) :\n\t\t\t\t\txl2 , xr2 = xr2 + 10 , xl2 - 10 \n\t\t\t\tvertices_polly = np.array([[(xl1, yl1), (xl2-5, yl2-80), (xr2+5, yr2-80), (xr1, yr1)]], dtype=np.int32) #extend trapezoid\n\t\t\t\tvertices_polly_unextd = np.array([[(xl1, yl1), (xl2, yl2), (xr2, yr2), (xr1, yr1)]], dtype=np.int32) #unextend trapezoid\n\t\t\texcept (NameError,OverflowError):\n\t\t\t\t# lane variables missing; continue without lane extension\n\t\t\t\tpass\n\t\telse:\n\t\t\t# fallback lane geometry when detection fails",
         "detail": "deer",
         "documentation": {}
     },
@@ -3823,7 +3823,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\tvertices_polly = np.array([[(xl1, yl1), (xl2-5, yl2-80), (xr2+5, yr2-80), (xr1, yr1)]], dtype=np.int32) #extend trapezoid\n\t\t\t\tvertices_polly_unextd = np.array([[(xl1, yl1), (xl2, yl2), (xr2, yr2), (xr1, yr1)]], dtype=np.int32) #unextend trapezoid\n\t\t\texcept (NameError,OverflowError):\n\t\t\t\tprint(\"xl1 is not defined ->only one side of line works\")\n\t\telse:\n\t\t\tprint(\"default avg_lines(not detecting lanes)\")\n\t\t\tavg_lane = np.array([[0 ,572 ,479 ,205],   #0 572 ; 479  205 ; 641 193 ; 1268 481\n                                 [1268 ,481 ,641 ,193]])\n\t\t\tvertices_polly = None\n\t\timg_zero = np.zeros_like(img)",
+        "peekOfCode": "\t\t\t\tvertices_polly = np.array([[(xl1, yl1), (xl2-5, yl2-80), (xr2+5, yr2-80), (xr1, yr1)]], dtype=np.int32) #extend trapezoid\n\t\t\t\tvertices_polly_unextd = np.array([[(xl1, yl1), (xl2, yl2), (xr2, yr2), (xr1, yr1)]], dtype=np.int32) #unextend trapezoid\n\t\t\texcept (NameError,OverflowError):\n\t\t\t\t# lane variables missing; continue without lane extension\n\t\t\t\tpass\n\t\telse:\n\t\t\t# fallback lane geometry when detection fails\n\t\t\tavg_lane = np.array([[0 ,572 ,479 ,205],   #0 572 ; 479  205 ; 641 193 ; 1268 481\n\t\t                         [1268 ,481 ,641 ,193]])\n\t\t\tvertices_polly = None",
         "detail": "deer",
         "documentation": {}
     },
@@ -3832,7 +3832,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\tvertices_polly_unextd = np.array([[(xl1, yl1), (xl2, yl2), (xr2, yr2), (xr1, yr1)]], dtype=np.int32) #unextend trapezoid\n\t\t\texcept (NameError,OverflowError):\n\t\t\t\tprint(\"xl1 is not defined ->only one side of line works\")\n\t\telse:\n\t\t\tprint(\"default avg_lines(not detecting lanes)\")\n\t\t\tavg_lane = np.array([[0 ,572 ,479 ,205],   #0 572 ; 479  205 ; 641 193 ; 1268 481\n                                 [1268 ,481 ,641 ,193]])\n\t\t\tvertices_polly = None\n\t\timg_zero = np.zeros_like(img)\n\t\timg0 =np.zeros_like(img) ",
+        "peekOfCode": "\t\t\t\tvertices_polly_unextd = np.array([[(xl1, yl1), (xl2, yl2), (xr2, yr2), (xr1, yr1)]], dtype=np.int32) #unextend trapezoid\n\t\t\texcept (NameError,OverflowError):\n\t\t\t\t# lane variables missing; continue without lane extension\n\t\t\t\tpass\n\t\telse:\n\t\t\t# fallback lane geometry when detection fails\n\t\t\tavg_lane = np.array([[0 ,572 ,479 ,205],   #0 572 ; 479  205 ; 641 193 ; 1268 481\n\t\t                         [1268 ,481 ,641 ,193]])\n\t\t\tvertices_polly = None\n\t\timg_zero = np.zeros_like(img)",
         "detail": "deer",
         "documentation": {}
     },
@@ -3841,7 +3841,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\tavg_lane = np.array([[0 ,572 ,479 ,205],   #0 572 ; 479  205 ; 641 193 ; 1268 481\n                                 [1268 ,481 ,641 ,193]])\n\t\t\tvertices_polly = None\n\t\timg_zero = np.zeros_like(img)\n\t\timg0 =np.zeros_like(img) \n\t\tcolor_polly =  (0,255,0) #BGR\n\t\tline_image_not_avg = draw_lines1(img0, lines)\n\t\tline_image = draw_lines2(img, avg_lane)\n\t\tline_visualize = cv2.addWeighted(img_better_look,1,line_image,1,1)\n\t\t#line_visualize = cv2.addWeighted(line_image_not_avg,1,line_visualize,1,1)",
+        "peekOfCode": "\t\t\tavg_lane = np.array([[0 ,572 ,479 ,205],   #0 572 ; 479  205 ; 641 193 ; 1268 481\n\t\t                         [1268 ,481 ,641 ,193]])\n\t\t\tvertices_polly = None\n\t\timg_zero = np.zeros_like(img)\n\t\timg0 =np.zeros_like(img) \n\t\tcolor_polly =  (0,255,0) #BGR\n\t\tline_image_not_avg = draw_lines1(img0, lines)\n\t\tline_image = draw_lines2(img, avg_lane)\n\t\tline_visualize = cv2.addWeighted(img_better_look,1,line_image,1,1)\n\t\t#line_visualize = cv2.addWeighted(line_image_not_avg,1,line_visualize,1,1)",
         "detail": "deer",
         "documentation": {}
     },
@@ -3850,7 +3850,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\tvertices_polly = None\n\t\timg_zero = np.zeros_like(img)\n\t\timg0 =np.zeros_like(img) \n\t\tcolor_polly =  (0,255,0) #BGR\n\t\tline_image_not_avg = draw_lines1(img0, lines)\n\t\tline_image = draw_lines2(img, avg_lane)\n\t\tline_visualize = cv2.addWeighted(img_better_look,1,line_image,1,1)\n\t\t#line_visualize = cv2.addWeighted(line_image_not_avg,1,line_visualize,1,1)\n\t\tgod = filterout2(img,vertice,mask)\n\t\t#print(vertices_polly)",
+        "peekOfCode": "\t\t\tvertices_polly = None\n\t\timg_zero = np.zeros_like(img)\n\t\timg0 =np.zeros_like(img) \n\t\tcolor_polly =  (0,255,0) #BGR\n\t\tline_image_not_avg = draw_lines1(img0, lines)\n\t\tline_image = draw_lines2(img, avg_lane)\n\t\tline_visualize = cv2.addWeighted(img_better_look,1,line_image,1,1)\n\t\t#line_visualize = cv2.addWeighted(line_image_not_avg,1,line_visualize,1,1)\n\t\tgod = filterout2(img,vertice,mask)\n\t\ttry:",
         "detail": "deer",
         "documentation": {}
     },
@@ -3859,7 +3859,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\timg_zero = np.zeros_like(img)\n\t\timg0 =np.zeros_like(img) \n\t\tcolor_polly =  (0,255,0) #BGR\n\t\tline_image_not_avg = draw_lines1(img0, lines)\n\t\tline_image = draw_lines2(img, avg_lane)\n\t\tline_visualize = cv2.addWeighted(img_better_look,1,line_image,1,1)\n\t\t#line_visualize = cv2.addWeighted(line_image_not_avg,1,line_visualize,1,1)\n\t\tgod = filterout2(img,vertice,mask)\n\t\t#print(vertices_polly)\n\t\ttry:",
+        "peekOfCode": "\t\timg_zero = np.zeros_like(img)\n\t\timg0 =np.zeros_like(img) \n\t\tcolor_polly =  (0,255,0) #BGR\n\t\tline_image_not_avg = draw_lines1(img0, lines)\n\t\tline_image = draw_lines2(img, avg_lane)\n\t\tline_visualize = cv2.addWeighted(img_better_look,1,line_image,1,1)\n\t\t#line_visualize = cv2.addWeighted(line_image_not_avg,1,line_visualize,1,1)\n\t\tgod = filterout2(img,vertice,mask)\n\t\ttry:\n\t\t\t#cv2.fillPoly(line_image, vertices_polly, color_polly)",
         "detail": "deer",
         "documentation": {}
     },
@@ -3868,7 +3868,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\tcolor_polly =  (0,255,0) #BGR\n\t\tline_image_not_avg = draw_lines1(img0, lines)\n\t\tline_image = draw_lines2(img, avg_lane)\n\t\tline_visualize = cv2.addWeighted(img_better_look,1,line_image,1,1)\n\t\t#line_visualize = cv2.addWeighted(line_image_not_avg,1,line_visualize,1,1)\n\t\tgod = filterout2(img,vertice,mask)\n\t\t#print(vertices_polly)\n\t\ttry:\n\t\t\t#cv2.fillPoly(line_image, vertices_polly, color_polly)\n\t\t\tcv2.fillPoly(img_zero, vertices_polly_unextd, (0,255,0))",
+        "peekOfCode": "\t\tcolor_polly =  (0,255,0) #BGR\n\t\tline_image_not_avg = draw_lines1(img0, lines)\n\t\tline_image = draw_lines2(img, avg_lane)\n\t\tline_visualize = cv2.addWeighted(img_better_look,1,line_image,1,1)\n\t\t#line_visualize = cv2.addWeighted(line_image_not_avg,1,line_visualize,1,1)\n\t\tgod = filterout2(img,vertice,mask)\n\t\ttry:\n\t\t\t#cv2.fillPoly(line_image, vertices_polly, color_polly)\n\t\t\tcv2.fillPoly(img_zero, vertices_polly_unextd, (0,255,0))\n\t\t\tfiltered = filterout(img,vertices_polly)",
         "detail": "deer",
         "documentation": {}
     },
@@ -3877,7 +3877,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\tline_image_not_avg = draw_lines1(img0, lines)\n\t\tline_image = draw_lines2(img, avg_lane)\n\t\tline_visualize = cv2.addWeighted(img_better_look,1,line_image,1,1)\n\t\t#line_visualize = cv2.addWeighted(line_image_not_avg,1,line_visualize,1,1)\n\t\tgod = filterout2(img,vertice,mask)\n\t\t#print(vertices_polly)\n\t\ttry:\n\t\t\t#cv2.fillPoly(line_image, vertices_polly, color_polly)\n\t\t\tcv2.fillPoly(img_zero, vertices_polly_unextd, (0,255,0))\n\t\t\tfiltered = filterout(img,vertices_polly)",
+        "peekOfCode": "\t\tline_image_not_avg = draw_lines1(img0, lines)\n\t\tline_image = draw_lines2(img, avg_lane)\n\t\tline_visualize = cv2.addWeighted(img_better_look,1,line_image,1,1)\n\t\t#line_visualize = cv2.addWeighted(line_image_not_avg,1,line_visualize,1,1)\n\t\tgod = filterout2(img,vertice,mask)\n\t\ttry:\n\t\t\t#cv2.fillPoly(line_image, vertices_polly, color_polly)\n\t\t\tcv2.fillPoly(img_zero, vertices_polly_unextd, (0,255,0))\n\t\t\tfiltered = filterout(img,vertices_polly)\n\t\t\t# vertices polygon used for masking",
         "detail": "deer",
         "documentation": {}
     },
@@ -3886,7 +3886,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\tline_image = draw_lines2(img, avg_lane)\n\t\tline_visualize = cv2.addWeighted(img_better_look,1,line_image,1,1)\n\t\t#line_visualize = cv2.addWeighted(line_image_not_avg,1,line_visualize,1,1)\n\t\tgod = filterout2(img,vertice,mask)\n\t\t#print(vertices_polly)\n\t\ttry:\n\t\t\t#cv2.fillPoly(line_image, vertices_polly, color_polly)\n\t\t\tcv2.fillPoly(img_zero, vertices_polly_unextd, (0,255,0))\n\t\t\tfiltered = filterout(img,vertices_polly)\n\t\t\t#print(\"vertices polly :\\n\",vertices_polly)",
+        "peekOfCode": "\t\tline_image = draw_lines2(img, avg_lane)\n\t\tline_visualize = cv2.addWeighted(img_better_look,1,line_image,1,1)\n\t\t#line_visualize = cv2.addWeighted(line_image_not_avg,1,line_visualize,1,1)\n\t\tgod = filterout2(img,vertice,mask)\n\t\ttry:\n\t\t\t#cv2.fillPoly(line_image, vertices_polly, color_polly)\n\t\t\tcv2.fillPoly(img_zero, vertices_polly_unextd, (0,255,0))\n\t\t\tfiltered = filterout(img,vertices_polly)\n\t\t\t# vertices polygon used for masking\n\t\t\tif lanedetection == True:",
         "detail": "deer",
         "documentation": {}
     },
@@ -3895,7 +3895,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\tline_visualize = cv2.addWeighted(img_better_look,1,line_image,1,1)\n\t\t#line_visualize = cv2.addWeighted(line_image_not_avg,1,line_visualize,1,1)\n\t\tgod = filterout2(img,vertice,mask)\n\t\t#print(vertices_polly)\n\t\ttry:\n\t\t\t#cv2.fillPoly(line_image, vertices_polly, color_polly)\n\t\t\tcv2.fillPoly(img_zero, vertices_polly_unextd, (0,255,0))\n\t\t\tfiltered = filterout(img,vertices_polly)\n\t\t\t#print(\"vertices polly :\\n\",vertices_polly)\n\t\t\tif lanedetection == True:",
+        "peekOfCode": "\t\tline_visualize = cv2.addWeighted(img_better_look,1,line_image,1,1)\n\t\t#line_visualize = cv2.addWeighted(line_image_not_avg,1,line_visualize,1,1)\n\t\tgod = filterout2(img,vertice,mask)\n\t\ttry:\n\t\t\t#cv2.fillPoly(line_image, vertices_polly, color_polly)\n\t\t\tcv2.fillPoly(img_zero, vertices_polly_unextd, (0,255,0))\n\t\t\tfiltered = filterout(img,vertices_polly)\n\t\t\t# vertices polygon used for masking\n\t\t\tif lanedetection == True:\n\t\t\t\timg=filtered #img = filtered",
         "detail": "deer",
         "documentation": {}
     },
@@ -3904,7 +3904,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t#line_visualize = cv2.addWeighted(line_image_not_avg,1,line_visualize,1,1)\n\t\tgod = filterout2(img,vertice,mask)\n\t\t#print(vertices_polly)\n\t\ttry:\n\t\t\t#cv2.fillPoly(line_image, vertices_polly, color_polly)\n\t\t\tcv2.fillPoly(img_zero, vertices_polly_unextd, (0,255,0))\n\t\t\tfiltered = filterout(img,vertices_polly)\n\t\t\t#print(\"vertices polly :\\n\",vertices_polly)\n\t\t\tif lanedetection == True:\n\t\t\t\timg=filtered #img = filtered",
+        "peekOfCode": "\t\t#line_visualize = cv2.addWeighted(line_image_not_avg,1,line_visualize,1,1)\n\t\tgod = filterout2(img,vertice,mask)\n\t\ttry:\n\t\t\t#cv2.fillPoly(line_image, vertices_polly, color_polly)\n\t\t\tcv2.fillPoly(img_zero, vertices_polly_unextd, (0,255,0))\n\t\t\tfiltered = filterout(img,vertices_polly)\n\t\t\t# vertices polygon used for masking\n\t\t\tif lanedetection == True:\n\t\t\t\timg=filtered #img = filtered\n\t\t\t\t#img = god",
         "detail": "deer",
         "documentation": {}
     },
@@ -3913,7 +3913,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\tgod = filterout2(img,vertice,mask)\n\t\t#print(vertices_polly)\n\t\ttry:\n\t\t\t#cv2.fillPoly(line_image, vertices_polly, color_polly)\n\t\t\tcv2.fillPoly(img_zero, vertices_polly_unextd, (0,255,0))\n\t\t\tfiltered = filterout(img,vertices_polly)\n\t\t\t#print(\"vertices polly :\\n\",vertices_polly)\n\t\t\tif lanedetection == True:\n\t\t\t\timg=filtered #img = filtered\n\t\t\t\t#img = god",
+        "peekOfCode": "\t\tgod = filterout2(img,vertice,mask)\n\t\ttry:\n\t\t\t#cv2.fillPoly(line_image, vertices_polly, color_polly)\n\t\t\tcv2.fillPoly(img_zero, vertices_polly_unextd, (0,255,0))\n\t\t\tfiltered = filterout(img,vertices_polly)\n\t\t\t# vertices polygon used for masking\n\t\t\tif lanedetection == True:\n\t\t\t\timg=filtered #img = filtered\n\t\t\t\t#img = god\n\t\t\t\t#img = img   #not filtering",
         "detail": "deer",
         "documentation": {}
     },
@@ -3922,7 +3922,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\tfiltered = filterout(img,vertices_polly)\n\t\t\t#print(\"vertices polly :\\n\",vertices_polly)\n\t\t\tif lanedetection == True:\n\t\t\t\timg=filtered #img = filtered\n\t\t\t\t#img = god\n\t\t\t\t#img = img   #not filtering\n\t\t\t#god = filterout2(frame,mask)\n\t\texcept NameError:\n\t\t\t#filtered = original_image \n\t\t\tfiltered = god",
+        "peekOfCode": "\t\t\tfiltered = filterout(img,vertices_polly)\n\t\t\t# vertices polygon used for masking\n\t\t\tif lanedetection == True:\n\t\t\t\timg=filtered #img = filtered\n\t\t\t\t#img = god\n\t\t\t\t#img = img   #not filtering\n\t\t\t#god = filterout2(frame,mask)\n\t\texcept NameError:\n\t\t\t#filtered = original_image \n\t\t\tfiltered = god",
         "detail": "deer",
         "documentation": {}
     },
@@ -3931,7 +3931,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\t#img = god\n\t\t\t\t#img = img   #not filtering\n\t\t\t#god = filterout2(frame,mask)\n\t\texcept NameError:\n\t\t\t#filtered = original_image \n\t\t\tfiltered = god\n\t\t\tprint(\"vertices polly is not defined\")\n\t\tnormal_result = cv2.addWeighted(img,1,img_zero,1,1)\n\t\t#print(\"vertices polly :\",vertices_polly)\n\t\tcombo_image = cv2.addWeighted(img, 1, line_image, 1, 1)",
+        "peekOfCode": "\t\t\t\t#img = god\n\t\t\t\t#img = img   #not filtering\n\t\t\t#god = filterout2(frame,mask)\n\t\texcept NameError:\n\t\t\t#filtered = original_image \n\t\t\tfiltered = god\n\t\t\t# vertices not defined; using unfiltered image\n\t\t\tpass\n\t\tnormal_result = cv2.addWeighted(img,1,img_zero,1,1)\n\t\t#print(\"vertices polly :\",vertices_polly)",
         "detail": "deer",
         "documentation": {}
     },
@@ -3940,7 +3940,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\t#img = img   #not filtering\n\t\t\t#god = filterout2(frame,mask)\n\t\texcept NameError:\n\t\t\t#filtered = original_image \n\t\t\tfiltered = god\n\t\t\tprint(\"vertices polly is not defined\")\n\t\tnormal_result = cv2.addWeighted(img,1,img_zero,1,1)\n\t\t#print(\"vertices polly :\",vertices_polly)\n\t\tcombo_image = cv2.addWeighted(img, 1, line_image, 1, 1)\n\t\t#combo_image = cv2.addWeighted(combo_image, 1, line_image_not_avg, 1, 1) #addWeighted function cant add two srcs",
+        "peekOfCode": "\t\t\t\t#img = img   #not filtering\n\t\t\t#god = filterout2(frame,mask)\n\t\texcept NameError:\n\t\t\t#filtered = original_image \n\t\t\tfiltered = god\n\t\t\t# vertices not defined; using unfiltered image\n\t\t\tpass\n\t\tnormal_result = cv2.addWeighted(img,1,img_zero,1,1)\n\t\t#print(\"vertices polly :\",vertices_polly)\n\t\tcombo_image = cv2.addWeighted(img, 1, line_image, 1, 1)",
         "detail": "deer",
         "documentation": {}
     },
@@ -3949,7 +3949,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t#god = filterout2(frame,mask)\n\t\texcept NameError:\n\t\t\t#filtered = original_image \n\t\t\tfiltered = god\n\t\t\tprint(\"vertices polly is not defined\")\n\t\tnormal_result = cv2.addWeighted(img,1,img_zero,1,1)\n\t\t#print(\"vertices polly :\",vertices_polly)\n\t\tcombo_image = cv2.addWeighted(img, 1, line_image, 1, 1)\n\t\t#combo_image = cv2.addWeighted(combo_image, 1, line_image_not_avg, 1, 1) #addWeighted function cant add two srcs\n\t\timg_notavg = cv2.addWeighted(img, 1, line_image_not_avg, 1, 1)",
+        "peekOfCode": "\t\t\t#god = filterout2(frame,mask)\n\t\texcept NameError:\n\t\t\t#filtered = original_image \n\t\t\tfiltered = god\n\t\t\t# vertices not defined; using unfiltered image\n\t\t\tpass\n\t\tnormal_result = cv2.addWeighted(img,1,img_zero,1,1)\n\t\t#print(\"vertices polly :\",vertices_polly)\n\t\tcombo_image = cv2.addWeighted(img, 1, line_image, 1, 1)\n\t\t# combo image and non-averaged overlays",
         "detail": "deer",
         "documentation": {}
     },
@@ -3958,7 +3958,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t#filtered = original_image \n\t\t\tfiltered = god\n\t\t\tprint(\"vertices polly is not defined\")\n\t\tnormal_result = cv2.addWeighted(img,1,img_zero,1,1)\n\t\t#print(\"vertices polly :\",vertices_polly)\n\t\tcombo_image = cv2.addWeighted(img, 1, line_image, 1, 1)\n\t\t#combo_image = cv2.addWeighted(combo_image, 1, line_image_not_avg, 1, 1) #addWeighted function cant add two srcs\n\t\timg_notavg = cv2.addWeighted(img, 1, line_image_not_avg, 1, 1)\n\t\t#allowing safety zone to draw on ->or the color of safety zone will be too dark        \n\t\tim0 = np.zeros_like(img)      ",
+        "peekOfCode": "\t\t\t#filtered = original_image \n\t\t\tfiltered = god\n\t\t\t# vertices not defined; using unfiltered image\n\t\t\tpass\n\t\tnormal_result = cv2.addWeighted(img,1,img_zero,1,1)\n\t\t#print(\"vertices polly :\",vertices_polly)\n\t\tcombo_image = cv2.addWeighted(img, 1, line_image, 1, 1)\n\t\t# combo image and non-averaged overlays\n\t\timg_notavg = cv2.addWeighted(img, 1, line_image_not_avg, 1, 1)\n\t\t#allowing safety zone to draw on ->or the color of safety zone will be too dark        ",
         "detail": "deer",
         "documentation": {}
     },
@@ -3967,7 +3967,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\tfiltered = god\n\t\t\tprint(\"vertices polly is not defined\")\n\t\tnormal_result = cv2.addWeighted(img,1,img_zero,1,1)\n\t\t#print(\"vertices polly :\",vertices_polly)\n\t\tcombo_image = cv2.addWeighted(img, 1, line_image, 1, 1)\n\t\t#combo_image = cv2.addWeighted(combo_image, 1, line_image_not_avg, 1, 1) #addWeighted function cant add two srcs\n\t\timg_notavg = cv2.addWeighted(img, 1, line_image_not_avg, 1, 1)\n\t\t#allowing safety zone to draw on ->or the color of safety zone will be too dark        \n\t\tim0 = np.zeros_like(img)      \n\t\tif unsafe_v == False and danger_v == False:",
+        "peekOfCode": "\t\t\tfiltered = god\n\t\t\t# vertices not defined; using unfiltered image\n\t\t\tpass\n\t\tnormal_result = cv2.addWeighted(img,1,img_zero,1,1)\n\t\t#print(\"vertices polly :\",vertices_polly)\n\t\tcombo_image = cv2.addWeighted(img, 1, line_image, 1, 1)\n\t\t# combo image and non-averaged overlays\n\t\timg_notavg = cv2.addWeighted(img, 1, line_image_not_avg, 1, 1)\n\t\t#allowing safety zone to draw on ->or the color of safety zone will be too dark        \n\t\tim0 = np.zeros_like(img)      ",
         "detail": "deer",
         "documentation": {}
     },
@@ -3976,7 +3976,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\tnormal_result = cv2.addWeighted(img,1,img_zero,1,1)\n\t\t#print(\"vertices polly :\",vertices_polly)\n\t\tcombo_image = cv2.addWeighted(img, 1, line_image, 1, 1)\n\t\t#combo_image = cv2.addWeighted(combo_image, 1, line_image_not_avg, 1, 1) #addWeighted function cant add two srcs\n\t\timg_notavg = cv2.addWeighted(img, 1, line_image_not_avg, 1, 1)\n\t\t#allowing safety zone to draw on ->or the color of safety zone will be too dark        \n\t\tim0 = np.zeros_like(img)      \n\t\tif unsafe_v == False and danger_v == False:\n\t\t\tpass  # Banner will show SAFE\n\t\t\t#img0 = np.zeros_like(img_better_look)",
+        "peekOfCode": "\t\tnormal_result = cv2.addWeighted(img,1,img_zero,1,1)\n\t\t#print(\"vertices polly :\",vertices_polly)\n\t\tcombo_image = cv2.addWeighted(img, 1, line_image, 1, 1)\n\t\t# combo image and non-averaged overlays\n\t\timg_notavg = cv2.addWeighted(img, 1, line_image_not_avg, 1, 1)\n\t\t#allowing safety zone to draw on ->or the color of safety zone will be too dark        \n\t\tim0 = np.zeros_like(img)      \n\t\tif unsafe_v == False and danger_v == False:\n\t\t\tpass  # Banner will show SAFE\n\t\t\t#img0 = np.zeros_like(img_better_look)",
         "detail": "deer",
         "documentation": {}
     },
@@ -3985,16 +3985,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\tcombo_image = cv2.addWeighted(img, 1, line_image, 1, 1)\n\t\t#combo_image = cv2.addWeighted(combo_image, 1, line_image_not_avg, 1, 1) #addWeighted function cant add two srcs\n\t\timg_notavg = cv2.addWeighted(img, 1, line_image_not_avg, 1, 1)\n\t\t#allowing safety zone to draw on ->or the color of safety zone will be too dark        \n\t\tim0 = np.zeros_like(img)      \n\t\tif unsafe_v == False and danger_v == False:\n\t\t\tpass  # Banner will show SAFE\n\t\t\t#img0 = np.zeros_like(img_better_look)\n\t\t\tcv2.fillPoly(im0,pol, (0,255,0))\n\t\t\t#img_better_look = cv2.addWeighted(img0,0.7,img_better_look,1,1)",
-        "detail": "deer",
-        "documentation": {}
-    },
-    {
-        "label": "\t\t#combo_image",
-        "kind": 5,
-        "importPath": "deer",
-        "description": "deer",
-        "peekOfCode": "\t\t#combo_image = cv2.addWeighted(combo_image, 1, line_image_not_avg, 1, 1) #addWeighted function cant add two srcs\n\t\timg_notavg = cv2.addWeighted(img, 1, line_image_not_avg, 1, 1)\n\t\t#allowing safety zone to draw on ->or the color of safety zone will be too dark        \n\t\tim0 = np.zeros_like(img)      \n\t\tif unsafe_v == False and danger_v == False:\n\t\t\tpass  # Banner will show SAFE\n\t\t\t#img0 = np.zeros_like(img_better_look)\n\t\t\tcv2.fillPoly(im0,pol, (0,255,0))\n\t\t\t#img_better_look = cv2.addWeighted(img0,0.7,img_better_look,1,1)\n\t\t\t#speed estimate zone",
+        "peekOfCode": "\t\tcombo_image = cv2.addWeighted(img, 1, line_image, 1, 1)\n\t\t# combo image and non-averaged overlays\n\t\timg_notavg = cv2.addWeighted(img, 1, line_image_not_avg, 1, 1)\n\t\t#allowing safety zone to draw on ->or the color of safety zone will be too dark        \n\t\tim0 = np.zeros_like(img)      \n\t\tif unsafe_v == False and danger_v == False:\n\t\t\tpass  # Banner will show SAFE\n\t\t\t#img0 = np.zeros_like(img_better_look)\n\t\t\tcv2.fillPoly(im0,pol, (0,255,0))\n\t\t\t#img_better_look = cv2.addWeighted(img0,0.7,img_better_look,1,1)",
         "detail": "deer",
         "documentation": {}
     },
@@ -4138,7 +4129,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\th = output[:,[3]] - output[:,[1]]\n\t\t\txc , yc , w , h = compute_xc_yc(output)\n\t\t\t#print(xc,yc,\"center\")\n\t\t\tboxes = np.concatenate((xc,yc,w,h),axis=1)\n\t\t\toutputs = tracker.run(img, boxes, confs)\n\t\t# Predictive checks after outputs is defined\n\t\tif args.enable_trajectory_extrapolation and len(outputs) > 0:\n\t\t\tif trajectory_extrapolation(outputs, img.shape, pol):\n\t\t\t\tcv2.putText(img_better_look, \"Trajectory Alert!\", (50, 200), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,0,255), 2)\n\t\tif prev_gray is not None and args.enable_optical_flow and len(outputs) > 0:",
+        "peekOfCode": "\t\t\th = output[:,[3]] - output[:,[1]]\n\t\t\txc , yc , w , h = compute_xc_yc(output)\n\t\t\t#print(xc,yc,\"center\")\n\t\t\tboxes = np.concatenate((xc,yc,w,h),axis=1)\n\t\t\toutputs = tracker.run(img, boxes, confs)\n\t\t# Predictive checks after outputs is defined\n\t\tif args.enable_trajectory_extrapolation and len(outputs) > 0:\n\t\t\tif trajectory_extrapolation(outputs, img.shape, pol):\n\t\t\t\tcv2.putText(img_better_look, \"Trajectory Alert!\", (50, 200), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,0,255), 2)\n\t\t# if prev_gray is not None and args.enable_optical_flow and len(outputs) > 0:",
         "detail": "deer",
         "documentation": {}
     },
@@ -4147,7 +4138,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\tboxes = np.concatenate((xc,yc,w,h),axis=1)\n\t\t\toutputs = tracker.run(img, boxes, confs)\n\t\t# Predictive checks after outputs is defined\n\t\tif args.enable_trajectory_extrapolation and len(outputs) > 0:\n\t\t\tif trajectory_extrapolation(outputs, img.shape, pol):\n\t\t\t\tcv2.putText(img_better_look, \"Trajectory Alert!\", (50, 200), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,0,255), 2)\n\t\tif prev_gray is not None and args.enable_optical_flow and len(outputs) > 0:\n\t\t\tfor x1,y1,x2,y2,ids in outputs:\n\t\t\t\tif optical_flow_analysis(prev_gray, gray, (int(x1),int(y1),int(x2),int(y2))):\n\t\t\t\t\tcv2.putText(img_better_look, \"Optical Flow Alert!\", (50, 250), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255,0,255), 2)",
+        "peekOfCode": "\t\t\tboxes = np.concatenate((xc,yc,w,h),axis=1)\n\t\t\toutputs = tracker.run(img, boxes, confs)\n\t\t# Predictive checks after outputs is defined\n\t\tif args.enable_trajectory_extrapolation and len(outputs) > 0:\n\t\t\tif trajectory_extrapolation(outputs, img.shape, pol):\n\t\t\t\tcv2.putText(img_better_look, \"Trajectory Alert!\", (50, 200), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,0,255), 2)\n\t\t# if prev_gray is not None and args.enable_optical_flow and len(outputs) > 0:\n\t\t# \tfor x1,y1,x2,y2,ids in outputs:\n\t\t# \t\tif optical_flow_analysis(prev_gray, gray, (int(x1),int(y1),int(x2),int(y2))):\n\t\t# \t\t\tcv2.putText(img_better_look, \"Optical Flow Alert!\", (50, 250), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255,0,255), 2)",
         "detail": "deer",
         "documentation": {}
     },
@@ -4156,7 +4147,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\toutputs = tracker.run(img, boxes, confs)\n\t\t# Predictive checks after outputs is defined\n\t\tif args.enable_trajectory_extrapolation and len(outputs) > 0:\n\t\t\tif trajectory_extrapolation(outputs, img.shape, pol):\n\t\t\t\tcv2.putText(img_better_look, \"Trajectory Alert!\", (50, 200), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,0,255), 2)\n\t\tif prev_gray is not None and args.enable_optical_flow and len(outputs) > 0:\n\t\t\tfor x1,y1,x2,y2,ids in outputs:\n\t\t\t\tif optical_flow_analysis(prev_gray, gray, (int(x1),int(y1),int(x2),int(y2))):\n\t\t\t\t\tcv2.putText(img_better_look, \"Optical Flow Alert!\", (50, 250), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255,0,255), 2)\n\t\t\t\t\tbreak",
+        "peekOfCode": "\t\t\toutputs = tracker.run(img, boxes, confs)\n\t\t# Predictive checks after outputs is defined\n\t\tif args.enable_trajectory_extrapolation and len(outputs) > 0:\n\t\t\tif trajectory_extrapolation(outputs, img.shape, pol):\n\t\t\t\tcv2.putText(img_better_look, \"Trajectory Alert!\", (50, 200), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,0,255), 2)\n\t\t# if prev_gray is not None and args.enable_optical_flow and len(outputs) > 0:\n\t\t# \tfor x1,y1,x2,y2,ids in outputs:\n\t\t# \t\tif optical_flow_analysis(prev_gray, gray, (int(x1),int(y1),int(x2),int(y2))):\n\t\t# \t\t\tcv2.putText(img_better_look, \"Optical Flow Alert!\", (50, 250), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255,0,255), 2)\n\t\t# \t\t\tbreak",
         "detail": "deer",
         "documentation": {}
     },
@@ -4372,7 +4363,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\tcenter = (xc,yc,h)\n\t\t\t\t#cent = (xc,yc)\n\t\t\t\tw_tim = (w,tim,cls)\n\t\t\t\t#xc = np.array(xc[0,0],dtype = np.int32) \n\t\t\t\t#yc = np.array(yc[0,0],dtype = np.int32)\n\t\t\t\tx_res_yc = 1.062*yc - 20 \n\t\t\t\tx_res_y = 1.062*y2 - 20\n\t\t\t\tpol = np.array([[(224, 960), (500, 570), (586, 570),(1000, 960)]], dtype=np.int32)  \n\t\t\t\t#pts[ids].append(center)\n\t\t\t\tprint(\"id\",ids,\"w_tim\",w_tim)",
+        "peekOfCode": "\t\t\t\tcenter = (xc,yc,h)\n\t\t\t\t#cent = (xc,yc)\n\t\t\t\tw_tim = (w,tim,cls)\n\t\t\t\t#xc = np.array(xc[0,0],dtype = np.int32) \n\t\t\t\t#yc = np.array(yc[0,0],dtype = np.int32)\n\t\t\t\tx_res_yc = 1.062*yc - 20 \n\t\t\t\tx_res_y = 1.062*y2 - 20\n\t\t\t\tpol = np.array([[(224, 960), (500, 570), (586, 570),(1000, 960)]], dtype=np.int32)  \n\t\t\t\t#pts[ids].append(center)\n\t\t\t\tpt[ids].append(low_left)",
         "detail": "deer",
         "documentation": {}
     },
@@ -4381,7 +4372,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\t#cent = (xc,yc)\n\t\t\t\tw_tim = (w,tim,cls)\n\t\t\t\t#xc = np.array(xc[0,0],dtype = np.int32) \n\t\t\t\t#yc = np.array(yc[0,0],dtype = np.int32)\n\t\t\t\tx_res_yc = 1.062*yc - 20 \n\t\t\t\tx_res_y = 1.062*y2 - 20\n\t\t\t\tpol = np.array([[(224, 960), (500, 570), (586, 570),(1000, 960)]], dtype=np.int32)  \n\t\t\t\t#pts[ids].append(center)\n\t\t\t\tprint(\"id\",ids,\"w_tim\",w_tim)\n\t\t\t\tpt[ids].append(low_left)",
+        "peekOfCode": "\t\t\t\t#cent = (xc,yc)\n\t\t\t\tw_tim = (w,tim,cls)\n\t\t\t\t#xc = np.array(xc[0,0],dtype = np.int32) \n\t\t\t\t#yc = np.array(yc[0,0],dtype = np.int32)\n\t\t\t\tx_res_yc = 1.062*yc - 20 \n\t\t\t\tx_res_y = 1.062*y2 - 20\n\t\t\t\tpol = np.array([[(224, 960), (500, 570), (586, 570),(1000, 960)]], dtype=np.int32)  \n\t\t\t\t#pts[ids].append(center)\n\t\t\t\tpt[ids].append(low_left)\n\t\t\t\t#h_ls[ids].append(h)",
         "detail": "deer",
         "documentation": {}
     },
@@ -4390,7 +4381,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\tw_tim = (w,tim,cls)\n\t\t\t\t#xc = np.array(xc[0,0],dtype = np.int32) \n\t\t\t\t#yc = np.array(yc[0,0],dtype = np.int32)\n\t\t\t\tx_res_yc = 1.062*yc - 20 \n\t\t\t\tx_res_y = 1.062*y2 - 20\n\t\t\t\tpol = np.array([[(224, 960), (500, 570), (586, 570),(1000, 960)]], dtype=np.int32)  \n\t\t\t\t#pts[ids].append(center)\n\t\t\t\tprint(\"id\",ids,\"w_tim\",w_tim)\n\t\t\t\tpt[ids].append(low_left)\n\t\t\t\t#h_ls[ids].append(h)",
+        "peekOfCode": "\t\t\t\tw_tim = (w,tim,cls)\n\t\t\t\t#xc = np.array(xc[0,0],dtype = np.int32) \n\t\t\t\t#yc = np.array(yc[0,0],dtype = np.int32)\n\t\t\t\tx_res_yc = 1.062*yc - 20 \n\t\t\t\tx_res_y = 1.062*y2 - 20\n\t\t\t\tpol = np.array([[(224, 960), (500, 570), (586, 570),(1000, 960)]], dtype=np.int32)  \n\t\t\t\t#pts[ids].append(center)\n\t\t\t\tpt[ids].append(low_left)\n\t\t\t\t#h_ls[ids].append(h)\n\t\t\t\tw_list[ids].append(w_tim)",
         "detail": "deer",
         "documentation": {}
     },
@@ -4399,7 +4390,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\t#xc = np.array(xc[0,0],dtype = np.int32) \n\t\t\t\t#yc = np.array(yc[0,0],dtype = np.int32)\n\t\t\t\tx_res_yc = 1.062*yc - 20 \n\t\t\t\tx_res_y = 1.062*y2 - 20\n\t\t\t\tpol = np.array([[(224, 960), (500, 570), (586, 570),(1000, 960)]], dtype=np.int32)  \n\t\t\t\t#pts[ids].append(center)\n\t\t\t\tprint(\"id\",ids,\"w_tim\",w_tim)\n\t\t\t\tpt[ids].append(low_left)\n\t\t\t\t#h_ls[ids].append(h)\n\t\t\t\tw_list[ids].append(w_tim)",
+        "peekOfCode": "\t\t\t\t#xc = np.array(xc[0,0],dtype = np.int32) \n\t\t\t\t#yc = np.array(yc[0,0],dtype = np.int32)\n\t\t\t\tx_res_yc = 1.062*yc - 20 \n\t\t\t\tx_res_y = 1.062*y2 - 20\n\t\t\t\tpol = np.array([[(224, 960), (500, 570), (586, 570),(1000, 960)]], dtype=np.int32)  \n\t\t\t\t#pts[ids].append(center)\n\t\t\t\tpt[ids].append(low_left)\n\t\t\t\t#h_ls[ids].append(h)\n\t\t\t\tw_list[ids].append(w_tim)\n\t\t\t\t# Add to history for path drawing",
         "detail": "deer",
         "documentation": {}
     },
@@ -4408,7 +4399,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\t#yc = np.array(yc[0,0],dtype = np.int32)\n\t\t\t\tx_res_yc = 1.062*yc - 20 \n\t\t\t\tx_res_y = 1.062*y2 - 20\n\t\t\t\tpol = np.array([[(224, 960), (500, 570), (586, 570),(1000, 960)]], dtype=np.int32)  \n\t\t\t\t#pts[ids].append(center)\n\t\t\t\tprint(\"id\",ids,\"w_tim\",w_tim)\n\t\t\t\tpt[ids].append(low_left)\n\t\t\t\t#h_ls[ids].append(h)\n\t\t\t\tw_list[ids].append(w_tim)\n\t\t\t\t#print(\"pt:\\n\",pt,\"\\n\")",
+        "peekOfCode": "\t\t\t\t#yc = np.array(yc[0,0],dtype = np.int32)\n\t\t\t\tx_res_yc = 1.062*yc - 20 \n\t\t\t\tx_res_y = 1.062*y2 - 20\n\t\t\t\tpol = np.array([[(224, 960), (500, 570), (586, 570),(1000, 960)]], dtype=np.int32)  \n\t\t\t\t#pts[ids].append(center)\n\t\t\t\tpt[ids].append(low_left)\n\t\t\t\t#h_ls[ids].append(h)\n\t\t\t\tw_list[ids].append(w_tim)\n\t\t\t\t# Add to history for path drawing\n\t\t\t\tif ids not in history:",
         "detail": "deer",
         "documentation": {}
     },
@@ -4417,7 +4408,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\tx_res_yc = 1.062*yc - 20 \n\t\t\t\tx_res_y = 1.062*y2 - 20\n\t\t\t\tpol = np.array([[(224, 960), (500, 570), (586, 570),(1000, 960)]], dtype=np.int32)  \n\t\t\t\t#pts[ids].append(center)\n\t\t\t\tprint(\"id\",ids,\"w_tim\",w_tim)\n\t\t\t\tpt[ids].append(low_left)\n\t\t\t\t#h_ls[ids].append(h)\n\t\t\t\tw_list[ids].append(w_tim)\n\t\t\t\t#print(\"pt:\\n\",pt,\"\\n\")\n\t\t\t\tprint(\"w_list:\\n\",w_list,\"\\n\")",
+        "peekOfCode": "\t\t\t\tx_res_yc = 1.062*yc - 20 \n\t\t\t\tx_res_y = 1.062*y2 - 20\n\t\t\t\tpol = np.array([[(224, 960), (500, 570), (586, 570),(1000, 960)]], dtype=np.int32)  \n\t\t\t\t#pts[ids].append(center)\n\t\t\t\tpt[ids].append(low_left)\n\t\t\t\t#h_ls[ids].append(h)\n\t\t\t\tw_list[ids].append(w_tim)\n\t\t\t\t# Add to history for path drawing\n\t\t\t\tif ids not in history:\n\t\t\t\t\thistory[ids] = deque(maxlen=50)",
         "detail": "deer",
         "documentation": {}
     },
@@ -4426,7 +4417,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\tx_res_y = 1.062*y2 - 20\n\t\t\t\tpol = np.array([[(224, 960), (500, 570), (586, 570),(1000, 960)]], dtype=np.int32)  \n\t\t\t\t#pts[ids].append(center)\n\t\t\t\tprint(\"id\",ids,\"w_tim\",w_tim)\n\t\t\t\tpt[ids].append(low_left)\n\t\t\t\t#h_ls[ids].append(h)\n\t\t\t\tw_list[ids].append(w_tim)\n\t\t\t\t#print(\"pt:\\n\",pt,\"\\n\")\n\t\t\t\tprint(\"w_list:\\n\",w_list,\"\\n\")\n\t\t\t\t# Add to history for path drawing",
+        "peekOfCode": "\t\t\t\tx_res_y = 1.062*y2 - 20\n\t\t\t\tpol = np.array([[(224, 960), (500, 570), (586, 570),(1000, 960)]], dtype=np.int32)  \n\t\t\t\t#pts[ids].append(center)\n\t\t\t\tpt[ids].append(low_left)\n\t\t\t\t#h_ls[ids].append(h)\n\t\t\t\tw_list[ids].append(w_tim)\n\t\t\t\t# Add to history for path drawing\n\t\t\t\tif ids not in history:\n\t\t\t\t\thistory[ids] = deque(maxlen=50)\n\t\t\t\thistory[ids].append((xc, yc))",
         "detail": "deer",
         "documentation": {}
     },
@@ -4435,7 +4426,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\tpol = np.array([[(224, 960), (500, 570), (586, 570),(1000, 960)]], dtype=np.int32)  \n\t\t\t\t#pts[ids].append(center)\n\t\t\t\tprint(\"id\",ids,\"w_tim\",w_tim)\n\t\t\t\tpt[ids].append(low_left)\n\t\t\t\t#h_ls[ids].append(h)\n\t\t\t\tw_list[ids].append(w_tim)\n\t\t\t\t#print(\"pt:\\n\",pt,\"\\n\")\n\t\t\t\tprint(\"w_list:\\n\",w_list,\"\\n\")\n\t\t\t\t# Add to history for path drawing\n\t\t\t\tif ids not in history:",
+        "peekOfCode": "\t\t\t\tpol = np.array([[(224, 960), (500, 570), (586, 570),(1000, 960)]], dtype=np.int32)  \n\t\t\t\t#pts[ids].append(center)\n\t\t\t\tpt[ids].append(low_left)\n\t\t\t\t#h_ls[ids].append(h)\n\t\t\t\tw_list[ids].append(w_tim)\n\t\t\t\t# Add to history for path drawing\n\t\t\t\tif ids not in history:\n\t\t\t\t\thistory[ids] = deque(maxlen=50)\n\t\t\t\thistory[ids].append((xc, yc))\n\t\t\t\t# Draw the trajectory path",
         "detail": "deer",
         "documentation": {}
     },
@@ -4606,7 +4597,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\t\t\t\t\t#x_dirr = (pt[ids][0][0] , pt[ids][0][0]+2)\n\t\t\t\t\t\t\t\t#x direction has same value\n\t\t\t\t\t\t\tif pt[ids][0][1] == pt[ids][j][1] :\n\t\t\t\t\t\t\t\ty_dirr = (pt[ids][0][1] , pt[ids][0][1]+5)\n\t\t\t\t\t\t\ttry:\n\t\t\t\t\t\t\t\tparameters = np.polyfit(x_dirr, y_dirr, 1)\n\t\t\t\t\t\t\t\tdrw = True\n\t\t\t\t\t\t\t\tprint(\"x dirr y dirr\",x_dirr,y_dirr)\n\t\t\t\t\t\t\texcept np.linalg.LinAlgError:\n\t\t\t\t\t\t\t\tdrw = False",
+        "peekOfCode": "\t\t\t\t\t\t\t\t#x_dirr = (pt[ids][0][0] , pt[ids][0][0]+2)\n\t\t\t\t\t\t\t\t#x direction has same value\n\t\t\t\t\t\t\tif pt[ids][0][1] == pt[ids][j][1] :\n\t\t\t\t\t\t\t\ty_dirr = (pt[ids][0][1] , pt[ids][0][1]+5)\n\t\t\t\t\t\t\ttry:\n\t\t\t\t\t\t\t\tparameters = np.polyfit(x_dirr, y_dirr, 1)\n\t\t\t\t\t\t\t\tdrw = True\n\t\t\t\t\t\t\t\t# polyfit succeeded\n\t\t\t\t\t\t\texcept np.linalg.LinAlgError:\n\t\t\t\t\t\t\t\tdrw = False",
         "detail": "deer",
         "documentation": {}
     },
@@ -4615,7 +4606,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\t\t\t\t\ty_dirr = (pt[ids][0][1] , pt[ids][0][1]+5)\n\t\t\t\t\t\t\ttry:\n\t\t\t\t\t\t\t\tparameters = np.polyfit(x_dirr, y_dirr, 1)\n\t\t\t\t\t\t\t\tdrw = True\n\t\t\t\t\t\t\t\tprint(\"x dirr y dirr\",x_dirr,y_dirr)\n\t\t\t\t\t\t\texcept np.linalg.LinAlgError:\n\t\t\t\t\t\t\t\tdrw = False\n\t\t\t\tif drw == True:\n\t\t\t\t\tx1 ,y1 ,x2 ,y2 = motion_cord((x1,y2) , parameters)\n\t\t\t\t\t#print(\"x1 y1 x2 y2\",parameters,x1,y1,x2,y2)",
+        "peekOfCode": "\t\t\t\t\t\t\t\ty_dirr = (pt[ids][0][1] , pt[ids][0][1]+5)\n\t\t\t\t\t\t\ttry:\n\t\t\t\t\t\t\t\tparameters = np.polyfit(x_dirr, y_dirr, 1)\n\t\t\t\t\t\t\t\tdrw = True\n\t\t\t\t\t\t\t\t# polyfit succeeded\n\t\t\t\t\t\t\texcept np.linalg.LinAlgError:\n\t\t\t\t\t\t\t\tdrw = False\n\t\t\t\tif drw == True:\n\t\t\t\t\tx1 ,y1 ,x2 ,y2 = motion_cord((x1,y2) , parameters)\n\t\t\t\t\t#print(\"x1 y1 x2 y2\",parameters,x1,y1,x2,y2)",
         "detail": "deer",
         "documentation": {}
     },
@@ -4624,7 +4615,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\t\t\t\t\tparameters = np.polyfit(x_dirr, y_dirr, 1)\n\t\t\t\t\t\t\t\tdrw = True\n\t\t\t\t\t\t\t\tprint(\"x dirr y dirr\",x_dirr,y_dirr)\n\t\t\t\t\t\t\texcept np.linalg.LinAlgError:\n\t\t\t\t\t\t\t\tdrw = False\n\t\t\t\tif drw == True:\n\t\t\t\t\tx1 ,y1 ,x2 ,y2 = motion_cord((x1,y2) , parameters)\n\t\t\t\t\t#print(\"x1 y1 x2 y2\",parameters,x1,y1,x2,y2)\n\t\t\t\t\tx_res_y2 = 1.062*y2 - 20\n\t\t\t\t\tcv2.line(img_better_look,(x1,y1),(x2,y2),(255,0,255),3)",
+        "peekOfCode": "\t\t\t\t\t\t\t\tparameters = np.polyfit(x_dirr, y_dirr, 1)\n\t\t\t\t\t\t\t\tdrw = True\n\t\t\t\t\t\t\t\t# polyfit succeeded\n\t\t\t\t\t\t\texcept np.linalg.LinAlgError:\n\t\t\t\t\t\t\t\tdrw = False\n\t\t\t\tif drw == True:\n\t\t\t\t\tx1 ,y1 ,x2 ,y2 = motion_cord((x1,y2) , parameters)\n\t\t\t\t\t#print(\"x1 y1 x2 y2\",parameters,x1,y1,x2,y2)\n\t\t\t\t\tx_res_y2 = 1.062*y2 - 20\n\t\t\t\t\tcv2.line(img_better_look,(x1,y1),(x2,y2),(255,0,255),3)",
         "detail": "deer",
         "documentation": {}
     },
@@ -4633,7 +4624,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\t\t\t\t\tdrw = True\n\t\t\t\t\t\t\t\tprint(\"x dirr y dirr\",x_dirr,y_dirr)\n\t\t\t\t\t\t\texcept np.linalg.LinAlgError:\n\t\t\t\t\t\t\t\tdrw = False\n\t\t\t\tif drw == True:\n\t\t\t\t\tx1 ,y1 ,x2 ,y2 = motion_cord((x1,y2) , parameters)\n\t\t\t\t\t#print(\"x1 y1 x2 y2\",parameters,x1,y1,x2,y2)\n\t\t\t\t\tx_res_y2 = 1.062*y2 - 20\n\t\t\t\t\tcv2.line(img_better_look,(x1,y1),(x2,y2),(255,0,255),3)\n\t\t\t\t\tdrw = False",
+        "peekOfCode": "\t\t\t\t\t\t\t\tdrw = True\n\t\t\t\t\t\t\t\t# polyfit succeeded\n\t\t\t\t\t\t\texcept np.linalg.LinAlgError:\n\t\t\t\t\t\t\t\tdrw = False\n\t\t\t\tif drw == True:\n\t\t\t\t\tx1 ,y1 ,x2 ,y2 = motion_cord((x1,y2) , parameters)\n\t\t\t\t\t#print(\"x1 y1 x2 y2\",parameters,x1,y1,x2,y2)\n\t\t\t\t\tx_res_y2 = 1.062*y2 - 20\n\t\t\t\t\tcv2.line(img_better_look,(x1,y1),(x2,y2),(255,0,255),3)\n\t\t\t\t\tdrw = False",
         "detail": "deer",
         "documentation": {}
     },
@@ -4741,7 +4732,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\t\t\twidth_1 = (w_list[ids][k-1][0])  #near wider\n\t\t\t\t\t\twidth_2 = (w_list[ids][k-5][0])  #far\n\t\t\t\t\t\t#width_curr = (w_list[ids][i][0])\n\t\t\t\t\t\ttime_passed = abs((w_list[ids][k-1][1]) - (w_list[ids][k-5][1]))\n\t\t\t\t\t\tname = (w_list[ids][k-1][2])\n\t\t\t\t\t\tif name == \"\" :\n\t\t\t\t\t\t\tname = (w_list[ids][k-5][2])\n\t\t\t\t\t\tprint(\"time passed :\",time_passed,\" time1 \",(w_list[ids][k-1][1]),\" time2 \",(w_list[ids][k-5][1]),)\n\t\t\t\t\t\tprint(\"width difference :\",abs(width_1-width_2))\n\t\t\t\t\t\tif time_passed > 0:",
+        "peekOfCode": "\t\t\t\t\t\twidth_1 = (w_list[ids][k-1][0])  #near wider\n\t\t\t\t\t\twidth_2 = (w_list[ids][k-5][0])  #far\n\t\t\t\t\t\t#width_curr = (w_list[ids][i][0])\n\t\t\t\t\t\ttime_passed = abs((w_list[ids][k-1][1]) - (w_list[ids][k-5][1]))\n\t\t\t\t\t\tname = (w_list[ids][k-1][2])\n\t\t\t\t\t\tif name == \"\" :\n\t\t\t\t\t\t\tname = (w_list[ids][k-5][2])\n\t\t\t\t\t\t# computed time_passed and width difference for speed estimation\n\t\t\t\t\t\tif time_passed > 0:\n\t\t\t\t\t\t\tif name == \"deer\":",
         "detail": "deer",
         "documentation": {}
     },
@@ -4750,7 +4741,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\t\t\twidth_2 = (w_list[ids][k-5][0])  #far\n\t\t\t\t\t\t#width_curr = (w_list[ids][i][0])\n\t\t\t\t\t\ttime_passed = abs((w_list[ids][k-1][1]) - (w_list[ids][k-5][1]))\n\t\t\t\t\t\tname = (w_list[ids][k-1][2])\n\t\t\t\t\t\tif name == \"\" :\n\t\t\t\t\t\t\tname = (w_list[ids][k-5][2])\n\t\t\t\t\t\tprint(\"time passed :\",time_passed,\" time1 \",(w_list[ids][k-1][1]),\" time2 \",(w_list[ids][k-5][1]),)\n\t\t\t\t\t\tprint(\"width difference :\",abs(width_1-width_2))\n\t\t\t\t\t\tif time_passed > 0:\n\t\t\t\t\t\t\tif name == \"deer\":",
+        "peekOfCode": "\t\t\t\t\t\twidth_2 = (w_list[ids][k-5][0])  #far\n\t\t\t\t\t\t#width_curr = (w_list[ids][i][0])\n\t\t\t\t\t\ttime_passed = abs((w_list[ids][k-1][1]) - (w_list[ids][k-5][1]))\n\t\t\t\t\t\tname = (w_list[ids][k-1][2])\n\t\t\t\t\t\tif name == \"\" :\n\t\t\t\t\t\t\tname = (w_list[ids][k-5][2])\n\t\t\t\t\t\t# computed time_passed and width difference for speed estimation\n\t\t\t\t\t\tif time_passed > 0:\n\t\t\t\t\t\t\tif name == \"deer\":\n\t\t\t\t\t\t\t\tdis_deer2 = Distance_finder(100,width_2)/100",
         "detail": "deer",
         "documentation": {}
     },
@@ -4759,7 +4750,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\t\t\t#width_curr = (w_list[ids][i][0])\n\t\t\t\t\t\ttime_passed = abs((w_list[ids][k-1][1]) - (w_list[ids][k-5][1]))\n\t\t\t\t\t\tname = (w_list[ids][k-1][2])\n\t\t\t\t\t\tif name == \"\" :\n\t\t\t\t\t\t\tname = (w_list[ids][k-5][2])\n\t\t\t\t\t\tprint(\"time passed :\",time_passed,\" time1 \",(w_list[ids][k-1][1]),\" time2 \",(w_list[ids][k-5][1]),)\n\t\t\t\t\t\tprint(\"width difference :\",abs(width_1-width_2))\n\t\t\t\t\t\tif time_passed > 0:\n\t\t\t\t\t\t\tif name == \"deer\":\n\t\t\t\t\t\t\t\tdis_deer2 = Distance_finder(100,width_2)/100",
+        "peekOfCode": "\t\t\t\t\t\t#width_curr = (w_list[ids][i][0])\n\t\t\t\t\t\ttime_passed = abs((w_list[ids][k-1][1]) - (w_list[ids][k-5][1]))\n\t\t\t\t\t\tname = (w_list[ids][k-1][2])\n\t\t\t\t\t\tif name == \"\" :\n\t\t\t\t\t\t\tname = (w_list[ids][k-5][2])\n\t\t\t\t\t\t# computed time_passed and width difference for speed estimation\n\t\t\t\t\t\tif time_passed > 0:\n\t\t\t\t\t\t\tif name == \"deer\":\n\t\t\t\t\t\t\t\tdis_deer2 = Distance_finder(100,width_2)/100\n\t\t\t\t\t\t\t\tdis_deer1 = Distance_finder(100,width_1)/100",
         "detail": "deer",
         "documentation": {}
     },
@@ -4768,7 +4759,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\t\t\ttime_passed = abs((w_list[ids][k-1][1]) - (w_list[ids][k-5][1]))\n\t\t\t\t\t\tname = (w_list[ids][k-1][2])\n\t\t\t\t\t\tif name == \"\" :\n\t\t\t\t\t\t\tname = (w_list[ids][k-5][2])\n\t\t\t\t\t\tprint(\"time passed :\",time_passed,\" time1 \",(w_list[ids][k-1][1]),\" time2 \",(w_list[ids][k-5][1]),)\n\t\t\t\t\t\tprint(\"width difference :\",abs(width_1-width_2))\n\t\t\t\t\t\tif time_passed > 0:\n\t\t\t\t\t\t\tif name == \"deer\":\n\t\t\t\t\t\t\t\tdis_deer2 = Distance_finder(100,width_2)/100\n\t\t\t\t\t\t\t\tdis_deer1 = Distance_finder(100,width_1)/100",
+        "peekOfCode": "\t\t\t\t\t\ttime_passed = abs((w_list[ids][k-1][1]) - (w_list[ids][k-5][1]))\n\t\t\t\t\t\tname = (w_list[ids][k-1][2])\n\t\t\t\t\t\tif name == \"\" :\n\t\t\t\t\t\t\tname = (w_list[ids][k-5][2])\n\t\t\t\t\t\t# computed time_passed and width difference for speed estimation\n\t\t\t\t\t\tif time_passed > 0:\n\t\t\t\t\t\t\tif name == \"deer\":\n\t\t\t\t\t\t\t\tdis_deer2 = Distance_finder(100,width_2)/100\n\t\t\t\t\t\t\t\tdis_deer1 = Distance_finder(100,width_1)/100\n\t\t\t\t\t\t\t\tdis_deer =  Distance_finder(100,width_curr)/100",
         "detail": "deer",
         "documentation": {}
     },
@@ -4777,7 +4768,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\t\t\tname = (w_list[ids][k-1][2])\n\t\t\t\t\t\tif name == \"\" :\n\t\t\t\t\t\t\tname = (w_list[ids][k-5][2])\n\t\t\t\t\t\tprint(\"time passed :\",time_passed,\" time1 \",(w_list[ids][k-1][1]),\" time2 \",(w_list[ids][k-5][1]),)\n\t\t\t\t\t\tprint(\"width difference :\",abs(width_1-width_2))\n\t\t\t\t\t\tif time_passed > 0:\n\t\t\t\t\t\t\tif name == \"deer\":\n\t\t\t\t\t\t\t\tdis_deer2 = Distance_finder(100,width_2)/100\n\t\t\t\t\t\t\t\tdis_deer1 = Distance_finder(100,width_1)/100\n\t\t\t\t\t\t\t\tdis_deer =  Distance_finder(100,width_curr)/100",
+        "peekOfCode": "\t\t\t\t\t\tname = (w_list[ids][k-1][2])\n\t\t\t\t\t\tif name == \"\" :\n\t\t\t\t\t\t\tname = (w_list[ids][k-5][2])\n\t\t\t\t\t\t# computed time_passed and width difference for speed estimation\n\t\t\t\t\t\tif time_passed > 0:\n\t\t\t\t\t\t\tif name == \"deer\":\n\t\t\t\t\t\t\t\tdis_deer2 = Distance_finder(100,width_2)/100\n\t\t\t\t\t\t\t\tdis_deer1 = Distance_finder(100,width_1)/100\n\t\t\t\t\t\t\t\tdis_deer =  Distance_finder(100,width_curr)/100\n\t\t\t\t\t\t\t\tdis_diff_deer = abs(dis_deer2 - dis_deer1)",
         "detail": "deer",
         "documentation": {}
     },
@@ -4786,7 +4777,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\t\t\t\tname = (w_list[ids][k-5][2])\n\t\t\t\t\t\tprint(\"time passed :\",time_passed,\" time1 \",(w_list[ids][k-1][1]),\" time2 \",(w_list[ids][k-5][1]),)\n\t\t\t\t\t\tprint(\"width difference :\",abs(width_1-width_2))\n\t\t\t\t\t\tif time_passed > 0:\n\t\t\t\t\t\t\tif name == \"deer\":\n\t\t\t\t\t\t\t\tdis_deer2 = Distance_finder(100,width_2)/100\n\t\t\t\t\t\t\t\tdis_deer1 = Distance_finder(100,width_1)/100\n\t\t\t\t\t\t\t\tdis_deer =  Distance_finder(100,width_curr)/100\n\t\t\t\t\t\t\t\tdis_diff_deer = abs(dis_deer2 - dis_deer1)\n\t\t\t\t\t\t\t\tdeer_speed = (dis_diff_deer/time_passed)*3600/1000",
+        "peekOfCode": "\t\t\t\t\t\t\tname = (w_list[ids][k-5][2])\n\t\t\t\t\t\t# computed time_passed and width difference for speed estimation\n\t\t\t\t\t\tif time_passed > 0:\n\t\t\t\t\t\t\tif name == \"deer\":\n\t\t\t\t\t\t\t\tdis_deer2 = Distance_finder(100,width_2)/100\n\t\t\t\t\t\t\t\tdis_deer1 = Distance_finder(100,width_1)/100\n\t\t\t\t\t\t\t\tdis_deer =  Distance_finder(100,width_curr)/100\n\t\t\t\t\t\t\t\tdis_diff_deer = abs(dis_deer2 - dis_deer1)\n\t\t\t\t\t\t\t\tdeer_speed = (dis_diff_deer/time_passed)*3600/1000\n\t\t\t\t\t\t\t\tcar_spd[ids].append(deer_speed)",
         "detail": "deer",
         "documentation": {}
     },
@@ -5056,7 +5047,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\t\t\t\t\tputtext_moto = True      \n\t\t\t\t\t#k = 3*i\n\t\t\t\t\tk = i\n\t\t\t\t'''\n\t\t\t\tplot speed information\n\t\t\t\t'''\n\t\t\t\tif puttext_deer == True and  avg_spd_deer != \"still appending\" and deer_speed != 0 and avg_spd_deer != 0:\n\t\t\t\t\tdeer_imptim_avg = round(dis_deer/(avg_spd_deer*1000/3600),2)               \n\t\t\t\t\tdeer_imptim = round(dis_deer/(deer_speed*1000/3600),2)\n\t\t\t\t\tcv2.putText(img_better_look, f\"average deer speed {avg_spd_deer} km/h Collision time {deer_imptim_avg} s\",  (50, 90), cv2.FONT_HERSHEY_COMPLEX, 0.65, (0,0,255), 2)  #bgr",
+        "peekOfCode": "\t\t\t\t\t\t\t\tputtext_moto = True      \n\t\t\t\t\t#k = 3*i\n\t\t\t\t\tk = i\n\t\t\t\t'''\n\t\t\t\tplot speed information\n\t\t\t\t'''\n\t\t\t\tif puttext_deer == True and  avg_spd_deer != \"still appending\" and deer_speed != 0 and avg_spd_deer != 0:\n\t\t\t\t\tdeer_imptim_avg = round(dis_deer/(avg_spd_deer*1000/3600),2)               \n\t\t\t\t\tdeer_imptim = round(dis_deer/(deer_speed*1000/3600),2)\n\t\t\t\t\t# cv2.putText(img_better_look, f\"average deer speed {avg_spd_deer} km/h Collision time {deer_imptim_avg} s\",  (50, 90), cv2.FONT_HERSHEY_COMPLEX, 0.65, (0,0,255), 2)  #bgr",
         "detail": "deer",
         "documentation": {}
     },
@@ -5065,7 +5056,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\t\t#k = 3*i\n\t\t\t\t\tk = i\n\t\t\t\t'''\n\t\t\t\tplot speed information\n\t\t\t\t'''\n\t\t\t\tif puttext_deer == True and  avg_spd_deer != \"still appending\" and deer_speed != 0 and avg_spd_deer != 0:\n\t\t\t\t\tdeer_imptim_avg = round(dis_deer/(avg_spd_deer*1000/3600),2)               \n\t\t\t\t\tdeer_imptim = round(dis_deer/(deer_speed*1000/3600),2)\n\t\t\t\t\tcv2.putText(img_better_look, f\"average deer speed {avg_spd_deer} km/h Collision time {deer_imptim_avg} s\",  (50, 90), cv2.FONT_HERSHEY_COMPLEX, 0.65, (0,0,255), 2)  #bgr\n\t\t\t\t\tcv2.putText(img_better_look, f\"deer speed {int(deer_speed)} km/h  Collision time {deer_imptim}s  \",  (50, 50), cv2.FONT_HERSHEY_COMPLEX, 0.65, (255,0,255), 2)  #bgr",
+        "peekOfCode": "\t\t\t\t\t#k = 3*i\n\t\t\t\t\tk = i\n\t\t\t\t'''\n\t\t\t\tplot speed information\n\t\t\t\t'''\n\t\t\t\tif puttext_deer == True and  avg_spd_deer != \"still appending\" and deer_speed != 0 and avg_spd_deer != 0:\n\t\t\t\t\tdeer_imptim_avg = round(dis_deer/(avg_spd_deer*1000/3600),2)               \n\t\t\t\t\tdeer_imptim = round(dis_deer/(deer_speed*1000/3600),2)\n\t\t\t\t\t# cv2.putText(img_better_look, f\"average deer speed {avg_spd_deer} km/h Collision time {deer_imptim_avg} s\",  (50, 90), cv2.FONT_HERSHEY_COMPLEX, 0.65, (0,0,255), 2)  #bgr\n\t\t\t\t\t# cv2.putText(img_better_look, f\"deer speed {int(deer_speed)} km/h  Collision time {deer_imptim}s  \",  (50, 50), cv2.FONT_HERSHEY_COMPLEX, 0.65, (255,0,255), 2)  #bgr",
         "detail": "deer",
         "documentation": {}
     },
@@ -5074,7 +5065,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\t\tk = i\n\t\t\t\t'''\n\t\t\t\tplot speed information\n\t\t\t\t'''\n\t\t\t\tif puttext_deer == True and  avg_spd_deer != \"still appending\" and deer_speed != 0 and avg_spd_deer != 0:\n\t\t\t\t\tdeer_imptim_avg = round(dis_deer/(avg_spd_deer*1000/3600),2)               \n\t\t\t\t\tdeer_imptim = round(dis_deer/(deer_speed*1000/3600),2)\n\t\t\t\t\tcv2.putText(img_better_look, f\"average deer speed {avg_spd_deer} km/h Collision time {deer_imptim_avg} s\",  (50, 90), cv2.FONT_HERSHEY_COMPLEX, 0.65, (0,0,255), 2)  #bgr\n\t\t\t\t\tcv2.putText(img_better_look, f\"deer speed {int(deer_speed)} km/h  Collision time {deer_imptim}s  \",  (50, 50), cv2.FONT_HERSHEY_COMPLEX, 0.65, (255,0,255), 2)  #bgr\n\t\t\t\t\tif deer_imptim_avg < 1.25 and motion_predict == True:",
+        "peekOfCode": "\t\t\t\t\tk = i\n\t\t\t\t'''\n\t\t\t\tplot speed information\n\t\t\t\t'''\n\t\t\t\tif puttext_deer == True and  avg_spd_deer != \"still appending\" and deer_speed != 0 and avg_spd_deer != 0:\n\t\t\t\t\tdeer_imptim_avg = round(dis_deer/(avg_spd_deer*1000/3600),2)               \n\t\t\t\t\tdeer_imptim = round(dis_deer/(deer_speed*1000/3600),2)\n\t\t\t\t\t# cv2.putText(img_better_look, f\"average deer speed {avg_spd_deer} km/h Collision time {deer_imptim_avg} s\",  (50, 90), cv2.FONT_HERSHEY_COMPLEX, 0.65, (0,0,255), 2)  #bgr\n\t\t\t\t\t# cv2.putText(img_better_look, f\"deer speed {int(deer_speed)} km/h  Collision time {deer_imptim}s  \",  (50, 50), cv2.FONT_HERSHEY_COMPLEX, 0.65, (255,0,255), 2)  #bgr\n\t\t\t\t\tcv2.putText(img_better_look, f\"average deer speed {avg_spd_deer} km/h\",  (50, 90), cv2.FONT_HERSHEY_COMPLEX, 0.65, (0,0,255), 2)  #bgr",
         "detail": "deer",
         "documentation": {}
     },
@@ -5083,7 +5074,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\t\tdeer_imptim_avg = round(dis_deer/(avg_spd_deer*1000/3600),2)               \n\t\t\t\t\tdeer_imptim = round(dis_deer/(deer_speed*1000/3600),2)\n\t\t\t\t\tcv2.putText(img_better_look, f\"average deer speed {avg_spd_deer} km/h Collision time {deer_imptim_avg} s\",  (50, 90), cv2.FONT_HERSHEY_COMPLEX, 0.65, (0,0,255), 2)  #bgr\n\t\t\t\t\tcv2.putText(img_better_look, f\"deer speed {int(deer_speed)} km/h  Collision time {deer_imptim}s  \",  (50, 50), cv2.FONT_HERSHEY_COMPLEX, 0.65, (255,0,255), 2)  #bgr\n\t\t\t\t\tif deer_imptim_avg < 1.25 and motion_predict == True:\n\t\t\t\t\t\tunsafe_v = True\n\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\tif deer_imptim_avg < 0.75 and motion_predict == True:\n\t\t\t\t\t\tdanger_v = True\n\t\t\t\t\t\tunsafe_v = False",
+        "peekOfCode": "\t\t\t\t\tdeer_imptim_avg = round(dis_deer/(avg_spd_deer*1000/3600),2)               \n\t\t\t\t\tdeer_imptim = round(dis_deer/(deer_speed*1000/3600),2)\n\t\t\t\t\t# cv2.putText(img_better_look, f\"average deer speed {avg_spd_deer} km/h Collision time {deer_imptim_avg} s\",  (50, 90), cv2.FONT_HERSHEY_COMPLEX, 0.65, (0,0,255), 2)  #bgr\n\t\t\t\t\t# cv2.putText(img_better_look, f\"deer speed {int(deer_speed)} km/h  Collision time {deer_imptim}s  \",  (50, 50), cv2.FONT_HERSHEY_COMPLEX, 0.65, (255,0,255), 2)  #bgr\n\t\t\t\t\tcv2.putText(img_better_look, f\"average deer speed {avg_spd_deer} km/h\",  (50, 90), cv2.FONT_HERSHEY_COMPLEX, 0.65, (0,0,255), 2)  #bgr\n\t\t\t\t\tcv2.putText(img_better_look, f\"deer speed {int(deer_speed)} km/h\",  (50, 50), cv2.FONT_HERSHEY_COMPLEX, 0.65, (255,0,255), 2)  #bgr\n\t\t\t\t\tif deer_imptim_avg < 1.25 and motion_predict == True:\n\t\t\t\t\t\tunsafe_v = True\n\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\tif deer_imptim_avg < 0.75 and motion_predict == True:",
         "detail": "deer",
         "documentation": {}
     },
@@ -5092,7 +5083,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\t\tdeer_imptim = round(dis_deer/(deer_speed*1000/3600),2)\n\t\t\t\t\tcv2.putText(img_better_look, f\"average deer speed {avg_spd_deer} km/h Collision time {deer_imptim_avg} s\",  (50, 90), cv2.FONT_HERSHEY_COMPLEX, 0.65, (0,0,255), 2)  #bgr\n\t\t\t\t\tcv2.putText(img_better_look, f\"deer speed {int(deer_speed)} km/h  Collision time {deer_imptim}s  \",  (50, 50), cv2.FONT_HERSHEY_COMPLEX, 0.65, (255,0,255), 2)  #bgr\n\t\t\t\t\tif deer_imptim_avg < 1.25 and motion_predict == True:\n\t\t\t\t\t\tunsafe_v = True\n\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\tif deer_imptim_avg < 0.75 and motion_predict == True:\n\t\t\t\t\t\tdanger_v = True\n\t\t\t\t\t\tunsafe_v = False\n\t\t\t\t\telse:",
+        "peekOfCode": "\t\t\t\t\tdeer_imptim = round(dis_deer/(deer_speed*1000/3600),2)\n\t\t\t\t\t# cv2.putText(img_better_look, f\"average deer speed {avg_spd_deer} km/h Collision time {deer_imptim_avg} s\",  (50, 90), cv2.FONT_HERSHEY_COMPLEX, 0.65, (0,0,255), 2)  #bgr\n\t\t\t\t\t# cv2.putText(img_better_look, f\"deer speed {int(deer_speed)} km/h  Collision time {deer_imptim}s  \",  (50, 50), cv2.FONT_HERSHEY_COMPLEX, 0.65, (255,0,255), 2)  #bgr\n\t\t\t\t\tcv2.putText(img_better_look, f\"average deer speed {avg_spd_deer} km/h\",  (50, 90), cv2.FONT_HERSHEY_COMPLEX, 0.65, (0,0,255), 2)  #bgr\n\t\t\t\t\tcv2.putText(img_better_look, f\"deer speed {int(deer_speed)} km/h\",  (50, 50), cv2.FONT_HERSHEY_COMPLEX, 0.65, (255,0,255), 2)  #bgr\n\t\t\t\t\tif deer_imptim_avg < 1.25 and motion_predict == True:\n\t\t\t\t\t\tunsafe_v = True\n\t\t\t\t\t\tdanger_v = False\n\t\t\t\t\tif deer_imptim_avg < 0.75 and motion_predict == True:\n\t\t\t\t\t\tdanger_v = True",
         "detail": "deer",
         "documentation": {}
     },
@@ -5812,7 +5803,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\tstatus = 'MEDIUM'\n\t\t\telse:\n\t\t\t\tstatus = 'SAFE'\n\t\t\tif status != prev_status:\n\t\t\t\tprint(f\"[ALERT] frame={framenumber} status={status} unsafe_v={unsafe_v} danger_v={danger_v}\")\n\t\t\t\tprev_status = status\n\t\texcept Exception:\n\t\t\tpass\n\t\t# Add center flashing alert for danger\n\t\tif danger_v:",
+        "peekOfCode": "\t\t\t\tstatus = 'MEDIUM'\n\t\t\telse:\n\t\t\t\tstatus = 'SAFE'\n\t\t\tif status != prev_status:\n\t\t\t\tprint(f\"[ALERT] frame={framenumber} status={status} unsafe_v={unsafe_v} danger_v={danger_v}\")\n\t\t\t\tprev_status = status\n\t\texcept Exception:\n\t\t\tpass\n\t\t# Add center flashing alert for danger\n\t\t# if danger_v:",
         "detail": "deer",
         "documentation": {}
     },
@@ -5821,7 +5812,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\tstatus = 'SAFE'\n\t\t\tif status != prev_status:\n\t\t\t\tprint(f\"[ALERT] frame={framenumber} status={status} unsafe_v={unsafe_v} danger_v={danger_v}\")\n\t\t\t\tprev_status = status\n\t\texcept Exception:\n\t\t\tpass\n\t\t# Add center flashing alert for danger\n\t\tif danger_v:\n\t\t\t# Flash by alternating color\n\t\t\tflash_color = (0, 0, 255) if (framenumber // 10) % 2 == 0 else (255, 255, 255)",
+        "peekOfCode": "\t\t\t\tstatus = 'SAFE'\n\t\t\tif status != prev_status:\n\t\t\t\tprint(f\"[ALERT] frame={framenumber} status={status} unsafe_v={unsafe_v} danger_v={danger_v}\")\n\t\t\t\tprev_status = status\n\t\texcept Exception:\n\t\t\tpass\n\t\t# Add center flashing alert for danger\n\t\t# if danger_v:\n\t\t# \t# Flash by alternating color\n\t\t# \tflash_color = (0, 0, 255) if (framenumber // 10) % 2 == 0 else (255, 255, 255)",
         "detail": "deer",
         "documentation": {}
     },
@@ -5830,34 +5821,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\t\tprev_status = status\n\t\texcept Exception:\n\t\t\tpass\n\t\t# Add center flashing alert for danger\n\t\tif danger_v:\n\t\t\t# Flash by alternating color\n\t\t\tflash_color = (0, 0, 255) if (framenumber // 10) % 2 == 0 else (255, 255, 255)\n\t\t\tcv2.putText(img_better_look, \"DANGER!\", (320, 240), cv2.FONT_HERSHEY_DUPLEX, 2.0, flash_color, 5, cv2.LINE_AA)\n\t\t\tprint(f\"[ALERT] Center danger alert displayed frame={framenumber}\")\n\t\t# Draw status banner",
-        "detail": "deer",
-        "documentation": {}
-    },
-    {
-        "label": "\t\t\tflash_color",
-        "kind": 5,
-        "importPath": "deer",
-        "description": "deer",
-        "peekOfCode": "\t\t\tflash_color = (0, 0, 255) if (framenumber // 10) % 2 == 0 else (255, 255, 255)\n\t\t\tcv2.putText(img_better_look, \"DANGER!\", (320, 240), cv2.FONT_HERSHEY_DUPLEX, 2.0, flash_color, 5, cv2.LINE_AA)\n\t\t\tprint(f\"[ALERT] Center danger alert displayed frame={framenumber}\")\n\t\t# Draw status banner\n\t\tbanner_x = img.shape[1] - 200\n\t\tbanner_y = 20\n\t\tbanner_w = 180\n\t\tbanner_h = 40\n\t\tif danger_v:\n\t\t\tbanner_color = (0, 0, 255)  # Red",
-        "detail": "deer",
-        "documentation": {}
-    },
-    {
-        "label": "\t\tbanner_x",
-        "kind": 5,
-        "importPath": "deer",
-        "description": "deer",
-        "peekOfCode": "\t\tbanner_x = img.shape[1] - 200\n\t\tbanner_y = 20\n\t\tbanner_w = 180\n\t\tbanner_h = 40\n\t\tif danger_v:\n\t\t\tbanner_color = (0, 0, 255)  # Red\n\t\t\tstatus_text = \"DANGER\"\n\t\t\ttext_color = (255, 255, 255)\n\t\telif unsafe_v:\n\t\t\tbanner_color = (0, 165, 255)  # Orange",
-        "detail": "deer",
-        "documentation": {}
-    },
-    {
-        "label": "\t\tbanner_y",
-        "kind": 5,
-        "importPath": "deer",
-        "description": "deer",
-        "peekOfCode": "\t\tbanner_y = 20\n\t\tbanner_w = 180\n\t\tbanner_h = 40\n\t\tif danger_v:\n\t\t\tbanner_color = (0, 0, 255)  # Red\n\t\t\tstatus_text = \"DANGER\"\n\t\t\ttext_color = (255, 255, 255)\n\t\telif unsafe_v:\n\t\t\tbanner_color = (0, 165, 255)  # Orange\n\t\t\tstatus_text = \"MEDIUM\"",
+        "peekOfCode": "\t\t\t\tprev_status = status\n\t\texcept Exception:\n\t\t\tpass\n\t\t# Add center flashing alert for danger\n\t\t# if danger_v:\n\t\t# \t# Flash by alternating color\n\t\t# \tflash_color = (0, 0, 255) if (framenumber // 10) % 2 == 0 else (255, 255, 255)\n\t\t# \tcv2.putText(img_better_look, \"DANGER!\", (320, 240), cv2.FONT_HERSHEY_DUPLEX, 2.0, flash_color, 5, cv2.LINE_AA)\n\t\t# \tprint(f\"[ALERT] Center danger alert displayed frame={framenumber}\")\n\t\t# Draw status banner (smaller + right-aligned)",
         "detail": "deer",
         "documentation": {}
     },
@@ -5866,7 +5830,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\tbanner_w = 180\n\t\tbanner_h = 40\n\t\tif danger_v:\n\t\t\tbanner_color = (0, 0, 255)  # Red\n\t\t\tstatus_text = \"DANGER\"\n\t\t\ttext_color = (255, 255, 255)\n\t\telif unsafe_v:\n\t\t\tbanner_color = (0, 165, 255)  # Orange\n\t\t\tstatus_text = \"MEDIUM\"\n\t\t\ttext_color = (255, 255, 255)",
+        "peekOfCode": "\t\tbanner_w = 140\n\t\tbanner_h = 30\n\t\tbanner_x = img.shape[1] - banner_w - 20\n\t\tbanner_y = 20\n\t\tif danger_v:\n\t\t\tbanner_color = (0, 0, 255)  # Red\n\t\t\tstatus_text = \"DANGER\"\n\t\t\ttext_color = (255, 255, 255)\n\t\telif unsafe_v:\n\t\t\tbanner_color = (0, 165, 255)  # Orange",
         "detail": "deer",
         "documentation": {}
     },
@@ -5875,7 +5839,25 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\tbanner_h = 40\n\t\tif danger_v:\n\t\t\tbanner_color = (0, 0, 255)  # Red\n\t\t\tstatus_text = \"DANGER\"\n\t\t\ttext_color = (255, 255, 255)\n\t\telif unsafe_v:\n\t\t\tbanner_color = (0, 165, 255)  # Orange\n\t\t\tstatus_text = \"MEDIUM\"\n\t\t\ttext_color = (255, 255, 255)\n\t\telse:",
+        "peekOfCode": "\t\tbanner_h = 30\n\t\tbanner_x = img.shape[1] - banner_w - 20\n\t\tbanner_y = 20\n\t\tif danger_v:\n\t\t\tbanner_color = (0, 0, 255)  # Red\n\t\t\tstatus_text = \"DANGER\"\n\t\t\ttext_color = (255, 255, 255)\n\t\telif unsafe_v:\n\t\t\tbanner_color = (0, 165, 255)  # Orange\n\t\t\tstatus_text = \"MEDIUM\"",
+        "detail": "deer",
+        "documentation": {}
+    },
+    {
+        "label": "\t\tbanner_x",
+        "kind": 5,
+        "importPath": "deer",
+        "description": "deer",
+        "peekOfCode": "\t\tbanner_x = img.shape[1] - banner_w - 20\n\t\tbanner_y = 20\n\t\tif danger_v:\n\t\t\tbanner_color = (0, 0, 255)  # Red\n\t\t\tstatus_text = \"DANGER\"\n\t\t\ttext_color = (255, 255, 255)\n\t\telif unsafe_v:\n\t\t\tbanner_color = (0, 165, 255)  # Orange\n\t\t\tstatus_text = \"MEDIUM\"\n\t\t\ttext_color = (255, 255, 255)",
+        "detail": "deer",
+        "documentation": {}
+    },
+    {
+        "label": "\t\tbanner_y",
+        "kind": 5,
+        "importPath": "deer",
+        "description": "deer",
+        "peekOfCode": "\t\tbanner_y = 20\n\t\tif danger_v:\n\t\t\tbanner_color = (0, 0, 255)  # Red\n\t\t\tstatus_text = \"DANGER\"\n\t\t\ttext_color = (255, 255, 255)\n\t\telif unsafe_v:\n\t\t\tbanner_color = (0, 165, 255)  # Orange\n\t\t\tstatus_text = \"MEDIUM\"\n\t\t\ttext_color = (255, 255, 255)\n\t\telse:",
         "detail": "deer",
         "documentation": {}
     },
@@ -5902,7 +5884,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\ttext_color = (255, 255, 255)\n\t\telif unsafe_v:\n\t\t\tbanner_color = (0, 165, 255)  # Orange\n\t\t\tstatus_text = \"MEDIUM\"\n\t\t\ttext_color = (255, 255, 255)\n\t\telse:\n\t\t\tbanner_color = (0, 255, 0)  # Green\n\t\t\tstatus_text = \"SAFE\"\n\t\t\ttext_color = (0, 0, 0)\n\t\t# cv2.rectangle(img_better_look, (banner_x, banner_y + 150), (banner_x + banner_w, banner_y + 200 + banner_h), banner_color, -1)",
+        "peekOfCode": "\t\t\ttext_color = (255, 255, 255)\n\t\telif unsafe_v:\n\t\t\tbanner_color = (0, 165, 255)  # Orange\n\t\t\tstatus_text = \"MEDIUM\"\n\t\t\ttext_color = (255, 255, 255)\n\t\telse:\n\t\t\tbanner_color = (0, 255, 0)  # Green\n\t\t\tstatus_text = \"SAFE\"\n\t\t\ttext_color = (0, 0, 0)\n\t\t# draw rectangle at banner origin and place text aligned vertically inside",
         "detail": "deer",
         "documentation": {}
     },
@@ -5911,7 +5893,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\tbanner_color = (0, 165, 255)  # Orange\n\t\t\tstatus_text = \"MEDIUM\"\n\t\t\ttext_color = (255, 255, 255)\n\t\telse:\n\t\t\tbanner_color = (0, 255, 0)  # Green\n\t\t\tstatus_text = \"SAFE\"\n\t\t\ttext_color = (0, 0, 0)\n\t\t# cv2.rectangle(img_better_look, (banner_x, banner_y + 150), (banner_x + banner_w, banner_y + 200 + banner_h), banner_color, -1)\n\t\t# cv2.putText(img_better_look, status_text, (banner_x + 10, banner_y + 200), cv2.FONT_HERSHEY_COMPLEX, 1.0, text_color, 2)\n\t\tout.write(line_visualize)",
+        "peekOfCode": "\t\t\tbanner_color = (0, 165, 255)  # Orange\n\t\t\tstatus_text = \"MEDIUM\"\n\t\t\ttext_color = (255, 255, 255)\n\t\telse:\n\t\t\tbanner_color = (0, 255, 0)  # Green\n\t\t\tstatus_text = \"SAFE\"\n\t\t\ttext_color = (0, 0, 0)\n\t\t# draw rectangle at banner origin and place text aligned vertically inside\n\t\tcv2.rectangle(img_better_look, (banner_x, banner_y), (banner_x + banner_w, banner_y + banner_h), banner_color, -1)\n\t\ttext_y = banner_y + int(banner_h * 0.7)",
         "detail": "deer",
         "documentation": {}
     },
@@ -5920,7 +5902,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\tstatus_text = \"MEDIUM\"\n\t\t\ttext_color = (255, 255, 255)\n\t\telse:\n\t\t\tbanner_color = (0, 255, 0)  # Green\n\t\t\tstatus_text = \"SAFE\"\n\t\t\ttext_color = (0, 0, 0)\n\t\t# cv2.rectangle(img_better_look, (banner_x, banner_y + 150), (banner_x + banner_w, banner_y + 200 + banner_h), banner_color, -1)\n\t\t# cv2.putText(img_better_look, status_text, (banner_x + 10, banner_y + 200), cv2.FONT_HERSHEY_COMPLEX, 1.0, text_color, 2)\n\t\tout.write(line_visualize)\n\t\tout1.write(img_better_look)",
+        "peekOfCode": "\t\t\tstatus_text = \"MEDIUM\"\n\t\t\ttext_color = (255, 255, 255)\n\t\telse:\n\t\t\tbanner_color = (0, 255, 0)  # Green\n\t\t\tstatus_text = \"SAFE\"\n\t\t\ttext_color = (0, 0, 0)\n\t\t# draw rectangle at banner origin and place text aligned vertically inside\n\t\tcv2.rectangle(img_better_look, (banner_x, banner_y), (banner_x + banner_w, banner_y + banner_h), banner_color, -1)\n\t\ttext_y = banner_y + int(banner_h * 0.7)\n\t\tcv2.putText(img_better_look, status_text, (banner_x + 10, text_y), cv2.FONT_HERSHEY_COMPLEX, 0.8, text_color, 2)",
         "detail": "deer",
         "documentation": {}
     },
@@ -5929,7 +5911,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\ttext_color = (255, 255, 255)\n\t\telse:\n\t\t\tbanner_color = (0, 255, 0)  # Green\n\t\t\tstatus_text = \"SAFE\"\n\t\t\ttext_color = (0, 0, 0)\n\t\t# cv2.rectangle(img_better_look, (banner_x, banner_y + 150), (banner_x + banner_w, banner_y + 200 + banner_h), banner_color, -1)\n\t\t# cv2.putText(img_better_look, status_text, (banner_x + 10, banner_y + 200), cv2.FONT_HERSHEY_COMPLEX, 1.0, text_color, 2)\n\t\tout.write(line_visualize)\n\t\tout1.write(img_better_look)\n\t\tout2.write(combo_image)",
+        "peekOfCode": "\t\t\ttext_color = (255, 255, 255)\n\t\telse:\n\t\t\tbanner_color = (0, 255, 0)  # Green\n\t\t\tstatus_text = \"SAFE\"\n\t\t\ttext_color = (0, 0, 0)\n\t\t# draw rectangle at banner origin and place text aligned vertically inside\n\t\tcv2.rectangle(img_better_look, (banner_x, banner_y), (banner_x + banner_w, banner_y + banner_h), banner_color, -1)\n\t\ttext_y = banner_y + int(banner_h * 0.7)\n\t\tcv2.putText(img_better_look, status_text, (banner_x + 10, text_y), cv2.FONT_HERSHEY_COMPLEX, 0.8, text_color, 2)\n\t\tout.write(line_visualize)",
         "detail": "deer",
         "documentation": {}
     },
@@ -5938,7 +5920,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\tbanner_color = (0, 255, 0)  # Green\n\t\t\tstatus_text = \"SAFE\"\n\t\t\ttext_color = (0, 0, 0)\n\t\t# cv2.rectangle(img_better_look, (banner_x, banner_y + 150), (banner_x + banner_w, banner_y + 200 + banner_h), banner_color, -1)\n\t\t# cv2.putText(img_better_look, status_text, (banner_x + 10, banner_y + 200), cv2.FONT_HERSHEY_COMPLEX, 1.0, text_color, 2)\n\t\tout.write(line_visualize)\n\t\tout1.write(img_better_look)\n\t\tout2.write(combo_image)\n\t\t#show result\n\t\t#cv2.imshow(WINDOW_NAME, img)",
+        "peekOfCode": "\t\t\tbanner_color = (0, 255, 0)  # Green\n\t\t\tstatus_text = \"SAFE\"\n\t\t\ttext_color = (0, 0, 0)\n\t\t# draw rectangle at banner origin and place text aligned vertically inside\n\t\tcv2.rectangle(img_better_look, (banner_x, banner_y), (banner_x + banner_w, banner_y + banner_h), banner_color, -1)\n\t\ttext_y = banner_y + int(banner_h * 0.7)\n\t\tcv2.putText(img_better_look, status_text, (banner_x + 10, text_y), cv2.FONT_HERSHEY_COMPLEX, 0.8, text_color, 2)\n\t\tout.write(line_visualize)\n\t\tout1.write(img_better_look)\n\t\tout2.write(combo_image)",
         "detail": "deer",
         "documentation": {}
     },
@@ -5947,7 +5929,7 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\tstatus_text = \"SAFE\"\n\t\t\ttext_color = (0, 0, 0)\n\t\t# cv2.rectangle(img_better_look, (banner_x, banner_y + 150), (banner_x + banner_w, banner_y + 200 + banner_h), banner_color, -1)\n\t\t# cv2.putText(img_better_look, status_text, (banner_x + 10, banner_y + 200), cv2.FONT_HERSHEY_COMPLEX, 1.0, text_color, 2)\n\t\tout.write(line_visualize)\n\t\tout1.write(img_better_look)\n\t\tout2.write(combo_image)\n\t\t#show result\n\t\t#cv2.imshow(WINDOW_NAME, img)\n\t\t####",
+        "peekOfCode": "\t\t\tstatus_text = \"SAFE\"\n\t\t\ttext_color = (0, 0, 0)\n\t\t# draw rectangle at banner origin and place text aligned vertically inside\n\t\tcv2.rectangle(img_better_look, (banner_x, banner_y), (banner_x + banner_w, banner_y + banner_h), banner_color, -1)\n\t\ttext_y = banner_y + int(banner_h * 0.7)\n\t\tcv2.putText(img_better_look, status_text, (banner_x + 10, text_y), cv2.FONT_HERSHEY_COMPLEX, 0.8, text_color, 2)\n\t\tout.write(line_visualize)\n\t\tout1.write(img_better_look)\n\t\tout2.write(combo_image)\n\t\t#show result",
         "detail": "deer",
         "documentation": {}
     },
@@ -5956,7 +5938,16 @@
         "kind": 5,
         "importPath": "deer",
         "description": "deer",
-        "peekOfCode": "\t\t\ttext_color = (0, 0, 0)\n\t\t# cv2.rectangle(img_better_look, (banner_x, banner_y + 150), (banner_x + banner_w, banner_y + 200 + banner_h), banner_color, -1)\n\t\t# cv2.putText(img_better_look, status_text, (banner_x + 10, banner_y + 200), cv2.FONT_HERSHEY_COMPLEX, 1.0, text_color, 2)\n\t\tout.write(line_visualize)\n\t\tout1.write(img_better_look)\n\t\tout2.write(combo_image)\n\t\t#show result\n\t\t#cv2.imshow(WINDOW_NAME, img)\n\t\t####\n\t\t#cv2.imshow(\"normal lanedetection without extended\",normal_result)",
+        "peekOfCode": "\t\t\ttext_color = (0, 0, 0)\n\t\t# draw rectangle at banner origin and place text aligned vertically inside\n\t\tcv2.rectangle(img_better_look, (banner_x, banner_y), (banner_x + banner_w, banner_y + banner_h), banner_color, -1)\n\t\ttext_y = banner_y + int(banner_h * 0.7)\n\t\tcv2.putText(img_better_look, status_text, (banner_x + 10, text_y), cv2.FONT_HERSHEY_COMPLEX, 0.8, text_color, 2)\n\t\tout.write(line_visualize)\n\t\tout1.write(img_better_look)\n\t\tout2.write(combo_image)\n\t\t#show result\n\t\t#cv2.imshow(WINDOW_NAME, img)",
+        "detail": "deer",
+        "documentation": {}
+    },
+    {
+        "label": "\t\ttext_y",
+        "kind": 5,
+        "importPath": "deer",
+        "description": "deer",
+        "peekOfCode": "\t\ttext_y = banner_y + int(banner_h * 0.7)\n\t\tcv2.putText(img_better_look, status_text, (banner_x + 10, text_y), cv2.FONT_HERSHEY_COMPLEX, 0.8, text_color, 2)\n\t\tout.write(line_visualize)\n\t\tout1.write(img_better_look)\n\t\tout2.write(combo_image)\n\t\t#show result\n\t\t#cv2.imshow(WINDOW_NAME, img)\n\t\t####\n\t\t#cv2.imshow(\"normal lanedetection without extended\",normal_result)\n\t\t#cv2.imshow(\"combo img\",combo_image)",
         "detail": "deer",
         "documentation": {}
     },

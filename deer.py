@@ -388,12 +388,12 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 		vertice = get_vetices()
 		cropped_image , mask = region_of_interest2(cannyresult,vertice)
 		lines = cv2.HoughLinesP(cropped_image, 2, np.pi/180, 100, np.array([]), minLineLength=40, maxLineGap=5)  #minLineLength=40, maxLineGap=5
-		#print("lines\n",lines)
+		
 		if lines is not None :
 			lines = np.reshape(lines, [len(lines),4]) #lines will be None sometimes
 			#avg_lines = average_slope_intercept(frame,lines)
 			avg_lane, left , right = average_slope_intercept(img,lines)
-			#print(len(avg_lane)) #if len(avg_lane)==1 ->only left or right if len(avg_lane)==2 ->both left and right
+			
 			#fix road disappear issue ->works well
 			if len(avg_lane)==2:
 				left_avg_lines = avg_lane[[0]]
@@ -423,12 +423,13 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 				vertices_polly = np.array([[(xl1, yl1), (xl2-5, yl2-80), (xr2+5, yr2-80), (xr1, yr1)]], dtype=np.int32) #extend trapezoid
 				vertices_polly_unextd = np.array([[(xl1, yl1), (xl2, yl2), (xr2, yr2), (xr1, yr1)]], dtype=np.int32) #unextend trapezoid
 			except (NameError,OverflowError):
-				print("xl1 is not defined ->only one side of line works")
+				# lane variables missing; continue without lane extension
+				pass
 				
 		else:
-			print("default avg_lines(not detecting lanes)")
+			# fallback lane geometry when detection fails
 			avg_lane = np.array([[0 ,572 ,479 ,205],   #0 572 ; 479  205 ; 641 193 ; 1268 481
-                                 [1268 ,481 ,641 ,193]])
+		                         [1268 ,481 ,641 ,193]])
 			vertices_polly = None
 		
 		img_zero = np.zeros_like(img)
@@ -439,12 +440,11 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 		line_visualize = cv2.addWeighted(img_better_look,1,line_image,1,1)
 		#line_visualize = cv2.addWeighted(line_image_not_avg,1,line_visualize,1,1)
 		god = filterout2(img,vertice,mask)
-		#print(vertices_polly)
 		try:
 			#cv2.fillPoly(line_image, vertices_polly, color_polly)
 			cv2.fillPoly(img_zero, vertices_polly_unextd, (0,255,0))
 			filtered = filterout(img,vertices_polly)
-			#print("vertices polly :\n",vertices_polly)
+			# vertices polygon used for masking
 			if lanedetection == True:
 					
 				img=filtered #img = filtered
@@ -454,12 +454,13 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 		except NameError:
 			#filtered = original_image 
 			filtered = god
-			print("vertices polly is not defined")
+			# vertices not defined; using unfiltered image
+			pass
 			
 		normal_result = cv2.addWeighted(img,1,img_zero,1,1)
 		#print("vertices polly :",vertices_polly)
 		combo_image = cv2.addWeighted(img, 1, line_image, 1, 1)
-		#combo_image = cv2.addWeighted(combo_image, 1, line_image_not_avg, 1, 1) #addWeighted function cant add two srcs
+		# combo image and non-averaged overlays
 		img_notavg = cv2.addWeighted(img, 1, line_image_not_avg, 1, 1)
 															
 		#allowing safety zone to draw on ->or the color of safety zone will be too dark        
@@ -517,11 +518,11 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 			if trajectory_extrapolation(outputs, img.shape, pol):
 				cv2.putText(img_better_look, "Trajectory Alert!", (50, 200), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0,0,255), 2)
 		
-		if prev_gray is not None and args.enable_optical_flow and len(outputs) > 0:
-			for x1,y1,x2,y2,ids in outputs:
-				if optical_flow_analysis(prev_gray, gray, (int(x1),int(y1),int(x2),int(y2))):
-					cv2.putText(img_better_look, "Optical Flow Alert!", (50, 250), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255,0,255), 2)
-					break
+		# if prev_gray is not None and args.enable_optical_flow and len(outputs) > 0:
+		# 	for x1,y1,x2,y2,ids in outputs:
+		# 		if optical_flow_analysis(prev_gray, gray, (int(x1),int(y1),int(x2),int(y2))):
+		# 			cv2.putText(img_better_look, "Optical Flow Alert!", (50, 250), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255,0,255), 2)
+		# 			break
 		
 		prev_gray = gray
 
@@ -591,12 +592,9 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 				x_res_y = 1.062*y2 - 20
 				pol = np.array([[(224, 960), (500, 570), (586, 570),(1000, 960)]], dtype=np.int32)  
 				#pts[ids].append(center)
-				print("id",ids,"w_tim",w_tim)
 				pt[ids].append(low_left)
 				#h_ls[ids].append(h)
 				w_list[ids].append(w_tim)
-				#print("pt:\n",pt,"\n")
-				print("w_list:\n",w_list,"\n")
 				
 				# Add to history for path drawing
 				if ids not in history:
@@ -654,7 +652,7 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 							try:
 								parameters = np.polyfit(x_dirr, y_dirr, 1)
 								drw = True
-								print("x dirr y dirr",x_dirr,y_dirr)
+								# polyfit succeeded
 							except np.linalg.LinAlgError:
 								drw = False
 				if drw == True:
@@ -704,8 +702,7 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 						name = (w_list[ids][k-1][2])
 						if name == "" :
 							name = (w_list[ids][k-5][2])
-						print("time passed :",time_passed," time1 ",(w_list[ids][k-1][1])," time2 ",(w_list[ids][k-5][1]),)
-						print("width difference :",abs(width_1-width_2))
+						# computed time_passed and width difference for speed estimation
 						if time_passed > 0:
 							if name == "deer":
 								dis_deer2 = Distance_finder(100,width_2)/100
@@ -770,8 +767,11 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 				if puttext_deer == True and  avg_spd_deer != "still appending" and deer_speed != 0 and avg_spd_deer != 0:
 					deer_imptim_avg = round(dis_deer/(avg_spd_deer*1000/3600),2)               
 					deer_imptim = round(dis_deer/(deer_speed*1000/3600),2)
-					cv2.putText(img_better_look, f"average deer speed {avg_spd_deer} km/h Collision time {deer_imptim_avg} s",  (50, 90), cv2.FONT_HERSHEY_COMPLEX, 0.65, (0,0,255), 2)  #bgr
-					cv2.putText(img_better_look, f"deer speed {int(deer_speed)} km/h  Collision time {deer_imptim}s  ",  (50, 50), cv2.FONT_HERSHEY_COMPLEX, 0.65, (255,0,255), 2)  #bgr
+					# cv2.putText(img_better_look, f"average deer speed {avg_spd_deer} km/h Collision time {deer_imptim_avg} s",  (50, 90), cv2.FONT_HERSHEY_COMPLEX, 0.65, (0,0,255), 2)  #bgr
+					# cv2.putText(img_better_look, f"deer speed {int(deer_speed)} km/h  Collision time {deer_imptim}s  ",  (50, 50), cv2.FONT_HERSHEY_COMPLEX, 0.65, (255,0,255), 2)  #bgr
+					cv2.putText(img_better_look, f"average deer speed {avg_spd_deer} km/h",  (50, 90), cv2.FONT_HERSHEY_COMPLEX, 0.65, (0,0,255), 2)  #bgr
+					cv2.putText(img_better_look, f"deer speed {int(deer_speed)} km/h",  (50, 50), cv2.FONT_HERSHEY_COMPLEX, 0.65, (255,0,255), 2)  #bgr
+
 					if deer_imptim_avg < 1.25 and motion_predict == True:
 						unsafe_v = True
 						danger_v = False
@@ -999,17 +999,17 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 			pass
 		
 		# Add center flashing alert for danger
-		if danger_v:
-			# Flash by alternating color
-			flash_color = (0, 0, 255) if (framenumber // 10) % 2 == 0 else (255, 255, 255)
-			cv2.putText(img_better_look, "DANGER!", (320, 240), cv2.FONT_HERSHEY_DUPLEX, 2.0, flash_color, 5, cv2.LINE_AA)
-			print(f"[ALERT] Center danger alert displayed frame={framenumber}")
+		# if danger_v:
+		# 	# Flash by alternating color
+		# 	flash_color = (0, 0, 255) if (framenumber // 10) % 2 == 0 else (255, 255, 255)
+		# 	cv2.putText(img_better_look, "DANGER!", (320, 240), cv2.FONT_HERSHEY_DUPLEX, 2.0, flash_color, 5, cv2.LINE_AA)
+		# 	print(f"[ALERT] Center danger alert displayed frame={framenumber}")
 
-		# Draw status banner
-		banner_x = img.shape[1] - 200
+		# Draw status banner (smaller + right-aligned)
+		banner_w = 140
+		banner_h = 30
+		banner_x = img.shape[1] - banner_w - 20
 		banner_y = 20
-		banner_w = 180
-		banner_h = 40
 		if danger_v:
 			banner_color = (0, 0, 255)  # Red
 			status_text = "DANGER"
@@ -1022,8 +1022,10 @@ def loop_and_detect(cam, detector, tracker, conf_th, vis, args=None):
 			banner_color = (0, 255, 0)  # Green
 			status_text = "SAFE"
 			text_color = (0, 0, 0)
-		# cv2.rectangle(img_better_look, (banner_x, banner_y + 150), (banner_x + banner_w, banner_y + 200 + banner_h), banner_color, -1)
-		# cv2.putText(img_better_look, status_text, (banner_x + 10, banner_y + 200), cv2.FONT_HERSHEY_COMPLEX, 1.0, text_color, 2)
+		# draw rectangle at banner origin and place text aligned vertically inside
+		cv2.rectangle(img_better_look, (banner_x, banner_y), (banner_x + banner_w, banner_y + banner_h), banner_color, -1)
+		text_y = banner_y + int(banner_h * 0.7)
+		cv2.putText(img_better_look, status_text, (banner_x + 10, text_y), cv2.FONT_HERSHEY_COMPLEX, 0.8, text_color, 2)
 
 		out.write(line_visualize)
 		out1.write(img_better_look)
